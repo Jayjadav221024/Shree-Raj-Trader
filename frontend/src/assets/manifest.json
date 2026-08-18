@@ -1,0 +1,530 @@
+{
+  "site": {
+    "logo-mini": {
+      "file": "site/logo-mini.webp",
+      "width": 400,
+      "height": 89,
+      "source": "2025/02/logo-mini.png",
+      "originalBytes": 151379,
+      "webpBytes": 12778
+    },
+    "fav-icon": {
+      "file": "site/fav-icon.webp",
+      "width": 256,
+      "height": 256,
+      "source": "2025/02/fav-icon.png",
+      "originalBytes": 15468,
+      "webpBytes": 6128
+    },
+    "about-facility": {
+      "file": "site/about-facility.webp",
+      "width": 1200,
+      "height": 798,
+      "source": "2025/05/image-5.jpg",
+      "originalBytes": 166106,
+      "webpBytes": 62638
+    }
+  },
+  "brands": {
+    "siemens": {
+      "file": "brands/siemens.webp",
+      "width": 400,
+      "height": 200,
+      "source": "2025/03/SIEMENS.png",
+      "originalBytes": 4098,
+      "webpBytes": 4308
+    },
+    "crompton-greaves": {
+      "file": "brands/crompton-greaves.webp",
+      "width": 247,
+      "height": 99,
+      "source": "2025/05/Crompton-Power-Logo-1.png",
+      "originalBytes": 2860,
+      "webpBytes": 2688
+    },
+    "hindustan-electric": {
+      "file": "brands/hindustan-electric.webp",
+      "width": 400,
+      "height": 200,
+      "source": "2025/03/HINDUSTAN-MOTORS.png",
+      "originalBytes": 5994,
+      "webpBytes": 7882
+    },
+    "rotomotive": {
+      "file": "brands/rotomotive.webp",
+      "width": 400,
+      "height": 200,
+      "source": "2025/03/ROTOMOTIVE.png",
+      "originalBytes": 7234,
+      "webpBytes": 7782
+    },
+    "innomotics": {
+      "file": "brands/innomotics.webp",
+      "width": 400,
+      "height": 200,
+      "source": "2025/03/INNOMOTICS.png",
+      "originalBytes": 3205,
+      "webpBytes": 3300
+    }
+  },
+  "products": {
+    "siemens-switchgear-lv-power-distribution": {
+      "file": "products/siemens-switchgear-lv-power-distribution.webp",
+      "width": 500,
+      "height": 500,
+      "source": "2025/02/Low-Voltage-Power-Distribution-Product.png",
+      "originalBytes": 55996,
+      "webpBytes": 18244
+    },
+    "low-voltage-control-product": {
+      "file": "products/low-voltage-control-product.webp",
+      "width": 600,
+      "height": 600,
+      "source": "2025/02/Low-Voltage-Control-Product.png",
+      "originalBytes": 95517,
+      "webpBytes": 20058
+    },
+    "mcb": {
+      "file": "products/mcb.webp",
+      "width": 900,
+      "height": 471,
+      "source": "2025/02/MCB.png",
+      "originalBytes": 277668,
+      "webpBytes": 11956
+    },
+    "sinnova": {
+      "file": "products/sinnova.webp",
+      "width": 900,
+      "height": 470,
+      "source": "2025/02/Sinnova.png",
+      "originalBytes": 622016,
+      "webpBytes": 18558
+    },
+    "siemens-motor": {
+      "file": "products/siemens-motor.webp",
+      "width": 809,
+      "height": 600,
+      "source": "2025/02/siemens-motor-1.png",
+      "originalBytes": 132765,
+      "webpBytes": 33844
+    },
+    "crompton-greaves-motor": {
+      "file": "products/crompton-greaves-motor.webp",
+      "width": 600,
+      "height": 600,
+      "source": "2025/02/Crompton-Greaves-Motor.jpg",
+      "originalBytes": 51243,
+      "webpBytes": 20946
+    },
+    "hindustan-electric-motor": {
+      "file": "products/hindustan-electric-motor.webp",
+      "width": 600,
+      "height": 600,
+      "source": "2025/02/Hindustan-Electric-Motor.png",
+      "originalBytes": 86333,
+      "webpBytes": 17748
+    },
+    "grit-top": {
+      "file": "products/grit-top.webp",
+      "width": 600,
+      "height": 600,
+      "source": "2025/02/Grit-Top.jpg",
+      "originalBytes": 60738,
+      "webpBytes": 26186
+    },
+    "cheker-plate": {
+      "file": "products/cheker-plate.webp",
+      "width": 600,
+      "height": 600,
+      "source": "2025/02/Cheker-Plate.jpg",
+      "originalBytes": 40319,
+      "webpBytes": 14094
+    },
+    "ladder-type-cable-tray": {
+      "file": "products/ladder-type-cable-tray.webp",
+      "width": 300,
+      "height": 254,
+      "source": "2025/02/Cable-Ladder-1.png",
+      "originalBytes": 15242,
+      "webpBytes": 5348
+    },
+    "perforated-cable-tray": {
+      "file": "products/perforated-cable-tray.webp",
+      "width": 900,
+      "height": 761,
+      "source": "2025/02/WhatsApp-Image-2024-10-16-at-13.27.35.jpeg",
+      "originalBytes": 46851,
+      "webpBytes": 13502
+    },
+    "cat-switchgears": {
+      "file": "products/cat-switchgears.webp",
+      "width": 635,
+      "height": 411,
+      "source": "2025/02/Switchgears.jpg",
+      "originalBytes": 52120,
+      "webpBytes": 26172
+    },
+    "cat-motors": {
+      "file": "products/cat-motors.webp",
+      "width": 635,
+      "height": 411,
+      "source": "2025/02/Motors.jpg",
+      "originalBytes": 34991,
+      "webpBytes": 29772
+    },
+    "cat-gear-box": {
+      "file": "products/cat-gear-box.webp",
+      "width": 667,
+      "height": 461,
+      "source": "2025/03/gear-box.png",
+      "originalBytes": 87023,
+      "webpBytes": 37680
+    },
+    "cat-frp-gratings": {
+      "file": "products/cat-frp-gratings.webp",
+      "width": 635,
+      "height": 411,
+      "source": "2025/02/FRP.jpg",
+      "originalBytes": 113534,
+      "webpBytes": 68042
+    },
+    "cat-frp-cable-tray": {
+      "file": "products/cat-frp-cable-tray.webp",
+      "width": 635,
+      "height": 411,
+      "source": "2025/02/FRP-CABLE-TRAY.png",
+      "originalBytes": 100471,
+      "webpBytes": 9608
+    }
+  },
+  "clients": {
+    "shiva-pharma": {
+      "file": "clients/shiva-pharma.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/SHIVA-PHARMA.jpg",
+      "originalBytes": 3967,
+      "webpBytes": 2864
+    },
+    "anupam": {
+      "file": "clients/anupam.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/ANUPAM.png",
+      "originalBytes": 5734,
+      "webpBytes": 1874
+    },
+    "gea": {
+      "file": "clients/gea.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/GEA.png",
+      "originalBytes": 5507,
+      "webpBytes": 1052
+    },
+    "gsfc": {
+      "file": "clients/gsfc.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/GSFC.png",
+      "originalBytes": 8584,
+      "webpBytes": 3780
+    },
+    "gacl": {
+      "file": "clients/gacl.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/GACL.jpg",
+      "originalBytes": 12683,
+      "webpBytes": 4116
+    },
+    "hero": {
+      "file": "clients/hero.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/HERO.png",
+      "originalBytes": 5416,
+      "webpBytes": 1386
+    },
+    "pi-industries": {
+      "file": "clients/pi-industries.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/PI-INDUSTRIES.png",
+      "originalBytes": 7833,
+      "webpBytes": 2508
+    },
+    "tbea": {
+      "file": "clients/tbea.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/TBEA.png",
+      "originalBytes": 6546,
+      "webpBytes": 3294
+    },
+    "alembic": {
+      "file": "clients/alembic.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/03/Alembic-Logo.png",
+      "originalBytes": 5038,
+      "webpBytes": 5164
+    },
+    "aerzen": {
+      "file": "clients/aerzen.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/03/Aerzen.png",
+      "originalBytes": 5002,
+      "webpBytes": 3820
+    },
+    "r-k-bio": {
+      "file": "clients/r-k-bio.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/R-K-BIO.jpg",
+      "originalBytes": 10341,
+      "webpBytes": 2712
+    },
+    "hi-make": {
+      "file": "clients/hi-make.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/HI-MAKE.jpg",
+      "originalBytes": 4381,
+      "webpBytes": 3326
+    },
+    "nayara": {
+      "file": "clients/nayara.webp",
+      "width": 200,
+      "height": 200,
+      "source": "2025/02/NAYRA.jpg",
+      "originalBytes": 11294,
+      "webpBytes": 3064
+    }
+  },
+  "group": {
+    "shree-raj-traders": {
+      "file": "group/shree-raj-traders.webp",
+      "width": 400,
+      "height": 187,
+      "source": "2025/02/Company-Logos-6.jpg",
+      "originalBytes": 28551,
+      "webpBytes": 2874
+    },
+    "apidel-technologies": {
+      "file": "group/apidel-technologies.webp",
+      "width": 400,
+      "height": 187,
+      "source": "2025/02/Company-Logos-2.jpg",
+      "originalBytes": 29621,
+      "webpBytes": 3148
+    },
+    "techno-sales-agency": {
+      "file": "group/techno-sales-agency.webp",
+      "width": 400,
+      "height": 187,
+      "source": "2025/02/Company-Logos-3.jpg",
+      "originalBytes": 35398,
+      "webpBytes": 4320
+    },
+    "transpower-technologies": {
+      "file": "group/transpower-technologies.webp",
+      "width": 400,
+      "height": 166,
+      "source": "2025/05/TransPower-Technologies-Logo-PNG-2.png",
+      "originalBytes": 90935,
+      "webpBytes": 20594
+    }
+  },
+  "team": {
+    "dharak-parikh": {
+      "file": "team/dharak-parikh.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Dharak-Parikh.png",
+      "originalBytes": 71271,
+      "webpBytes": 11536
+    },
+    "abhay-dave": {
+      "file": "team/abhay-dave.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Abhay-Dave.png",
+      "originalBytes": 87412,
+      "webpBytes": 10176
+    },
+    "parag-parikh": {
+      "file": "team/parag-parikh.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Parag-Parikh.png",
+      "originalBytes": 84713,
+      "webpBytes": 10698
+    },
+    "dixit-desai": {
+      "file": "team/dixit-desai.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Dixit-Desai.png",
+      "originalBytes": 83109,
+      "webpBytes": 10716
+    },
+    "naina-mehta": {
+      "file": "team/naina-mehta.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Naina-Mehta.png",
+      "originalBytes": 92739,
+      "webpBytes": 10382
+    },
+    "jayesh-yadav": {
+      "file": "team/jayesh-yadav.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Jayesh-Yadav.png",
+      "originalBytes": 85536,
+      "webpBytes": 10998
+    },
+    "dinesh-padhiyar": {
+      "file": "team/dinesh-padhiyar.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Dinesh-Padhiyar.png",
+      "originalBytes": 88299,
+      "webpBytes": 12128
+    },
+    "kamal-kushwah": {
+      "file": "team/kamal-kushwah.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Kamal-Kushwah.png",
+      "originalBytes": 88548,
+      "webpBytes": 11368
+    },
+    "krunal-soni": {
+      "file": "team/krunal-soni.webp",
+      "width": 338,
+      "height": 508,
+      "source": "2025/05/Krunal-Soni.png",
+      "originalBytes": 77878,
+      "webpBytes": 10110
+    }
+  },
+  "gallery": {
+    "facility-1": {
+      "file": "gallery/facility-1.webp",
+      "width": 1400,
+      "height": 931,
+      "source": "2025/05/image-1-scaled.jpg",
+      "originalBytes": 174962,
+      "webpBytes": 124736
+    },
+    "facility-2": {
+      "file": "gallery/facility-2.webp",
+      "width": 1400,
+      "height": 931,
+      "source": "2025/05/image-2-scaled.jpg",
+      "originalBytes": 598193,
+      "webpBytes": 155828
+    },
+    "facility-3": {
+      "file": "gallery/facility-3.webp",
+      "width": 852,
+      "height": 1280,
+      "source": "2025/05/image-3.jpg",
+      "originalBytes": 289089,
+      "webpBytes": 133826
+    },
+    "facility-4": {
+      "file": "gallery/facility-4.webp",
+      "width": 1400,
+      "height": 1050,
+      "source": "2025/05/image-4.jpg",
+      "originalBytes": 99614,
+      "webpBytes": 143656
+    },
+    "facility-5": {
+      "file": "gallery/facility-5.webp",
+      "width": 1400,
+      "height": 931,
+      "source": "2025/05/image-5.jpg",
+      "originalBytes": 166106,
+      "webpBytes": 77898
+    },
+    "facility-6": {
+      "file": "gallery/facility-6.webp",
+      "width": 1400,
+      "height": 931,
+      "source": "2025/05/image-6.jpg",
+      "originalBytes": 131662,
+      "webpBytes": 84376
+    },
+    "facility-7": {
+      "file": "gallery/facility-7.webp",
+      "width": 1280,
+      "height": 960,
+      "source": "2025/05/image-7.jpg",
+      "originalBytes": 108393,
+      "webpBytes": 174542
+    }
+  },
+  "blog": {
+    "when-to-replace-industrial-switchgear": {
+      "file": "blog/when-to-replace-industrial-switchgear.webp",
+      "width": 800,
+      "height": 600,
+      "source": "2026/08/Shree-Raj-Blog-08-2026-Blog-1.jpg",
+      "originalBytes": 44128,
+      "webpBytes": 44452
+    },
+    "siemens-motors-authorized-dealer-ahmedabad": {
+      "file": "blog/siemens-motors-authorized-dealer-ahmedabad.webp",
+      "width": 800,
+      "height": 600,
+      "source": "2026/07/Shree-Raj-Blog-07-2026-3-1.jpg",
+      "originalBytes": 48704,
+      "webpBytes": 50004
+    },
+    "preventive-maintenance-hindustan-electric-motors": {
+      "file": "blog/preventive-maintenance-hindustan-electric-motors.webp",
+      "width": 800,
+      "height": 600,
+      "source": "2026/07/Shree-Raj-Blog-07-2026-2.jpg",
+      "originalBytes": 38345,
+      "webpBytes": 35810
+    },
+    "frp-gratings-vs-ms-gratings-gujarat": {
+      "file": "blog/frp-gratings-vs-ms-gratings-gujarat.webp",
+      "width": 800,
+      "height": 600,
+      "source": "2026/07/Shree-Raj-Blog-07-2026-1.jpg",
+      "originalBytes": 54005,
+      "webpBytes": 53138
+    },
+    "crompton-greaves-vs-hindustan-electric-motors": {
+      "file": "blog/crompton-greaves-vs-hindustan-electric-motors.webp",
+      "width": 880,
+      "height": 350,
+      "source": "2026/06/Transpower-Blog-03.jpg",
+      "originalBytes": 33832,
+      "webpBytes": 34942
+    },
+    "smart-industrial-switchgear-industry-trends": {
+      "file": "blog/smart-industrial-switchgear-industry-trends.webp",
+      "width": 1200,
+      "height": 900,
+      "source": "2026/06/Shree-Raj-Blog-06-2026_Smart-Industrial-Switchgear-Latest-Advancements-and-Industry-Trends-scaled.jpg",
+      "originalBytes": 465768,
+      "webpBytes": 73680
+    },
+    "top-key-features-of-frp-cable-trays": {
+      "file": "blog/top-key-features-of-frp-cable-trays.webp",
+      "width": 800,
+      "height": 600,
+      "source": "2026/05/Shree-Raj-Blog-6.jpg",
+      "originalBytes": 106671,
+      "webpBytes": 48754
+    }
+  }
+}
