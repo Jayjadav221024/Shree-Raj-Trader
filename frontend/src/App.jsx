@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, Link, Navigate } from 'react-router-dom';
 import { Search, X, ArrowRight } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -19,8 +19,29 @@ import BlogPostPage from './pages/BlogPostPage';
 import LocationsPage from './pages/LocationsPage';
 import CityPage from './pages/CityPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import CareerPage from './pages/CareerPage';
 import SEO from './components/SEO';
-import { allProducts } from './data/siteData';
+import SectionEditOverlay, { isSectionEditMode } from './components/SectionEditOverlay';
+import { SiteContentProvider, useSiteContent } from './lib/siteContent';
+import { copy } from './data/sectionCopy';
+import { allProducts, productCategories, images } from './data/siteData';
+import { resolveImageUrl } from './admin/lib/imageResolver';
+import { useQuery } from '@tanstack/react-query';
+import api from './admin/lib/axios';
+
+// Admin imports
+import QueryProvider from './admin/providers/QueryProvider';
+import AuthProvider from './admin/providers/AuthProvider';
+import AdminLoginPage from './admin/views/Login';
+import AdminDashboardPage from './admin/views/Dashboard';
+import AdminUsersPage from './admin/views/AdminUsers';
+import UserRolesPage from './admin/views/UserRoles';
+import GenericMastersPage from './admin/views/GenericMasters';
+import EmailSetupPage from './admin/views/EmailSetup';
+import EmailForPage from './admin/views/EmailFor';
+import EmailTemplatePage from './admin/views/EmailTemplate';
+import WebsiteEditorPage from './admin/views/WebsiteEditor';
+import { ProtectedRoute, PublicOnlyRoute } from './admin/components/ProtectedRoute';
 
 const ALL_ITEMS = allProducts;
 
@@ -44,6 +65,124 @@ function AppShell() {
   const [selectedProductForRfq, setSelectedProductForRfq] = useState(null);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [globalSearchQuery, setGlobalSearchQuery] = useState('');
+
+  // 1. Fetch Categories
+  const { data: categoriesData } = useQuery({
+    queryKey: ['public-categories'],
+    queryFn: async () => {
+      const res = await api.get('/public/categories');
+      return res.data.data;
+    },
+    staleTime: 5 * 60 * 1000
+  });
+
+  // 2. Fetch Products
+  const { data: productsData } = useQuery({
+    queryKey: ['public-products'],
+    queryFn: async () => {
+      const res = await api.get('/public/products');
+      return res.data.data;
+    },
+    staleTime: 5 * 60 * 1000
+  });
+
+  // 3. Fetch Testimonials
+  const { data: testimonialsData } = useQuery({
+    queryKey: ['public-testimonials'],
+    queryFn: async () => {
+      const res = await api.get('/public/testimonials');
+      return res.data.data;
+    },
+    staleTime: 5 * 60 * 1000
+  });
+
+  // 4. Fetch FAQs
+  const { data: faqsData } = useQuery({
+    queryKey: ['public-faqs'],
+    queryFn: async () => {
+      const res = await api.get('/public/faqs');
+      return res.data.data;
+    },
+    staleTime: 5 * 60 * 1000
+  });
+
+  // 5. Fetch Blogs
+  const { data: blogsData } = useQuery({
+    queryKey: ['public-blogs'],
+    queryFn: async () => {
+      const res = await api.get('/public/blogs');
+      return res.data.data;
+    },
+    staleTime: 5 * 60 * 1000
+  });
+
+  // Dynamic mappers
+  const resolvedCategories = React.useMemo(() => {
+    if (!categoriesData || categoriesData.length === 0) {
+      return productCategories;
+    }
+    const pList = productsData || [];
+    return categoriesData.map((cat) => {
+      const catProducts = pList.filter((p) => p.categoryId === cat.id);
+      return {
+        id: cat.id,
+        title: cat.title,
+        badge: cat.badge,
+        description: cat.description,
+        imageKey: cat.imageKey,
+        imageAlt: cat.imageAlt || cat.title,
+        image: resolveImageUrl(cat.imageKey, 'products', 'logo-mini'),
+        items: catProducts.map((p) => ({
+          slug: p.slug,
+          name: p.name,
+          brand: p.brand,
+          longDescription: p.longDescription,
+          applications: p.applications,
+          specs: p.specs,
+          liveSpecs: p.liveSpecs,
+          imageKey: p.imageKey,
+          imageAlt: p.imageAlt || p.name,
+          image: resolveImageUrl(p.imageKey, 'products', 'logo-mini'),
+          ...p.attributes
+        }))
+      };
+    });
+  }, [categoriesData, productsData]);
+
+  const resolvedProducts = React.useMemo(() => {
+    if (!categoriesData || categoriesData.length === 0) {
+      return allProducts;
+    }
+    return resolvedCategories.flatMap((cat) =>
+      cat.items.map((item) => ({
+        ...item,
+        categoryId: cat.id,
+        categoryTitle: cat.title,
+        categoryBadge: cat.badge,
+        categoryImage: cat.image
+      }))
+    );
+  }, [resolvedCategories, categoriesData]);
+
+  const resolvedBlogs = React.useMemo(() => {
+    if (!blogsData || blogsData.length === 0) {
+      return null;
+    }
+    return blogsData.map((post) => ({
+      slug: post.slug,
+      title: post.title,
+      excerpt: post.excerpt,
+      content: post.content,
+      author: post.author,
+      date: post.date,
+      readTime: post.readTime,
+      imageKey: post.imageKey,
+      imageAlt: post.imageAlt || post.title,
+      image: resolveImageUrl(post.imageKey, 'blog', 'logo-mini')
+    }));
+  }, [blogsData]);
+
+  const ALL_ITEMS = resolvedProducts;
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -89,12 +228,23 @@ function AppShell() {
       )
     : [];
 
+  const isAdminRoute = pathname.startsWith('/admin');
+
+  // Bumped once the Website Editor's saved content has been merged in. Used as
+  // a remount key so every component picks the new copy up in one pass.
+  const { version: contentVersion } = useSiteContent();
+  const editMode = isSectionEditMode() && !isAdminRoute;
+
   return (
-    <div className="min-h-screen">
-      <Navbar
-        onOpenRfq={scrollToRfq}
-        onOpenSearch={() => setSearchModalOpen(true)}
-      />
+    <div className="min-h-screen" key={contentVersion}>
+      {!isAdminRoute && (
+        <Navbar
+          onOpenRfq={scrollToRfq}
+          onOpenSearch={() => setSearchModalOpen(true)}
+        />
+      )}
+
+      {editMode && <SectionEditOverlay />}
 
       <ScrollManager />
 
@@ -105,46 +255,130 @@ function AppShell() {
             element={
               <>
                 <SEO
-                  title="Siemens Switchgears, Motors & FRP Solutions"
-                  description="Shree Raj Traders is a trusted distributor of Siemens low-voltage switchgears, CGL and Hindustan electric motors, FRP gratings, and FRP cable trays in Ahmedabad, Gujarat."
+                  title={copy['seo.home'].title}
+                  description={copy['seo.home'].description}
                 />
                 <Hero
                   onOpenRfq={scrollToRfq}
                 />
 
-                <FeaturedCategories />
+                <FeaturedCategories categories={resolvedCategories} />
                 <BrandMatrix onSelectBrand={handleBrandSelect} />
                 <DomainSection />
-                <TestimonialsSection />
+                <TestimonialsSection testimonials={testimonialsData} />
                 <JourneySection />
               </>
             }
           />
           <Route path="/about-us/" element={<AboutSection />} />
-          <Route path="/products/" element={<ProductCatalog onSelectProductForRfq={handleOpenRfqForProduct} />} />
-          <Route path="/products/:category" element={<ProductCatalog onSelectProductForRfq={handleOpenRfqForProduct} />} />
-          <Route path="/product/:slug" element={<ProductDetailPage onSelectProductForRfq={handleOpenRfqForProduct} />} />
+          <Route path="/products/" element={<ProductCatalog categories={resolvedCategories} products={resolvedProducts} onSelectProductForRfq={handleOpenRfqForProduct} />} />
+          <Route path="/products/:category" element={<ProductCatalog categories={resolvedCategories} products={resolvedProducts} onSelectProductForRfq={handleOpenRfqForProduct} />} />
+          <Route path="/product/:slug" element={<ProductDetailPage products={resolvedProducts} onSelectProductForRfq={handleOpenRfqForProduct} />} />
           <Route
             path="/contact/"
             element={
               <>
-                <ContactSection />
+                <ContactSection faqs={faqsData} />
                 <RfqCalculator preselectedProduct={selectedProductForRfq} />
               </>
             }
           />
           <Route path="/gallery/" element={<GalleryPage />} />
-          <Route path="/blog/" element={<BlogPage />} />
-          <Route path="/blog/:slug/" element={<BlogPostPage />} />
+          <Route path="/blog/" element={<BlogPage blogs={resolvedBlogs} />} />
+          <Route path="/blog/:slug/" element={<BlogPostPage blogs={resolvedBlogs} />} />
           <Route path="/locations/" element={<LocationsPage />} />
           <Route path="/locations/:city/" element={<CityPage />} />
+
+          {/* Careers — intentionally unlisted. The route works, but nothing in the
+              navbar or footer links to it, so it is reachable only by address.
+              Both spellings resolve so a shared link cannot 404 on a missing slash. */}
+          <Route path="/career" element={<CareerPage />} />
+          <Route path="/career/" element={<CareerPage />} />
+          <Route path="/careers" element={<Navigate to="/career/" replace />} />
+          <Route path="/careers/" element={<Navigate to="/career/" replace />} />
+
+          {/* Admin panel routes — every screen but the login form sits behind ProtectedRoute */}
+          <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+          <Route
+            path="/admin/login"
+            element={
+              <PublicOnlyRoute>
+                <AdminLoginPage />
+              </PublicOnlyRoute>
+            }
+          />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/setup/admin-users"
+            element={
+              <ProtectedRoute>
+                <AdminUsersPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/setup/user-roles"
+            element={
+              <ProtectedRoute>
+                <UserRolesPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/master/:module"
+            element={
+              <ProtectedRoute>
+                <GenericMastersPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/cms/email-setup"
+            element={
+              <ProtectedRoute>
+                <EmailSetupPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/cms/email-for"
+            element={
+              <ProtectedRoute>
+                <EmailForPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/cms/email-template"
+            element={
+              <ProtectedRoute>
+                <EmailTemplatePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/website/editor"
+            element={
+              <ProtectedRoute>
+                <WebsiteEditorPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/admin/*" element={<Navigate to="/admin/dashboard" replace />} />
         </Routes>
       </main>
 
-      <Footer />
+      {!isAdminRoute && <Footer />}
 
       {/* Search modal */}
-      {searchModalOpen && (
+      {searchModalOpen && !isAdminRoute && (
         <div
           className="fixed inset-0 z-[1100] bg-[rgba(14,26,43,0.55)] backdrop-blur-sm flex items-start justify-center pt-24 p-4 animate-fadeIn"
           onClick={() => setSearchModalOpen(false)}
@@ -213,7 +447,13 @@ function AppShell() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AppShell />
+      <QueryProvider>
+        <AuthProvider>
+          <SiteContentProvider>
+            <AppShell />
+          </SiteContentProvider>
+        </AuthProvider>
+      </QueryProvider>
     </BrowserRouter>
   );
 }

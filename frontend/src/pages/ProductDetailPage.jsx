@@ -2,19 +2,23 @@ import React from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, FileText } from 'lucide-react';
 import { productCategories } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
+import { fillTemplate } from '../lib/siteContent';
 import SEO from '../components/SEO';
 
+// Keys that describe the record rather than the product, so they must never be
+// rendered as a spec card in the attribute grid below.
 const HIDDEN_KEYS = [
-  'name', 'href', 'slug', 'imageKey', 'image', 'longDescription', 'liveSpecs',
+  'name', 'href', 'slug', 'imageKey', 'imageAlt', 'image', 'longDescription', 'liveSpecs',
   'categoryId', 'categoryTitle', 'categoryBadge', 'categoryImage', 'specs'
 ];
 
-export default function ProductDetailPage({ onSelectProductForRfq }) {
+export default function ProductDetailPage({ onSelectProductForRfq, products: propProducts }) {
   const { slug } = useParams();
   const navigate = useNavigate();
 
   // Find product across all categories
-  const allProducts = productCategories.flatMap((cat) =>
+  const allProducts = propProducts && propProducts.length > 0 ? propProducts : productCategories.flatMap((cat) =>
     cat.items.map((item) => ({
       ...item,
       categoryId: cat.id,
@@ -25,15 +29,16 @@ export default function ProductDetailPage({ onSelectProductForRfq }) {
   );
 
   const product = allProducts.find((p) => p.slug === slug);
+  const c = copy['products.detail'];
 
   if (!product) {
     return (
       <section className="section page-top-spacing">
         <div className="container-page text-center">
-          <h1 className="section-title">Product Not Found</h1>
+          <h1 className="section-title">{c.notFoundTitle}</h1>
           <Link to="/products/" className="btn btn-primary mt-6">
             <ArrowLeft className="w-4 h-4" />
-            Back to Products
+            {c.notFoundCta}
           </Link>
         </div>
       </section>
@@ -41,10 +46,12 @@ export default function ProductDetailPage({ onSelectProductForRfq }) {
   }
 
   return (
-    <section className="section page-top-spacing">
+    <section data-section="products.detail" className="section page-top-spacing">
       <SEO
-        title={`${product.name} Specs & Details`}
-        description={`Get technical specifications, applications, and direct RFQ pricing options for ${product.name} from Shree Raj Traders.`}
+        title={fillTemplate(copy['seo.product-detail'].title, { product: product.name })}
+        description={fillTemplate(copy['seo.product-detail'].description, { product: product.name })}
+        image={product.image}
+        imageAlt={product.imageAlt || product.name}
       />
       <div className="container-page">
         {/* Back Button */}
@@ -53,7 +60,7 @@ export default function ProductDetailPage({ onSelectProductForRfq }) {
           className="btn btn-secondary btn-sm mb-8 inline-flex items-center gap-2"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
-          Back to Catalog
+          {c.backToCatalog}
         </button>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -61,7 +68,7 @@ export default function ProductDetailPage({ onSelectProductForRfq }) {
           <div className="lg:col-span-5 bg-white rounded-3xl p-8 border border-[var(--border-color)] shadow-[var(--shadow-card)] flex items-center justify-center min-h-[350px]">
             <img
               src={product.image.src}
-              alt={product.name}
+              alt={product.imageAlt || product.name}
               width={product.image.width}
               height={product.image.height}
               className="max-h-[380px] w-auto object-contain"
@@ -101,7 +108,7 @@ export default function ProductDetailPage({ onSelectProductForRfq }) {
               <div className="pt-4">
                 <h3 className="text-orange text-lg font-display tracking-wide mb-3 flex items-center gap-2">
                   <FileText className="w-5 h-5" />
-                  Product Specifications
+                  {c.specificationsTitle}
                 </h3>
                 <div className="space-y-2">
                   {product.liveSpecs.map((spec) => (
@@ -119,7 +126,7 @@ export default function ProductDetailPage({ onSelectProductForRfq }) {
               <div className="pt-4">
                 <h3 className="text-orange text-lg font-display tracking-wide mb-3 flex items-center gap-2">
                   <FileText className="w-5 h-5" />
-                  Product Features
+                  {c.featuresTitle}
                 </h3>
                 <div className="space-y-2">
                   {product.specs.map((spec) => (
@@ -138,7 +145,7 @@ export default function ProductDetailPage({ onSelectProductForRfq }) {
                 onClick={() => onSelectProductForRfq && onSelectProductForRfq(product)}
                 className="btn btn-primary px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl shadow-[var(--shadow-glow)]"
               >
-                Get Custom Quote for {product.name}
+                {fillTemplate(c.quoteButton, { product: product.name })}
               </button>
             </div>
           </div>

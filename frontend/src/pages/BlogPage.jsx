@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Calendar } from 'lucide-react';
 import { blogPostsWithImages } from '../data/blog';
+import { copy } from '../data/sectionCopy';
+import SEO from '../components/SEO';
 
 const formatDate = (iso) =>
   new Date(`${iso}T00:00:00`).toLocaleDateString('en-IN', {
@@ -10,27 +12,29 @@ const formatDate = (iso) =>
     year: 'numeric'
   });
 
-export default function BlogPage() {
+export default function BlogPage({ blogs: propBlogs }) {
+  const list = propBlogs && propBlogs.length > 0 ? propBlogs : blogPostsWithImages;
+  const c = copy['blog.header'];
+
   return (
     <section className="section page-top-spacing">
+      <SEO title={copy['seo.blog'].title} description={copy['seo.blog'].description} />
       <div className="container-page">
-        <div className="section-header">
-          <span className="eyebrow">Insights &amp; Guides</span>
+        <div data-section="blog.header" className="section-header">
+          <span className="eyebrow">{c.eyebrow}</span>
           <h1 className="section-title">
-            <span className="text-orange">Blog</span>
+            <span className="text-orange">{c.titleAccent}</span>
           </h1>
-          <p>
-            Technical guidance on switchgears, industrial motors, FRP gratings and cable trays.
-          </p>
+          <p>{c.intro}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPostsWithImages.map((post) => (
+          {list.map((post) => (
             <article key={post.slug} className="product-card">
               <Link to={`/blog/${post.slug}/`} className="block">
                 <img
                   src={post.image.src}
-                  alt={post.title}
+                  alt={post.imageAlt || post.title}
                   width={post.image.width}
                   height={post.image.height}
                   loading="lazy"

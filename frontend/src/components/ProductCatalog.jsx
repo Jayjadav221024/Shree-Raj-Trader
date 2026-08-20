@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Search, FileText, ArrowRight } from 'lucide-react';
 import { productCategories } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
+import { fillTemplate } from '../lib/siteContent';
 import SEO from './SEO';
-
-const TABS = [
-  { id: 'all', label: 'All Products' },
-  ...productCategories.map((cat) => ({ id: cat.id, label: cat.title }))
-];
 
 const CATEGORY_MAP = {
   'gearbox': 'gearboxes',
@@ -15,12 +12,6 @@ const CATEGORY_MAP = {
   'gratings': 'frp-gratings',
   'trays': 'frp-cable-trays',
   'frp-cable-tray': 'frp-cable-trays'
-};
-
-const getNormalizedCategory = (cat) => {
-  if (!cat) return 'all';
-  const normalized = CATEGORY_MAP[cat] || cat;
-  return TABS.some(t => t.id === normalized) ? normalized : 'all';
 };
 
 // Spec keys promoted onto the card face, in display order.
@@ -35,9 +26,25 @@ const CARD_SPECS = [
   ['surfaceFinish', 'Surface']
 ];
 
-export default function ProductCatalog({ onSelectProductForRfq }) {
+export default function ProductCatalog({ onSelectProductForRfq, categories: propCategories, products: propProducts }) {
   const { category } = useParams();
   const navigate = useNavigate();
+
+  const categories = propCategories || productCategories;
+  const c = copy['products.header'];
+  const seo = copy['seo.products'];
+
+  const tabs = React.useMemo(() => [
+    { id: 'all', label: c.allTabLabel },
+    ...categories.map((cat) => ({ id: cat.id, label: cat.title }))
+  ], [categories, c.allTabLabel]);
+
+  const getNormalizedCategory = (cat) => {
+    if (!cat) return 'all';
+    const normalized = CATEGORY_MAP[cat] || cat;
+    return tabs.some(t => t.id === normalized) ? normalized : 'all';
+  };
+
   const initialTab = getNormalizedCategory(category);
   const [activeTab, setActiveTab] = useState(initialTab);
 
@@ -45,7 +52,7 @@ export default function ProductCatalog({ onSelectProductForRfq }) {
   React.useEffect(() => {
     const normalized = getNormalizedCategory(category);
     setActiveTab(normalized);
-  }, [category]);
+  }, [category, tabs]);
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
@@ -62,44 +69,58 @@ export default function ProductCatalog({ onSelectProductForRfq }) {
     }
   };
 
-  const allProducts = productCategories.flatMap((cat) =>
-    cat.items.map((item) => ({
-      ...item,
-      categoryId: cat.id,
-      categoryTitle: cat.title,
-      categoryBadge: cat.badge,
-      categoryImage: cat.image
-    }))
-  );
+  const allProducts = React.useMemo(() => {
+    if (propProducts && propProducts.length > 0) {
+      return propProducts;
+    }
+    return categories.flatMap((cat) =>
+      cat.items.map((item) => ({
+        ...item,
+        categoryId: cat.id,
+        categoryTitle: cat.title,
+        categoryBadge: cat.badge,
+        categoryImage: cat.image
+      }))
+    );
+  }, [propProducts, categories]);
 
   const filteredProducts = allProducts.filter((p) => {
     return activeTab === 'all' || p.categoryId === activeTab;
   });
 
-  const activeCategoryObj = productCategories.find(c => c.id === activeTab);
-  const pageTitle = activeCategoryObj ? `${activeCategoryObj.title} Catalog` : "Products Catalog";
-  const pageDesc = activeCategoryObj 
-    ? `Authorized distributor of ${activeCategoryObj.title} in Ahmedabad, Gujarat. ${activeCategoryObj.description}`
-    : "Authorized channel partner for Siemens, CGL and Hindustan Electric Motors. Supplying switchgears, motors, FRP gratings and FRP cable trays in Ahmedabad, Gujarat.";
-
   return (
-    <section id="products" className="section page-top-spacing">
-      <SEO title={pageTitle} description={pageDesc} />
-      <div className="container-page">
-        <div className="section-header">
-          <span className="eyebrow">Product Catalog</span>
-          <h2 className="section-title">
-            Our <span className="text-orange">Products</span>
-          </h2>
-          <p>
-            Siemens switchgears, motors from Siemens, CGL and Hindustan,
-            FRP gratings and FRP cable trays.
-          </p>
-        </div>
+    <>
+      <SEO
+        title={
+          activeTab === 'all'
+            ? seo.title
+            : fillTemplate(seo.categoryTitle, {
+                category: categories.find((cat) => cat.id === activeTab)?.title || '',
+              })
+        }
+        description={seo.description}
+      />
 
+      <section
+        data-section="products.header"
+        className="section bg-[var(--bg-secondary)] border-b border-[var(--border-color)]"
+      >
+        <div className="container">
+          <div className="max-w-3xl">
+            <h1 className="font-display text-4xl sm:text-5xl text-[var(--text-main)] font-black uppercase tracking-tight">
+              {c.title}
+            </h1>
+            <p className="text-sm sm:text-base text-[var(--text-muted)] mt-2">
+              {c.intro}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div className="container py-12">
         {/* Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 mb-8">
-          {TABS.map((tab) => {
+          {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
@@ -136,7 +157,7 @@ export default function ProductCatalog({ onSelectProductForRfq }) {
                 >
                   <img
                     src={item.image.src}
-                    alt={`${item.name}${item.brand ? ` by ${item.brand}` : ''}`}
+                    alt={item.imageAlt || `${item.name}${item.brand ? ` by ${item.brand}` : ''}`}
                     width={item.image.width}
                     height={item.image.height}
                     loading="lazy"
@@ -194,6 +215,6 @@ export default function ProductCatalog({ onSelectProductForRfq }) {
           </div>
         )}
       </div>
-    </section>
+    </>
   );
 }

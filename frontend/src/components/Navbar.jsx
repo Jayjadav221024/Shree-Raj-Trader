@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Phone, Menu, X, ChevronRight, ChevronDown } from 'lucide-react';
 import { companyInfo, routes, navMenus, siteMeta } from '../data/siteData';
-
-const PRODUCT_GROUPS = [
-  { key: 'switchgears', label: 'Switchgears' },
-  { key: 'motors', label: 'Motors' },
-  { key: 'gratings', label: 'FRP Gratings' },
-  { key: 'trays', label: 'FRP Cable Tray' }
-];
+import { copy } from '../data/sectionCopy';
 
 export default function Navbar({ onOpenRfq, onOpenSearch }) {
+  const c = copy['global.navbar'];
+  const PRODUCT_GROUPS = c.productGroups;
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -27,16 +23,19 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
   const closeMobile = () => setMobileMenuOpen(false);
 
   return (
-    <header className={`site-header ${scrolled ? 'site-header-scrolled py-3' : 'py-4'}`}>
+    <header
+      data-section="global.navbar"
+      className={`site-header ${scrolled ? 'site-header-scrolled py-3' : 'py-4'}`}
+    >
       <div className="container-page flex items-center justify-between gap-6">
         {/* Wordmark */}
         <a href={routes.home.path} className="flex items-center gap-3 group shrink-0 logo-3d-container">
           <div className="leading-none logo-text-3d">
             <div className="font-display text-xl sm:text-2xl tracking-wide text-[var(--text-main)] group-hover:text-[var(--accent-orange)] transition-colors">
-              SHREE RAJ <span className="text-orange">TRADERS</span>
+              {c.wordmarkPrimary} <span className="text-orange">{c.wordmarkAccent}</span>
             </div>
             <div className="text-[10px] font-bold tracking-[0.14em] uppercase text-[var(--text-faint)] mt-1">
-              Siemens · CGL · Hindustan
+              {c.wordmarkSub}
             </div>
           </div>
         </a>
@@ -45,7 +44,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-5">
-          <a href={routes.home.path} className="nav-link">Home</a>
+          <a href={routes.home.path} className="nav-link">{c.navHome}</a>
 
           {/* About */}
           <div
@@ -54,7 +53,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
             onMouseLeave={() => setActiveDropdown(null)}
           >
             <button className="nav-link flex items-center gap-1 py-2">
-              About Us <ChevronDown className="w-3.5 h-3.5" />
+              {c.navAbout} <ChevronDown className="w-3.5 h-3.5" />
             </button>
             {activeDropdown === 'about' && (
               <div className="absolute top-full left-0 w-60 dropdown-panel animate-fadeIn z-50">
@@ -67,7 +66,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
             )}
           </div>
 
-          <a href={routes.gallery.path} className="nav-link">Gallery</a>
+          <a href={routes.gallery.path} className="nav-link">{c.navGallery}</a>
 
           {/* Products */}
           <div
@@ -79,7 +78,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
             }}
           >
             <button className="nav-link flex items-center gap-1 py-2">
-              Products <ChevronDown className="w-3.5 h-3.5" />
+              {c.navProducts} <ChevronDown className="w-3.5 h-3.5" />
             </button>
             {activeDropdown === 'products' && (
               <div className="absolute top-full left-0 w-56 dropdown-panel animate-fadeIn z-50">
@@ -96,7 +95,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
                     </a>
                     {activeSubmenu === group.key && (
                       <div className="absolute left-full top-0 ml-1 w-64 dropdown-panel animate-fadeIn">
-                        {navMenus.products[group.key].map((link) => (
+                        {(navMenus.products[group.key] || []).map((link) => (
                           <a key={link.label} href={link.href} className="dropdown-item">
                             {link.label}
                           </a>
@@ -109,9 +108,9 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
             )}
           </div>
 
-          <a href="/locations/" className="nav-link">Locations</a>
-          <a href={routes.blog.path} className="nav-link">Blog</a>
-          <a href={routes.contact.path} className="nav-link">Contact</a>
+          <a href="/locations/" className="nav-link">{c.navLocations}</a>
+          <a href={routes.blog.path} className="nav-link">{c.navBlog}</a>
+          <a href={routes.contact.path} className="nav-link">{c.navContact}</a>
         </nav>
 
         {/* Actions */}
@@ -133,7 +132,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
           </a>
 
           <button onClick={onOpenRfq} className="btn btn-primary btn-sm">
-            Get Quote
+            {c.ctaQuote}
           </button>
         </div>
 
@@ -150,14 +149,14 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
       {/* Mobile drawer */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-white border-t border-[var(--border-color)] px-6 py-6 space-y-1 animate-fadeIn max-h-[80vh] overflow-y-auto">
-          <a href={routes.home.path} onClick={closeMobile} className="block py-2.5 nav-link">Home</a>
+          <a href={routes.home.path} onClick={closeMobile} className="block py-2.5 nav-link">{c.navHome}</a>
 
           <div>
             <button
               onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
               className="w-full flex items-center justify-between py-2.5 nav-link"
             >
-              <span>About Us</span>
+              <span>{c.navAbout}</span>
               <ChevronDown className={`w-4 h-4 transition-transform ${mobileAboutOpen ? 'rotate-180' : ''}`} />
             </button>
             {mobileAboutOpen && (
@@ -176,14 +175,14 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
             )}
           </div>
 
-          <a href={routes.gallery.path} onClick={closeMobile} className="block py-2.5 nav-link">Gallery</a>
+          <a href={routes.gallery.path} onClick={closeMobile} className="block py-2.5 nav-link">{c.navGallery}</a>
 
           <div>
             <button
               onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
               className="w-full flex items-center justify-between py-2.5 nav-link"
             >
-              <span>Products</span>
+              <span>{c.navProducts}</span>
               <ChevronDown className={`w-4 h-4 transition-transform ${mobileProductsOpen ? 'rotate-180' : ''}`} />
             </button>
             {mobileProductsOpen && (
@@ -199,7 +198,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
                     </button>
                     {mobileSubmenu === group.key && (
                       <div className="pl-4 border-l border-[var(--border-color)] space-y-1">
-                        {navMenus.products[group.key].map((link) => (
+                        {(navMenus.products[group.key] || []).map((link) => (
                           <a
                             key={link.label}
                             href={link.href}
@@ -217,9 +216,9 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
             )}
           </div>
 
-          <a href="/locations/" onClick={closeMobile} className="block py-2.5 nav-link">Locations</a>
-          <a href={routes.blog.path} onClick={closeMobile} className="block py-2.5 nav-link">Blog</a>
-          <a href={routes.contact.path} onClick={closeMobile} className="block py-2.5 nav-link">Contact</a>
+          <a href="/locations/" onClick={closeMobile} className="block py-2.5 nav-link">{c.navLocations}</a>
+          <a href={routes.blog.path} onClick={closeMobile} className="block py-2.5 nav-link">{c.navBlog}</a>
+          <a href={routes.contact.path} onClick={closeMobile} className="block py-2.5 nav-link">{c.navContact}</a>
 
           <div className="pt-4 mt-2 border-t border-[var(--border-color)] flex flex-col gap-2.5">
             <button
@@ -229,7 +228,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
               }}
               className="btn btn-primary w-full"
             >
-              Get Quote
+              {c.ctaQuote}
             </button>
             <a href={`tel:${companyInfo.telPrimary}`} className="btn btn-secondary w-full">
               <Phone className="w-4 h-4 text-orange" />

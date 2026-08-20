@@ -2,30 +2,30 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { CITIES } from '../data/cities';
+import { copy } from '../data/sectionCopy';
 import SEO from '../components/SEO';
 
 export default function LocationsPage() {
   const navigate = useNavigate();
+  const c = copy['locations.header'];
 
   return (
     <section className="section section-alt page-top-spacing min-h-screen">
-      <SEO
-        title="Our Service Locations - Gujarat Industrial Network"
-        description="Shree Raj Traders supplies premium Siemens switchgears, CGL & Hindustan electric motors, and FRP composite solutions to major industrial hubs and cities across Gujarat."
-      />
+      <SEO title={copy['seo.locations'].title} description={copy['seo.locations'].description} />
       <div className="container-page">
-        <div className="section-header max-w-2xl mx-auto">
-          <span className="eyebrow">Industrial Supply Network</span>
+        <div data-section="locations.header" className="section-header max-w-2xl mx-auto">
+          <span className="eyebrow">{c.eyebrow}</span>
           <h1 className="section-title">
-            Our Service <span className="text-orange">Locations</span>
+            {c.title} <span className="text-orange">{c.titleAccent}</span>
           </h1>
-          <p>
-            Supplying premium motors, switchgears, and FRP solutions across major industrial districts in Gujarat.
-          </p>
+          <p>{c.intro}</p>
         </div>
 
         {/* City Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div
+          data-section="locations.cities"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+        >
           {CITIES.map((city) => (
             <div
               key={city.slug}
@@ -45,7 +45,7 @@ export default function LocationsPage() {
               </div>
 
               <div className="text-[var(--accent-orange-deep)] font-extrabold text-xs uppercase tracking-wider mt-6 inline-flex items-center gap-1.5">
-                View details <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                {c.cardCta} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
           ))}

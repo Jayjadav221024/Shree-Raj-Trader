@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Send, Check, Copy, FileText, MapPin, Phone, Mail } from 'lucide-react';
 import { companyInfo } from '../data/siteData';
-
-const CATEGORIES = [
-  { id: 'motor', label: 'Motors' },
-  { id: 'switchgear', label: 'Switchgears' },
-  { id: 'frp', label: 'FRP Grating / Tray' }
-];
+import { copy } from '../data/sectionCopy';
+import api from '../admin/lib/axios';
 
 export default function RfqCalculator({ preselectedProduct }) {
+  const c = copy['contact.rfq'];
+  const CATEGORIES = c.categories;
+
   // All fields start empty — the summary shows an empty state until the user
   // actually picks something, so no placeholder values can be mistaken for data.
   const [equipmentType, setEquipmentType] = useState('');
@@ -68,6 +67,27 @@ export default function RfqCalculator({ preselectedProduct }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const categoryName = CATEGORIES.find((c) => c.id === equipmentType)?.label || 'General';
+    const specDetails = [
+      brand ? `Brand: ${brand}` : '',
+      powerRating ? `Rating: ${powerRating}` : '',
+      rpm ? `RPM: ${rpm}` : '',
+      enclosure ? `Enclosure/Size: ${enclosure}` : '',
+      location ? `Location: ${location}` : '',
+      notes ? `Notes: ${notes}` : ''
+    ].filter(Boolean).join(', ');
+
+    api.post('/public/inquiries', {
+      name: clientName,
+      email: clientEmail,
+      phone: clientPhone,
+      company: clientName,
+      productName: `${categoryName} Request`,
+      quantity: Number(quantity) || 1,
+      message: specDetails
+    }).catch(err => console.error('[RFQ] Failed to save RFQ:', err));
+
     setSubmitted(true);
   };
 
@@ -78,17 +98,14 @@ export default function RfqCalculator({ preselectedProduct }) {
   };
 
   return (
-    <section id="calculator" className="section section-alt">
+    <section id="calculator" data-section="contact.rfq" className="section section-alt">
       <div className="container-page">
         <div className="section-header">
-          <span className="eyebrow">Request for Quotation</span>
+          <span className="eyebrow">{c.eyebrow}</span>
           <h2 className="section-title">
-            Build Your <span className="text-orange">Enquiry</span>
+            {c.title} <span className="text-orange">{c.titleAccent}</span>
           </h2>
-          <p>
-            Select your requirement below and send it to our sales team by WhatsApp, or copy the
-            summary into an email.
-          </p>
+          <p>{c.intro}</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">

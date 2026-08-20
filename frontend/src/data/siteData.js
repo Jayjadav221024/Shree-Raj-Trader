@@ -371,13 +371,64 @@ export const faqs = flaggedFaqs;
 // GALLERY
 // Seven facility photographs from https://shreerajtraders.in/gallery/
 // The live gallery publishes no captions, so alt text is descriptive only.
+// `num`/`tag`/`description` are the page furniture inside the flip-book; they
+// live here (rather than in the component) so the Website Editor can reach them.
 // -----------------------------------------------------------------------------
 export const galleryPhotos = [
-  { id: 'facility-1', image: images.gallery['facility-1'], alt: 'Two Shree Raj Traders staff checking boxed spares against paperwork in the parts store' },
-  { id: 'facility-2', image: images.gallery['facility-2'], alt: 'The Shree Raj Traders warehouse team photographed on the storage floor' },
-  { id: 'facility-3', image: images.gallery['facility-3'], alt: 'A staff member moving crated equipment on a hydraulic pallet truck in the warehouse' },
-  { id: 'facility-4', image: images.gallery['facility-4'], alt: 'The Shree Raj Traders team gathered together on a lawn at dusk' },
-  { id: 'facility-5', image: images.gallery['facility-5'], alt: 'Shree Raj Traders staff working through paperwork around the table in the office meeting room' },
-  { id: 'facility-6', image: images.gallery['facility-6'], alt: 'The Shree Raj Traders office team photographed in the meeting room' },
-  { id: 'facility-7', image: images.gallery['facility-7'], alt: 'A full Shree Raj Traders team photograph taken outdoors beside the compound wall' }
+  {
+    id: 'facility-1',
+    image: images.gallery['facility-1'],
+    alt: 'Two Shree Raj Traders staff checking boxed spares against paperwork in the parts store',
+    num: 'Parts Store',
+    tag: 'Stock Control',
+    description: 'Checking boxed spares against paperwork, on shelving of labelled Siemens and allied components.'
+  },
+  {
+    id: 'facility-2',
+    image: images.gallery['facility-2'],
+    alt: 'The Shree Raj Traders warehouse team photographed on the storage floor',
+    num: 'Warehouse Team',
+    tag: 'Our People',
+    description: 'The warehouse team on the storage floor, among the racked and crated stock they handle each day.'
+  },
+  {
+    id: 'facility-3',
+    image: images.gallery['facility-3'],
+    alt: 'A staff member moving crated equipment on a hydraulic pallet truck in the warehouse',
+    num: 'Materials Handling',
+    tag: 'Operations',
+    description: 'Moving crated equipment across the warehouse floor on a hydraulic pallet truck.'
+  },
+  {
+    id: 'facility-4',
+    image: images.gallery['facility-4'],
+    alt: 'The Shree Raj Traders team gathered together on a lawn at dusk',
+    num: 'Team Gathering',
+    tag: 'Our People',
+    description: 'The team together on the lawn outside, photographed at dusk.'
+  },
+  {
+    id: 'facility-5',
+    image: images.gallery['facility-5'],
+    alt: 'Shree Raj Traders staff working through paperwork around the table in the office meeting room',
+    num: 'Planning Meeting',
+    tag: 'Coordination',
+    description: 'Working through orders and schedules around the table in the office meeting room.'
+  },
+  {
+    id: 'facility-6',
+    image: images.gallery['facility-6'],
+    alt: 'The Shree Raj Traders office team photographed in the meeting room',
+    num: 'Office Team',
+    tag: 'Our People',
+    description: 'The office team photographed in the meeting room at the company premises.'
+  },
+  {
+    id: 'facility-7',
+    image: images.gallery['facility-7'],
+    alt: 'A full Shree Raj Traders team photograph taken outdoors beside the compound wall',
+    num: 'The Full Team',
+    tag: 'Our People',
+    description: "A full team photograph taken outdoors beside the compound's boundary wall."
+  }
 ];

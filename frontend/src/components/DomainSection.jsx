@@ -1,22 +1,24 @@
 import React from 'react';
 import { Cpu, Building2, Users, Leaf, Zap, Truck, ExternalLink, MapPin } from 'lucide-react';
 import { domains, groupCompanies } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
 
 const ICONS = { Cpu, Building2, Users, Leaf, Zap, Truck };
 
 export default function DomainSection() {
+  const c = copy['home.domains'];
+  const g = copy['home.group-companies'];
+
   return (
     <section id="domains" className="section section-alt">
       <div className="container-page">
+        <div data-section="home.domains">
         <div className="section-header">
-          <span className="eyebrow">What We Do</span>
+          <span className="eyebrow">{c.eyebrow}</span>
           <h2 className="section-title">
-            Our Operational <span className="text-orange">Domains</span>
+            {c.title} <span className="text-orange">{c.titleAccent}</span>
           </h2>
-          <p>
-            Engineering, infrastructure, electrical distribution and logistics support for
-            industries across Gujarat and India.
-          </p>
+          <p>{c.intro}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-14 sm:mb-16">
@@ -41,11 +43,14 @@ export default function DomainSection() {
           })}
         </div>
 
+        </div>
+
         {/* Group of companies */}
+        <div data-section="home.group-companies">
         <div className="section-header">
-          <span className="eyebrow eyebrow-teal">Synergistic Group Alliance</span>
+          <span className="eyebrow eyebrow-teal">{g.eyebrow}</span>
           <h2 className="section-title">
-            Our Group of <span className="text-orange">Companies</span>
+            {g.title} <span className="text-orange">{g.titleAccent}</span>
           </h2>
         </div>
 
@@ -67,7 +72,7 @@ export default function DomainSection() {
                   <div className="h-12 flex items-center mb-4">
                     <img
                       src={company.logo.src}
-                      alt={`${company.name} logo`}
+                      alt={company.logoAlt || `${company.name} logo`}
                       width={company.logo.width}
                       height={company.logo.height}
                       loading="lazy"
@@ -96,6 +101,7 @@ export default function DomainSection() {
               </Wrapper>
             );
           })}
+        </div>
         </div>
       </div>
     </section>

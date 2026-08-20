@@ -1,23 +1,27 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
 import { testimonials, clientLogos } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ testimonials: propTestimonials }) {
+  const list = propTestimonials && propTestimonials.length > 0 ? propTestimonials : testimonials;
+  const c = copy['home.testimonials'];
+  const cl = copy['home.clients'];
+
   return (
     <section id="testimonials" className="section">
       <div className="container-page">
+        <div data-section="home.testimonials">
         <div className="section-header">
-          <span className="eyebrow">In Their Own Words</span>
+          <span className="eyebrow">{c.eyebrow}</span>
           <h2 className="section-title">
-            What Our <span className="text-orange">Clients Say</span>
+            {c.title} <span className="text-orange">{c.titleAccent}</span>
           </h2>
-          <p>
-            Trusted by leading manufacturing facilities, infrastructure developers, and industrial plants across India.
-          </p>
+          <p>{c.intro}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14 sm:mb-16">
-          {testimonials.map((item) => (
+          {list.map((item) => (
             <figure key={item.client} className="testimonial-card">
               <Quote className="w-8 h-8 text-[var(--accent-orange)] opacity-25" />
 
@@ -47,11 +51,14 @@ export default function TestimonialsSection() {
           ))}
         </div>
 
+        </div>
+
         {/* Reputed clients */}
+        <div data-section="home.clients">
         <div className="section-header">
-          <span className="eyebrow eyebrow-teal">Trusted Across Industries</span>
+          <span className="eyebrow eyebrow-teal">{cl.eyebrow}</span>
           <h2 className="section-title">
-            Our Reputed <span className="text-orange">Clients</span>
+            {cl.title} <span className="text-orange">{cl.titleAccent}</span>
           </h2>
         </div>
 
@@ -66,7 +73,7 @@ export default function TestimonialsSection() {
               <div key={`set1-${client.name}`} className="client-chip w-56 shrink-0">
                 <img
                   src={client.image.src}
-                  alt={`${client.name} logo`}
+                  alt={client.imageAlt || `${client.name} logo`}
                   width={client.image.width}
                   height={client.image.height}
                   loading="lazy"
@@ -79,7 +86,7 @@ export default function TestimonialsSection() {
               <div key={`set2-${client.name}`} className="client-chip w-56 shrink-0">
                 <img
                   src={client.image.src}
-                  alt={`${client.name} logo`}
+                  alt={client.imageAlt || `${client.name} logo`}
                   width={client.image.width}
                   height={client.image.height}
                   loading="lazy"
@@ -88,6 +95,7 @@ export default function TestimonialsSection() {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </div>
     </section>

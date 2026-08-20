@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Tailwind v4 defaults `dark:` to `prefers-color-scheme`. The admin panel drives
+   the theme by toggling `.dark` on <html>, so switch the variant to that class. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ==========================================================================
    DESIGN TOKENS
    Palette, type scale and elevation mirrored from the Transpower reference
@@ -1203,6 +1207,237 @@
   .book-page-3d.is-flipping .page-face::before {
     animation: none;
   }
+}
+
+/* ==========================================================================
+   ADMIN PANEL DESIGN SYSTEM
+   A single semantic palette for the whole admin surface. Every token is a
+   plain custom property so the `.dark` block below can re-point it; the
+   `@theme` mapping underneath turns each one into a Tailwind utility
+   (`bg-adm-surface`, `text-adm-muted`, `border-adm-line`, ...) that flips
+   with the theme automatically — no `dark:` pair needed per element.
+
+   Hue: deep teal primary + terracotta accent, carried over from the public
+   site brand, on cool neutral greys.
+   ========================================================================== */
+:root {
+  /* Surfaces */
+  --adm-bg: #f4f7fa;
+  --adm-surface: #ffffff;
+  --adm-surface-2: #f7f9fc;
+  --adm-surface-3: #eef2f7;
+
+  /* Lines */
+  --adm-line: #e3e9f0;
+  --adm-line-soft: #edf1f6;
+  --adm-line-strong: #cfd8e3;
+
+  /* Type */
+  --adm-text: #0f1b2d;
+  --adm-muted: #56677e;
+  --adm-faint: #8593a6;
+
+  /* Primary (teal) */
+  --adm-primary: #0e7490;
+  --adm-primary-hover: #0b5e75;
+  --adm-primary-soft: #e6f3f7;
+  --adm-primary-fg: #ffffff;
+  --adm-primary-ring: rgba(14, 116, 144, 0.28);
+
+  /* Accent (terracotta) */
+  --adm-accent: #d9653b;
+  --adm-accent-soft: #fdf0ea;
+
+  /* Status */
+  --adm-success: #0f9d76;
+  --adm-success-soft: #e6f6f1;
+  --adm-warning: #b45309;
+  --adm-warning-soft: #fdf3e3;
+  --adm-danger: #dc2626;
+  --adm-danger-soft: #fdeceb;
+
+  /* Sidebar — intentionally dark in both themes */
+  --adm-nav: #0b1524;
+  --adm-nav-2: #070f1b;
+  --adm-nav-line: rgba(255, 255, 255, 0.07);
+  --adm-nav-text: #95a5ba;
+  --adm-nav-text-strong: #ffffff;
+  --adm-nav-hover: rgba(255, 255, 255, 0.06);
+
+  /* Elevation */
+  --adm-shadow-sm: 0 1px 2px rgba(15, 27, 45, 0.05), 0 1px 3px rgba(15, 27, 45, 0.04);
+  --adm-shadow-md: 0 2px 4px rgba(15, 27, 45, 0.04), 0 12px 28px -12px rgba(15, 27, 45, 0.18);
+  --adm-shadow-lg: 0 4px 8px rgba(15, 27, 45, 0.05), 0 28px 56px -20px rgba(15, 27, 45, 0.3);
+}
+
+.dark {
+  --adm-bg: #070c14;
+  --adm-surface: #0e1724;
+  --adm-surface-2: #131f2e;
+  --adm-surface-3: #172536;
+
+  --adm-line: #1e2c3e;
+  --adm-line-soft: #182433;
+  --adm-line-strong: #2a3b51;
+
+  --adm-text: #eef3f9;
+  --adm-muted: #93a3b8;
+  --adm-faint: #6d7e94;
+
+  --adm-primary: #22b0d4;
+  --adm-primary-hover: #45c4e4;
+  --adm-primary-soft: rgba(34, 176, 212, 0.14);
+  --adm-primary-fg: #04121a;
+  --adm-primary-ring: rgba(34, 176, 212, 0.35);
+
+  --adm-accent: #ef8b5f;
+  --adm-accent-soft: rgba(239, 139, 95, 0.14);
+
+  --adm-success: #34d399;
+  --adm-success-soft: rgba(52, 211, 153, 0.14);
+  --adm-warning: #fbbf24;
+  --adm-warning-soft: rgba(251, 191, 36, 0.14);
+  --adm-danger: #f87171;
+  --adm-danger-soft: rgba(248, 113, 113, 0.14);
+
+  --adm-nav: #0a121d;
+  --adm-nav-2: #060c14;
+  --adm-nav-line: rgba(255, 255, 255, 0.06);
+
+  --adm-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --adm-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.3), 0 12px 28px -12px rgba(0, 0, 0, 0.6);
+  --adm-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.35), 0 28px 56px -20px rgba(0, 0, 0, 0.75);
+}
+
+/* Non-`inline` on purpose: `@theme inline` substitutes the raw var() into every
+   utility, and Tailwind then silently drops opacity modifiers (`bg-adm-primary/12`
+   would render fully opaque). Keeping the indirection lets it emit color-mix(). */
+@theme {
+  --color-adm-bg: var(--adm-bg);
+  --color-adm-surface: var(--adm-surface);
+  --color-adm-surface-2: var(--adm-surface-2);
+  --color-adm-surface-3: var(--adm-surface-3);
+
+  --color-adm-line: var(--adm-line);
+  --color-adm-line-soft: var(--adm-line-soft);
+  --color-adm-line-strong: var(--adm-line-strong);
+
+  --color-adm-text: var(--adm-text);
+  --color-adm-muted: var(--adm-muted);
+  --color-adm-faint: var(--adm-faint);
+
+  --color-adm-primary: var(--adm-primary);
+  --color-adm-primary-hover: var(--adm-primary-hover);
+  --color-adm-primary-soft: var(--adm-primary-soft);
+  --color-adm-primary-fg: var(--adm-primary-fg);
+
+  --color-adm-accent: var(--adm-accent);
+  --color-adm-accent-soft: var(--adm-accent-soft);
+
+  --color-adm-success: var(--adm-success);
+  --color-adm-success-soft: var(--adm-success-soft);
+  --color-adm-warning: var(--adm-warning);
+  --color-adm-warning-soft: var(--adm-warning-soft);
+  --color-adm-danger: var(--adm-danger);
+  --color-adm-danger-soft: var(--adm-danger-soft);
+
+  --color-adm-nav: var(--adm-nav);
+  --color-adm-nav-2: var(--adm-nav-2);
+  --color-adm-nav-line: var(--adm-nav-line);
+  --color-adm-nav-text: var(--adm-nav-text);
+  --color-adm-nav-hover: var(--adm-nav-hover);
+
+  --shadow-adm-sm: var(--adm-shadow-sm);
+  --shadow-adm-md: var(--adm-shadow-md);
+  --shadow-adm-lg: var(--adm-shadow-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Admin typography reset.
+   The public site sets a condensed, uppercase display face on every h1-h4 and
+   a muted colour on every p. Those base rules would otherwise leak into the
+   admin panel and render its headings in Bebas Neue caps.
+   -------------------------------------------------------------------------- */
+.admin-root h1,
+.admin-root h2,
+.admin-root h3,
+.admin-root h4,
+.admin-root h5,
+.admin-root h6 {
+  font-family: var(--font-sans);
+  text-transform: none;
+  letter-spacing: -0.011em;
+  line-height: 1.3;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.admin-root p {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.admin-root {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.admin-root ::selection {
+  background: var(--adm-primary);
+  color: var(--adm-primary-fg);
+}
+
+/* Slim, theme-aware scrollbars inside the panel */
+.admin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--adm-line-strong) transparent;
+}
+
+.admin-scroll::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.admin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.admin-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--adm-line-strong);
+  border-radius: 999px;
+}
+
+.admin-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: var(--adm-faint);
+}
+
+/* ==========================================================================
+   ADMIN PANEL BACKDROP AND MODAL STYLES
+   ========================================================================== */
+dialog::backdrop {
+  background-color: rgba(15, 27, 45, 0.45);
+  backdrop-filter: blur(3px);
+}
+
+.dark dialog::backdrop {
+  background-color: rgba(3, 7, 13, 0.7);
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.25s ease-out, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 

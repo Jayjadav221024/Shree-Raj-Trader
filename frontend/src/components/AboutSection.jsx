@@ -2,10 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Quote, Eye, Target, Wrench, Mail } from 'lucide-react';
 import { companyInfo, companyTimeline, epcDivision, siteMeta } from '../data/siteData';
 import { leadershipMessages, teamMembers, careers } from '../data/team';
+import { copy } from '../data/sectionCopy';
 import CountUp from './CountUp';
 import SEO from './SEO';
 
 export default function AboutSection() {
+  const intro = copy['about.intro'];
+  const vm = copy['about.vision-mission'];
+  const tagline = copy['about.group-tagline'];
+  const team = copy['about.team'];
+  const journey = copy['about.journey'];
   const timelineRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeItems, setActiveItems] = useState({
@@ -64,39 +70,43 @@ export default function AboutSection() {
   return (
     <section id="about" className="section page-top-spacing">
       <SEO
-        title="About Us - Six Decades of Electro-Mechanical Excellence"
-        description="Learn more about Shree Raj Traders, an established industrial supplier and authorized partner for Siemens, CGL, and Hindustan motors & switchgears in Ahmedabad, Gujarat."
+        title={copy['seo.about'].title}
+        description={copy['seo.about'].description}
+        image={siteMeta.aboutPhoto}
+        imageAlt={intro.photoAlt}
       />
       <div className="container-page">
-        <div className="section-header">
-          <span className="eyebrow">Six Decades in the Electro-Mechanical Industry</span>
-          <h2 className="section-title">
-            About <span className="text-orange">Shree Raj Traders</span>
-          </h2>
-          <p>{companyInfo.about}</p>
-        </div>
+        <div data-section="about.intro">
+          <div className="section-header">
+            <span className="eyebrow">{intro.eyebrow}</span>
+            <h2 className="section-title">
+              {intro.title} <span className="text-orange">{intro.titleAccent}</span>
+            </h2>
+            <p>{companyInfo.about}</p>
+          </div>
 
-        {/* Facility photo */}
-        <div className="card overflow-hidden mb-6">
-          <img
-            src={siteMeta.aboutPhoto.src}
-            alt="Shree Raj Traders warehouse and stock at the Vatva, Ahmedabad facility"
-            width={siteMeta.aboutPhoto.width}
-            height={siteMeta.aboutPhoto.height}
-            loading="lazy"
-            className="w-full h-auto object-cover"
-          />
+          {/* Facility photo */}
+          <div className="card overflow-hidden mb-6">
+            <img
+              src={siteMeta.aboutPhoto.src}
+              alt={intro.photoAlt}
+              width={siteMeta.aboutPhoto.width}
+              height={siteMeta.aboutPhoto.height}
+              loading="lazy"
+              className="w-full h-auto object-cover"
+            />
+          </div>
         </div>
 
         {/* Leadership messages */}
-        <div id="leadership" className="space-y-6 mb-6 scroll-mt-28">
+        <div id="leadership" data-section="about.leadership" className="space-y-6 mb-6 scroll-mt-28">
           {leadershipMessages.map((message) => (
             <div key={message.id} className="card p-8 sm:p-10">
               <div className="flex flex-col md:flex-row gap-7">
                 {message.photo ? (
                   <img
                     src={message.photo.src}
-                    alt={message.name}
+                    alt={message.photoAlt || message.name}
                     width={message.photo.width}
                     height={message.photo.height}
                     loading="lazy"
@@ -128,10 +138,10 @@ export default function AboutSection() {
         </div>
 
         {/* Vision & mission */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+        <div data-section="about.vision-mission" className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
           {[
-            { icon: Eye, title: 'Our Vision', body: companyInfo.vision },
-            { icon: Target, title: 'Our Mission', body: companyInfo.mission }
+            { icon: Eye, title: vm.visionTitle, body: companyInfo.vision },
+            { icon: Target, title: vm.missionTitle, body: companyInfo.mission }
           ].map(({ icon: Icon, title, body }) => (
             <div key={title} className="card card-hover p-7">
               <div className="w-12 h-12 rounded-[12px] bg-[var(--accent-cyan-tint)] border border-[rgba(20,96,122,0.2)] flex items-center justify-center mb-4">
@@ -144,14 +154,18 @@ export default function AboutSection() {
         </div>
 
         {/* Group Tagline */}
-        <div className="card p-7 mb-6 text-center border-l-4 border-l-[var(--accent-cyan)]">
+        <div
+          data-section="about.group-tagline"
+          className="card p-7 mb-6 text-center border-l-4 border-l-[var(--accent-cyan)]"
+        >
           <p className="italic text-base md:text-lg text-[var(--text-main)] font-medium">
-            "Shree Raj Traders Group promotes & creates innovative products & solutions for a better life"
+            &ldquo;{tagline.quote}&rdquo;
           </p>
         </div>
 
         {/* EPC division */}
-        <div className="card p-7 mb-14 sm:mb-16">
+        {epcDivision.enabled && (
+        <div data-section="about.epc" className="card p-7 mb-14 sm:mb-16">
           <div className="flex flex-col sm:flex-row sm:items-center gap-5">
             <div className="w-12 h-12 rounded-[12px] bg-[var(--accent-orange-tint)] border border-[rgba(217,101,59,0.2)] flex items-center justify-center shrink-0">
               <Wrench className="w-6 h-6 text-orange" />
@@ -164,12 +178,14 @@ export default function AboutSection() {
             </div>
           </div>
         </div>
+        )}
 
         {/* Our Team */}
+        <div data-section="about.team">
         <div className="section-header">
-          <span className="eyebrow eyebrow-teal">The People Behind Shree Raj</span>
+          <span className="eyebrow eyebrow-teal">{team.eyebrow}</span>
           <h2 className="section-title">
-            Our <span className="text-orange">Team</span>
+            {team.title} <span className="text-orange">{team.titleAccent}</span>
           </h2>
         </div>
 
@@ -178,7 +194,7 @@ export default function AboutSection() {
             <div key={member.name} className="card card-hover overflow-hidden">
               <img
                 src={member.photo.src}
-                alt={member.name}
+                alt={member.photoAlt || member.name}
                 width={member.photo.width}
                 height={member.photo.height}
                 loading="lazy"
@@ -195,9 +211,10 @@ export default function AboutSection() {
             </div>
           ))}
         </div>
+        </div>
 
         {/* Careers */}
-        <div className="card p-8 sm:p-10 mb-14 sm:mb-16">
+        <div data-section="about.careers" className="card p-8 sm:p-10 mb-14 sm:mb-16">
           <span className="eyebrow">{careers.eyebrow}</span>
           <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)] mt-2">{careers.heading}</h3>
           <p className="font-display text-xl sm:text-2xl tracking-wide text-orange mt-2">{careers.tagline}</p>
@@ -214,16 +231,16 @@ export default function AboutSection() {
         </div>
 
         {/* Timeline */}
-        <div ref={timelineRef} className="timeline-container mt-16 relative">
+        <div ref={timelineRef} data-section="about.journey" className="timeline-container mt-16 relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left Column: Sticky Title */}
             <div className="lg:col-span-5 lg:sticky lg:top-28 h-fit space-y-4">
-              <span className="eyebrow eyebrow-teal">Group Milestones</span>
+              <span className="eyebrow eyebrow-teal">{journey.eyebrow}</span>
               <h2 className="section-title">
-                Our <span className="text-orange">Journey</span>
+                {journey.title} <span className="text-orange">{journey.titleAccent}</span>
               </h2>
               <p className="text-[var(--text-muted)] text-sm sm:text-base max-w-sm leading-relaxed">
-                Over six decades of growth, strategic acquisitions, and diversification across the engineering, infrastructure, electrical automation and composite industrial landscapes of India.
+                {journey.intro}
               </p>
             </div>
 

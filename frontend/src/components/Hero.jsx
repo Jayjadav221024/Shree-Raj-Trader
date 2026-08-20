@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, CheckCircle2, Phone } from 'lucide-react';
 import CountUp from './CountUp';
-import { statsCounter, heroAssurances, heroCardSpecs, companyInfo, siteMeta, images } from '../data/siteData';
-
-const PRODUCT_PILLS = [
-  { label: 'Motors', spec: heroCardSpecs.motors.left, imageKey: 'cat-motors' },
-  { label: 'Switchgears', spec: heroCardSpecs.switchgears.left, imageKey: 'cat-switchgears' },
-  { label: 'FRP Gratings', spec: heroCardSpecs.gratings.left, imageKey: 'cat-frp-gratings' },
-  { label: 'FRP Cable Tray', spec: heroCardSpecs.cableTrays.left, imageKey: 'cat-frp-cable-tray' }
-];
+import { statsCounter, heroAssurances, companyInfo, siteMeta, images } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
 
 export default function Hero({ onOpenRfq }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const timerRef = useRef(null);
 
+  // Read at render, not at module scope: the Website Editor rewrites these
+  // objects in place once saved content arrives.
+  const c = copy['home.hero'];
+  const PRODUCT_PILLS = c.productPills;
+
   useEffect(() => {
-    if (isPaused) return;
-    
+    // The tile list is editable, so it can legitimately be emptied.
+    if (isPaused || PRODUCT_PILLS.length === 0) return;
+
     timerRef.current = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % PRODUCT_PILLS.length);
     }, 4000);
@@ -25,15 +25,15 @@ export default function Hero({ onOpenRfq }) {
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPaused]);
+  }, [isPaused, PRODUCT_PILLS.length]);
 
   const handlePillClick = (index) => {
     setActiveIndex(index);
   };
 
   return (
-    <section id="hero" className="hero-section">
-      <div className="hero-background-text" aria-hidden="true">SHREE RAJ</div>
+    <section id="hero" data-section="home.hero" className="hero-section">
+      <div className="hero-background-text" aria-hidden="true">{c.backgroundText}</div>
 
       <div className="container-page relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
@@ -41,17 +41,17 @@ export default function Hero({ onOpenRfq }) {
           <div className="lg:col-span-7 space-y-6">
             <span className="eyebrow">
               <CheckCircle2 className="w-3.5 h-3.5" />
-              Authorized Channel Partner · Over Six Decades
+              {c.eyebrow}
             </span>
 
             <h1>
-              Switchgears, Motors &amp;<br />
+              {c.headingLine1}<br />
               <span className="text-orange inline-block overflow-hidden h-[1.15em] align-bottom">
                 <span key={activeIndex} className="inline-block animate-slideUp">
-                  {PRODUCT_PILLS[activeIndex].label}
+                  {PRODUCT_PILLS[activeIndex]?.label}
                 </span>
               </span><br />
-              For Indian Industry
+              {c.headingLine3}
             </h1>
 
             <p className="text-[var(--text-muted)] max-w-xl">
@@ -60,7 +60,7 @@ export default function Hero({ onOpenRfq }) {
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <button onClick={onOpenRfq} className="btn btn-primary">
-                Request a Quote
+                {c.ctaPrimary}
                 <ArrowRight className="w-4 h-4" />
               </button>
               <a href={`tel:${companyInfo.telPrimary}`} className="btn btn-secondary">
@@ -93,7 +93,7 @@ export default function Hero({ onOpenRfq }) {
                   <img
                     key={pill.label}
                     src={imgData.src}
-                    alt={`${pill.label} range supplied by Shree Raj Traders`}
+                    alt={pill.imageAlt || `${pill.label} range supplied by Shree Raj Traders`}
                     width={imgData.width}
                     height={imgData.height}
                     fetchPriority={idx === 0 ? "high" : "low"}

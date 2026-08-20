@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { companyTimeline } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
 
 export default function JourneySection() {
+  const c = copy['home.journey'];
   const timelineRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   // Initialize the first year as active by default so it shows up immediately
@@ -59,19 +61,19 @@ export default function JourneySection() {
   }, []);
 
   return (
-    <section id="journey" className="section bg-[var(--bg-card)]">
+    <section id="journey" data-section="home.journey" className="section bg-[var(--bg-card)]">
       <div className="container-page">
         <div className="timeline-container relative" ref={timelineRef}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             
             {/* Left Column: Sticky Title */}
             <div className="lg:col-span-5 lg:sticky lg:top-28 h-fit">
-              <span className="eyebrow eyebrow-teal">Group Milestones</span>
+              <span className="eyebrow eyebrow-teal">{c.eyebrow}</span>
               <h2 className="section-title">
-                Our <span className="text-orange">Journey</span>
+                {c.title} <span className="text-orange">{c.titleAccent}</span>
               </h2>
               <p className="text-[var(--text-muted)] text-sm sm:text-base max-w-sm leading-relaxed mt-3">
-                Over six decades of growth, engineering excellence, and expanding regional industrial networks across Ahmedabad, Gujarat, and Pan-India.
+                {c.intro}
               </p>
             </div>
 

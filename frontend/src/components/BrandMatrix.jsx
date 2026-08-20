@@ -1,20 +1,20 @@
 import React from 'react';
 import { Sparkles, ArrowRight } from 'lucide-react';
 import { authorizedBrands } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
 
 export default function BrandMatrix({ onSelectBrand }) {
+  const c = copy['home.brands'];
+
   return (
-    <section id="brands" className="section section-alt">
+    <section id="brands" data-section="home.brands" className="section section-alt">
       <div className="container-page">
         <div className="section-header">
-          <span className="eyebrow">Our Brand Partners</span>
+          <span className="eyebrow">{c.eyebrow}</span>
           <h2 className="section-title">
-            Our <span className="text-orange">Brand Partners</span>
+            {c.title} <span className="text-orange">{c.titleAccent}</span>
           </h2>
-          <p>
-            We supply genuine products from leading manufacturers of motors, switchgears and
-            power transmission equipment.
-          </p>
+          <p>{c.intro}</p>
         </div>
 
         <div className="brand-stack-container relative space-y-8">
@@ -31,7 +31,7 @@ export default function BrandMatrix({ onSelectBrand }) {
                   <div className="h-16 flex items-center">
                     <img
                       src={brand.logo.src}
-                      alt={`${brand.name} logo`}
+                      alt={brand.logoAlt || `${brand.name} logo`}
                       width={brand.logo.width}
                       height={brand.logo.height}
                       loading="lazy"
@@ -51,7 +51,7 @@ export default function BrandMatrix({ onSelectBrand }) {
                   </p>
                   
                   <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-faint)] group-hover:text-[var(--accent-orange)] transition-all pt-2">
-                    <span>View Products</span>
+                    <span>{c.viewLabel}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                   </div>
                 </div>
@@ -59,7 +59,7 @@ export default function BrandMatrix({ onSelectBrand }) {
                 {/* Right Side: Key Highlights */}
                 <div className="md:col-span-6 border-t md:border-t-0 md:border-l border-[var(--border-color)] pt-6 md:pt-0 md:pl-8 space-y-3.5">
                   <div className="text-xs font-bold uppercase tracking-wider text-[var(--accent-cyan)] mb-2.5">
-                    {brand.authorizedPartner ? "Authorized Highlights" : "Product Highlights"}
+                    {brand.authorizedPartner ? c.highlightsAuthorizedLabel : c.highlightsGenericLabel}
                   </div>
                   {brand.highlights.map((highlight) => (
                     <div key={highlight} className="flex items-start gap-3 text-sm text-[var(--text-muted)]">

@@ -3,11 +3,6 @@ import { ArrowRight, Layers } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { productCategories } from '../data/siteData';
 
-// 4 divisions (4 categories)
-const itemsList = [
-  ...productCategories
-];
-
 // Custom component to handle scroll-driven scattering/alignment transitions
 function ScatterRevealCard({ children, index, side = 'left' }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -62,15 +57,26 @@ function ScatterRevealCard({ children, index, side = 'left' }) {
   );
 }
 
-export default function FeaturedCategories() {
+export default function FeaturedCategories({ categories: propCategories }) {
   const navigate = useNavigate();
+  const itemsList = propCategories && propCategories.length > 0 ? propCategories : productCategories;
   const [hoveredItem, setHoveredItem] = useState(itemsList[0]);
+
+  useEffect(() => {
+    if (itemsList.length > 0) {
+      setHoveredItem(itemsList[0]);
+    }
+  }, [itemsList]);
 
   const leftSideItems = itemsList.slice(0, 2);
   const rightSideItems = itemsList.slice(2, 4);
 
   return (
-    <section className="section section-alt overflow-hidden" id="featured-categories">
+    <section
+      className="section section-alt overflow-hidden"
+      id="featured-categories"
+      data-section="home.featured-categories"
+    >
       <div className="container-page">
         
         {/* Desktop Layout (lg screens and above) */}
@@ -89,7 +95,7 @@ export default function FeaturedCategories() {
                     {item.isCustom ? (
                       <Layers className="w-9 h-9 text-[var(--accent-orange)]" />
                     ) : (
-                      <img src={item.image.src} alt={item.title} className="max-h-full max-w-full object-contain" />
+                      <img src={item.image.src} alt={item.imageAlt || item.title} className="max-h-full max-w-full object-contain" />
                     )}
                   </div>
                   <div>
@@ -145,7 +151,7 @@ export default function FeaturedCategories() {
                     {item.isCustom ? (
                       <Layers className="w-9 h-9 text-[var(--accent-orange)]" />
                     ) : (
-                      <img src={item.image.src} alt={item.title} className="max-h-full max-w-full object-contain" />
+                      <img src={item.image.src} alt={item.imageAlt || item.title} className="max-h-full max-w-full object-contain" />
                     )}
                   </div>
                   <div>
@@ -175,7 +181,7 @@ export default function FeaturedCategories() {
                   {item.isCustom ? (
                     <Layers className="w-8 h-8 text-[var(--accent-orange)]" />
                   ) : (
-                    <img src={item.image.src} alt={item.title} className="max-h-full max-w-full object-contain" />
+                    <img src={item.image.src} alt={item.imageAlt || item.title} className="max-h-full max-w-full object-contain" />
                   )}
                 </div>
                 <div>

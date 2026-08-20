@@ -7,25 +7,34 @@ import {
 } from 'lucide-react';
 import { CITIES } from '../data/cities';
 import { companyInfo, authorizedBrands } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
+import { fillTemplate } from '../lib/siteContent';
 import SEO from '../components/SEO';
+
+const CARD_ICONS = [ShieldCheck, Truck, Zap, CheckCircle];
+const COVERAGE_ICONS = [Building2, HardHat, Link, Star];
 
 export default function CityPage() {
   const { city: citySlug } = useParams();
   const navigate = useNavigate();
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const t = copy['city.page'];
 
   const city = CITIES.find((c) => c.slug === citySlug.toLowerCase());
 
   if (!city) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center pt-24 bg-[var(--bg-primary)]">
-        <h2 className="font-display text-3xl text-[var(--text-main)]">Location Not Found</h2>
+        <h2 className="font-display text-3xl text-[var(--text-main)]">{t.notFoundTitle}</h2>
         <button onClick={() => navigate('/locations/')} className="btn btn-primary mt-4">
-          View All Locations
+          {t.notFoundCta}
         </button>
       </div>
     );
   }
+
+  /** Fills {city} / {district} in any editable string on this page. */
+  const fill = (text) => fillTemplate(text, { city: city.name, district: city.district });
 
   const toggleFaq = (index) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -55,10 +64,10 @@ export default function CityPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)]">
+    <div data-section="city.page" className="min-h-screen bg-[var(--bg-primary)]">
       <SEO
-        title={`Siemens Switchgears & Motors Supplier in ${city.name}`}
-        description={`Authorized distributor of Siemens low-voltage switchgears, CGL and Hindustan electric motors, FRP gratings and cable trays in ${city.name}, ${city.district}, Gujarat.`}
+        title={fill(copy['seo.city'].title)}
+        description={fill(copy['seo.city'].description)}
       />
       {/* 1. Dynamic Hero Section */}
       <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 border-b border-[var(--border-color)] bg-gradient-to-b from-white to-[var(--bg-primary)]">
@@ -75,18 +84,18 @@ export default function CityPage() {
             className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--accent-orange)] transition mb-8"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Locations
+            {t.backLink}
           </button>
 
           <div className="max-w-3xl space-y-6">
             <span className="eyebrow eyebrow-teal">
-              Industrial Solutions Hub
+              {t.heroEyebrow}
             </span>
             <h1 className="leading-none">
-              Siemens Switchgears &amp; Motors Supplier in <span className="text-orange">{city.name}</span>
+              {fill(t.heroTitle)} <span className="text-orange">{city.name}</span>
             </h1>
             <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl">
-              Authorized distribution &amp; technical supply channel network serving the manufacturing hubs and industrial zones of {city.district}, Gujarat.
+              {fill(t.heroIntro)}
             </p>
 
             <div className="flex flex-wrap gap-4 pt-4">
@@ -95,13 +104,13 @@ export default function CityPage() {
                 className="btn btn-primary inline-flex items-center gap-2.5 shadow-[var(--shadow-glow)]"
               >
                 <FileText className="w-4.5 h-4.5" />
-                Request Custom RFQ
+                {t.ctaRfq}
               </button>
               <button
                 onClick={() => navigate('/products/')}
                 className="btn btn-secondary inline-flex items-center gap-2"
               >
-                <span>View Products Catalog</span>
+                <span>{t.ctaCatalog}</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -113,7 +122,7 @@ export default function CityPage() {
       <section className="py-8 bg-white border-b border-[var(--border-color)] overflow-hidden">
         <div className="container-page mb-3 text-center">
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-faint)]">
-            Supplying Genuine Products From Trusted Global Brands
+            {t.brandsStripLabel}
           </span>
         </div>
         <div className="marquee-wrapper relative overflow-hidden py-2 w-full">
@@ -126,7 +135,7 @@ export default function CityPage() {
               <div key={`brand1-${brand.id}`} className="client-chip w-44 shrink-0 flex flex-col items-center justify-center p-4 bg-white border border-[var(--border-color)] rounded-lg hover:border-[var(--accent-orange)] transition">
                 <img
                   src={brand.logo.src}
-                  alt={`${brand.name} logo`}
+                  alt={brand.logoAlt || `${brand.name} logo`}
                   className="max-h-10 max-w-full object-contain"
                 />
               </div>
@@ -136,7 +145,7 @@ export default function CityPage() {
               <div key={`brand2-${brand.id}`} className="client-chip w-44 shrink-0 flex flex-col items-center justify-center p-4 bg-white border border-[var(--border-color)] rounded-lg hover:border-[var(--accent-orange)] transition">
                 <img
                   src={brand.logo.src}
-                  alt={`${brand.name} logo`}
+                  alt={brand.logoAlt || `${brand.name} logo`}
                   className="max-h-10 max-w-full object-contain"
                 />
               </div>
@@ -154,77 +163,71 @@ export default function CityPage() {
             <div className="lg:col-span-8 card p-8 sm:p-10 space-y-8">
               <div>
                 <span className="badge-tag">
-                  Authorized Supply Channel
+                  {t.infoBadge}
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-display uppercase tracking-wide mt-3">
-                  Delivering Engineered Excellence to {city.name}
+                  {fill(t.infoTitle)}
                 </h2>
                 <p className="text-sm text-[var(--text-muted)] mt-1.5">
-                  Serving Industrial Areas, Manufacturing Plants &amp; Engineering Contractors in {city.name}.
+                  {fill(t.infoSubtitle)}
                 </p>
               </div>
 
               <hr className="border-[var(--border-color)]" />
 
-              <div className="space-y-5 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-                <p>
-                  Shree Raj Traders is your premier source for industrial components and engineering solutions. As a trusted supplier, we deliver highly reliable electro-mechanical equipment directly to companies, manufacturing facilities, and workshops operating across <strong>{city.name}</strong> and the surrounding industrial zones in <strong>{city.district}</strong>. Our service catalog features a broad range of products designed to handle heavy industrial requirements while maintaining top energy efficiency ratings.
-                </p>
-                <p>
-                  We supply authentic <strong>Siemens low voltage switchgears</strong>, contactors (available in frame sizes S00 to S12 supporting operational currents from 7A to 500A), overload relays, and Molded Case Circuit Breakers (MCCBs). In addition to switchgears, we stock and distribute high-efficiency three-phase induction motors from leading brands such as <strong>Siemens</strong>, <strong>CGL (Crompton Greaves)</strong>, and <strong>Hindustan Electric Motors</strong>. Ranging from 0.5 HP to 425 HP, these motors comply with the latest standards, offering IE2, IE3, and IE4 efficiency classes for significant energy savings and operational reliability.
-                </p>
-                <p>
-                  Furthermore, we are a major distributor of composite materials, including corrosion-resistant <strong>FRP gratings</strong> and <strong>FRP cable trays</strong> (including ladder type and perforated configurations).
-                </p>
-              </div>
+              {/* Body copy is authored in the Website Editor, which is behind the
+                  admin login — the same trust level as the blog article bodies. */}
+              <div
+                className="city-body space-y-5 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: fill(t.infoBodyHtml) }}
+              />
 
               {/* Local Industrial Coverage & Logistics Support */}
               <div className="space-y-4 pt-2">
-                <h3 className="text-xl sm:text-2xl font-display uppercase">Regional Coverage &amp; Key Highlights</h3>
+                <h3 className="text-xl sm:text-2xl font-display uppercase">{t.coverageTitle}</h3>
                 <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                  Our customized freight and logistics dispatch networks provide prompt, reliable service to various business zones and infrastructure sites within {city.name} and Gujarat:
+                  {fill(t.coverageIntro)}
                 </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm font-semibold text-[var(--text-main)]">
-                  <li className="flex items-center gap-2 p-3 bg-white border border-[var(--border-color)] rounded-lg">
-                    <Building2 className="w-4.5 h-4.5 text-orange shrink-0" />
-                    Direct delivery to GIDC &amp; SEZ zones
-                  </li>
-                  <li className="flex items-center gap-2 p-3 bg-white border border-[var(--border-color)] rounded-lg">
-                    <HardHat className="w-4.5 h-4.5 text-orange shrink-0" />
-                    Technical consultation at project sites
-                  </li>
-                  <li className="flex items-center gap-2 p-3 bg-white border border-[var(--border-color)] rounded-lg">
-                    <Link className="w-4.5 h-4.5 text-orange shrink-0" />
-                    Seamless supply chain linkages
-                  </li>
-                  <li className="flex items-center gap-2 p-3 bg-white border border-[var(--border-color)] rounded-lg">
-                    <Star className="w-4.5 h-4.5 text-orange shrink-0" />
-                    Authorized warranty validation
-                  </li>
+                  {t.coverageItems.map((item, idx) => {
+                    const Icon = COVERAGE_ICONS[idx % COVERAGE_ICONS.length];
+                    return (
+                      <li
+                        key={item.label}
+                        className="flex items-center gap-2 p-3 bg-white border border-[var(--border-color)] rounded-lg"
+                      >
+                        <Icon className="w-4.5 h-4.5 text-orange shrink-0" />
+                        {fill(item.label)}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 
               {/* Specs Table */}
               <div className="space-y-4 pt-4">
-                <h3 className="text-xl sm:text-2xl font-display uppercase">Industrial Portfolios &amp; Specifications</h3>
+                <h3 className="text-xl sm:text-2xl font-display uppercase">{t.specsTitle}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-color)]">
-                    <div className="font-bold text-xs uppercase tracking-wider text-[var(--text-main)] mb-2">Switchgears</div>
-                    <div className="space-y-1 text-xs">
-                      <div className="flex justify-between"><span className="text-[var(--text-faint)]">Range</span><span className="font-bold text-[var(--text-main)]">16A to 1250A</span></div>
-                      <div className="flex justify-between"><span className="text-[var(--text-faint)]">Type</span><span className="font-bold text-[var(--text-main)]">ACB, MCCB, Contactors</span></div>
-                      <div className="flex justify-between"><span className="text-[var(--text-faint)]">Standard</span><span className="font-bold text-[var(--text-main)]">IEC 60947</span></div>
+                  {t.specGroups.map((group) => (
+                    <div
+                      key={group.title}
+                      className="p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-color)]"
+                    >
+                      <div className="font-bold text-xs uppercase tracking-wider text-[var(--text-main)] mb-2">
+                        {group.title}
+                      </div>
+                      <div className="space-y-1 text-xs">
+                        {[1, 2, 3].map((rowNumber) => (
+                          <div key={rowNumber} className="flex justify-between">
+                            <span className="text-[var(--text-faint)]">{group[`row${rowNumber}Label`]}</span>
+                            <span className="font-bold text-[var(--text-main)]">
+                              {group[`row${rowNumber}Value`]}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-color)]">
-                    <div className="font-bold text-xs uppercase tracking-wider text-[var(--text-main)] mb-2">Electric Motors</div>
-                    <div className="space-y-1 text-xs">
-                      <div className="flex justify-between"><span className="text-[var(--text-faint)]">Capacity</span><span className="font-bold text-[var(--text-main)]">0.5 HP to 425 HP</span></div>
-                      <div className="flex justify-between"><span className="text-[var(--text-faint)]">Protection</span><span className="font-bold text-[var(--text-main)]">IP55 / IP56 / IP65</span></div>
-                      <div className="flex justify-between"><span className="text-[var(--text-faint)]">Efficiency</span><span className="font-bold text-[var(--text-main)]">IE2 / IE3 / IE4</span></div>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -232,10 +235,10 @@ export default function CityPage() {
             {/* Sticky contact widget */}
             <div className="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
               <div className="card p-6 sm:p-8 border-l-4 border-l-[var(--accent-orange)] space-y-5 bg-white shadow-lg">
-                <span className="eyebrow eyebrow-teal">Fast Dispatch</span>
-                <h3 className="text-xl sm:text-2xl font-display uppercase">Get Pricing for {city.name}</h3>
+                <span className="eyebrow eyebrow-teal">{t.sidebarEyebrow}</span>
+                <h3 className="text-xl sm:text-2xl font-display uppercase">{fill(t.sidebarTitle)}</h3>
                 <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
-                  Request custom product pricing and freight rates directly for your infrastructure and maintenance requirements.
+                  {fill(t.sidebarIntro)}
                 </p>
                 <div className="space-y-3.5 pt-2">
                   <a 
@@ -258,7 +261,7 @@ export default function CityPage() {
                   className="btn btn-primary w-full inline-flex items-center justify-center gap-2 mt-2"
                 >
                   <FileText className="w-4.5 h-4.5" />
-                  Request Custom RFQ
+                  {t.ctaRfq}
                 </button>
               </div>
             </div>
@@ -270,55 +273,33 @@ export default function CityPage() {
       <section className="section section-alt">
         <div className="container-page">
           <div className="section-header text-center">
-            <span className="eyebrow">The Shreeraj Advantage</span>
+            <span className="eyebrow">{t.advantageEyebrow}</span>
             <h2 className="section-title">
-              Why Choose Us in <span className="text-orange">{city.name}</span>
+              {fill(t.advantageTitle)} <span className="text-orange">{city.name}</span>
             </h2>
-            <p>
-              Combining 6 decades of experience with brand reliability and rapid support channels.
-            </p>
+            <p>{fill(t.advantageIntro)}</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="card p-6 bg-white space-y-3 hover:border-[var(--accent-orange)] transition">
-              <div className="w-10 h-10 rounded-lg bg-[var(--accent-orange-tint)] flex items-center justify-center text-[var(--accent-orange-deep)]">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-xl tracking-wide uppercase text-[var(--text-main)]">100% Genuine Brands</h3>
-              <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                Directly sourced from Siemens, Crompton Greaves, and Hindustan Electric Motors ensuring genuine products with warranty.
-              </p>
-            </div>
-
-            <div className="card p-6 bg-white space-y-3 hover:border-[var(--accent-orange)] transition">
-              <div className="w-10 h-10 rounded-lg bg-[var(--accent-orange-tint)] flex items-center justify-center text-[var(--accent-orange-deep)]">
-                <Truck className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-xl tracking-wide uppercase text-[var(--text-main)]">Reliable Logistics</h3>
-              <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                Dedicated transport channels handling heavy consignments and direct freight shipping to factories across {city.name}.
-              </p>
-            </div>
-
-            <div className="card p-6 bg-white space-y-3 hover:border-[var(--accent-orange)] transition">
-              <div className="w-10 h-10 rounded-lg bg-[var(--accent-orange-tint)] flex items-center justify-center text-[var(--accent-orange-deep)]">
-                <Zap className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-xl tracking-wide uppercase text-[var(--text-main)]">Technical Consultation</h3>
-              <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                Product engineering advisory assisting you with the selection of correct ratings, starters, gear ratios, and finishes.
-              </p>
-            </div>
-
-            <div className="card p-6 bg-white space-y-3 hover:border-[var(--accent-orange)] transition">
-              <div className="w-10 h-10 rounded-lg bg-[var(--accent-orange-tint)] flex items-center justify-center text-[var(--accent-orange-deep)]">
-                <CheckCircle className="w-5 h-5" />
-              </div>
-              <h3 className="font-display text-xl tracking-wide uppercase text-[var(--text-main)]">60+ Years Trust</h3>
-              <p className="text-sm text-[var(--text-muted)] leading-relaxed">
-                Backed by six decades of reputation in electro-mechanical trading, distribution, and custom solutions in Gujarat.
-              </p>
-            </div>
+            {t.advantageCards.map((card, idx) => {
+              const Icon = CARD_ICONS[idx % CARD_ICONS.length];
+              return (
+                <div
+                  key={card.title}
+                  className="card p-6 bg-white space-y-3 hover:border-[var(--accent-orange)] transition"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-[var(--accent-orange-tint)] flex items-center justify-center text-[var(--accent-orange-deep)]">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-display text-xl tracking-wide uppercase text-[var(--text-main)]">
+                    {fill(card.title)}
+                  </h3>
+                  <p className="text-sm text-[var(--text-muted)] leading-relaxed">
+                    {fill(card.description)}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -327,13 +308,11 @@ export default function CityPage() {
       <section className="section">
         <div className="container-page">
           <div className="section-header text-center">
-            <span className="eyebrow eyebrow-teal">Common Queries</span>
+            <span className="eyebrow eyebrow-teal">{t.faqEyebrow}</span>
             <h2 className="section-title">
-              Frequently Asked <span className="text-orange">Questions</span>
+              {t.faqTitle} <span className="text-orange">{t.faqTitleAccent}</span>
             </h2>
-            <p>
-              Have questions about switchgear supply, logistics, or custom order estimates?
-            </p>
+            <p>{fill(t.faqIntro)}</p>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-4">
@@ -367,31 +346,31 @@ export default function CityPage() {
       <section className="section section-ink">
         <div className="container-page text-center max-w-2xl mx-auto space-y-6">
           <span className="badge-tag badge-teal">
-            Industrial Procurement partner
+            {t.finalCtaBadge}
           </span>
           <h2 className="section-title text-white">
-            Procure Premium Switchgear &amp; Motors for your Project in <span className="text-orange">{city.name}</span>
+            {fill(t.finalCtaTitle)} <span className="text-orange">{city.name}</span>
           </h2>
           <p className="text-sm text-[var(--text-on-dark-muted)] leading-relaxed">
-            Get technical assistance on selection, quick pricing calculations, and fast logistics handling to your facility site.
+            {fill(t.finalCtaIntro)}
           </p>
-          
+
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
               onClick={() => navigate('/contact/')}
               className="btn btn-primary inline-flex items-center gap-2"
             >
               <FileText className="w-4.5 h-4.5" />
-              <span>Open Smart RFQ</span>
+              <span>{t.finalCtaPrimary}</span>
             </button>
-            <a 
+            <a
               href={companyInfo.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-ghost-dark inline-flex items-center gap-2"
             >
               <Zap className="w-4.5 h-4.5 text-orange" />
-              <span>Connect on WhatsApp</span>
+              <span>{t.finalCtaWhatsapp}</span>
             </a>
           </div>
         </div>
