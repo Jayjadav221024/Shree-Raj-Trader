@@ -17,7 +17,7 @@ const errorHandler_1 = require("./middlewares/errorHandler");
 const seed_1 = require("./seed");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 5000;
+const PORT = Number(process.env.PORT) || 5000;
 const MONGO_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/shreeraj-admin';
 // Ensure uploads directory exists
 const uploadsPath = path_1.default.join(process.cwd(), 'public', 'uploads');
@@ -30,10 +30,12 @@ app.use((0, cors_1.default)({
         if (!origin)
             return callback(null, true);
         if (origin.startsWith('http://localhost:') ||
-            origin.startsWith('http://127.0.0.1:')) {
+            origin.startsWith('http://127.0.0.1:') ||
+            origin.endsWith('.onrender.com') ||
+            (process.env.CLIENT_URL && origin === process.env.CLIENT_URL)) {
             return callback(null, true);
         }
-        return callback(new Error('Not allowed by CORS'));
+        return callback(new Error(`Not allowed by CORS: ${origin}`));
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
@@ -59,9 +61,9 @@ mongoose_1.default.connect(MONGO_URI)
     .then(async () => {
     console.log('[Server] Connected to MongoDB database successfully.');
     await (0, seed_1.seedDatabase)();
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`[Server] Express server is running on port ${PORT}`);
-        console.log(`[Server] API Base path is http://localhost:${PORT}/api/v1`);
+        console.log(`[Server] API Base path is /api/v1`);
     });
 })
     .catch((err) => {
