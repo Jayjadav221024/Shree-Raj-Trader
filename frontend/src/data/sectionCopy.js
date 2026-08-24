@@ -123,6 +123,7 @@ export const copy = {
     productGroups: [
       { key: 'switchgears', label: 'Switchgears' },
       { key: 'motors', label: 'Motors' },
+      { key: 'gearbox', label: 'Gear Box' },
       { key: 'gratings', label: 'FRP Gratings' },
       { key: 'trays', label: 'FRP Cable Tray' }
     ]
@@ -133,7 +134,7 @@ export const copy = {
     wordmarkAccent: 'TRADERS',
     logoAlt: 'Shree Raj Traders',
     blurb:
-      'Authorized Channel Partner for Siemens, CGL, and HEM. Delivering genuine electro-mechanical switchgears, industrial motors, and FRP composite solutions for over six decades.',
+      'Authorized Channel Partner for Siemens, CGL, HEM, and Rotomotive. Delivering genuine electro-mechanical switchgears, industrial motors, gearboxes, and FRP composite solutions for over six decades.',
     badges: [
       { label: '60+ Years Trust' },
       { label: 'Authorized Partner' },
@@ -153,13 +154,14 @@ export const copy = {
     productLinks: [
       { label: 'Siemens Switchgears', href: '/products/switchgears' },
       { label: 'Industrial Motors', href: '/products/motors' },
+      { label: 'Industrial Gearboxes', href: '/products/gearbox' },
       { label: 'FRP Gratings', href: '/products/gratings' },
       { label: 'FRP Cable Trays', href: '/products/trays' },
       { label: 'Sinnova Range', href: '/product/sinnova' }
     ],
     contactHeading: 'Direct Contact',
     addressShort: '39, Mahalaxmi Industrial Estate, Vatva, Phase 1, Ahmedabad, Gujarat',
-    groupHeading: 'Group Companies',
+    groupHeading: 'Sister Companies & Network',
     // {year} is replaced with the current year when the page renders.
     copyright: '© {year} Shree Raj Traders · All Rights Reserved · Authorized Industrial Distributor',
     backToTop: 'Back to Top'
@@ -171,7 +173,7 @@ export const copy = {
   'home.hero': {
     backgroundText: 'SHREE RAJ',
     eyebrow: 'Authorized Channel Partner · Over Six Decades',
-    headingLine1: 'Switchgears, Motors &',
+    headingLine1: 'Switchgears, Cables &',
     headingLine3: 'For Indian Industry',
     ctaPrimary: 'Request a Quote',
     productPills: [
@@ -223,8 +225,8 @@ export const copy = {
 
   'home.group-companies': {
     eyebrow: 'Synergistic Group Alliance',
-    title: 'Our Group of',
-    titleAccent: 'Companies'
+    title: 'Transpower Group &',
+    titleAccent: 'Sister Companies'
   },
 
   'home.testimonials': {

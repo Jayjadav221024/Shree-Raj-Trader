@@ -94,6 +94,7 @@ export const routes = {
 export const productCategoryRoutes = {
   switchgears: "/products_category/switchgears/",
   motors: "/products_category/motors/",
+  gearbox: "/products_category/gear-box/",
   frpGratings: "/products_category/frp-gratings/",
   frpCableTray: "/products_category/frp-cable-tray/"
 };
@@ -119,6 +120,10 @@ export const navMenus = {
       { label: "Siemens Motor", href: "/product/siemens-motor" },
       { label: "Crompton Greaves Motor", href: "/product/crompton-greaves-motor" },
       { label: "Hindustan Electric Motor", href: "/product/hindustan-electric-motor" }
+    ],
+    gearbox: [
+      { label: "Rotomotive ROBUS Inline Helical Gearbox", href: "/product/rotomotive-robus-gearbox" },
+      { label: "Rotomotive QUBO Worm Gearbox", href: "/product/rotomotive-qubo-gearbox" }
     ],
     gratings: [
       { label: "Meniscus Top", href: "/product/meniscus-top" },
@@ -150,6 +155,7 @@ export const heroAssurances = [
 export const heroCardSpecs = {
   motors: { left: "0.5 HP - 425 HP", right: "IP55 / IP56 / IP65" },
   switchgears: { left: "MCCB 16A - 1250A", right: "IEC 60947" },
+  gearbox: { left: "Up to 4,300 Nm", right: "ROBUS / QUBO" },
   gratings: { left: "Mesh 3838", right: "25 / 30 / 38 mm" },
   cableTrays: { left: "Fire-Retardant", right: "UV Stabilized" }
 };
@@ -201,6 +207,21 @@ export const authorizedBrands = [
       "IE2/IE3/IE4 Motors",
       "Foot & Flange Mounting",
       "Cast Iron Frames"
+    ]
+  },
+  {
+    id: "rotomotive",
+    name: "Rotomotive",
+    tagline: "High-Efficiency Industrial Gearboxes & Drives",
+    category: "Industrial Gearboxes",
+    logo: images.brands.rotomotive,
+    color: "orange",
+    authorizedPartner: true,
+    highlights: [
+      "ROBUS Inline Helical Gearboxes",
+      "QUBO Worm Gearboxes",
+      "High-Torque Power Transmission",
+      "Compact & Rugged Housings"
     ]
   },
   {

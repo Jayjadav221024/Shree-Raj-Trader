@@ -215,6 +215,56 @@ const CATEGORIES = [
     ]
   },
   {
+    "id": "gearbox",
+    "title": "Gear Box",
+    "badge": "Rotomotive Industrial Gearboxes",
+    "href": "/products_category/gear-box/",
+    "imageKey": "cat-gear-box",
+    "description": "High-efficiency industrial gearboxes and geared motors from Rotomotive, including ROBUS inline helical and QUBO worm series.",
+    "items": [
+      {
+        "slug": "rotomotive-robus-gearbox",
+        "href": "/products/rotomotive-robus-gearbox/",
+        "longDescription": "Shree Raj Traders supplies Rotomotive ROBUS series inline helical gearboxes designed for high torque transmission, whisper-quiet operation, and maximum mechanical efficiency. Engineered with high-grade cast iron and aluminum housings, precision ground gears, and modular mounting options to suit diverse industrial motor pairings and heavy-duty conveyor systems.",
+        "liveSpecs": [
+          "Gearbox Type: Inline Helical Gearbox",
+          "Torque Rating: Up to 4,300 Nm",
+          "Mounting Options: Foot, Flange, Universal",
+          "Housing Material: Cast Iron / Die-Cast Aluminium",
+          "Efficiency: High Mechanical Efficiency (>96%)",
+          "Brand: Rotomotive"
+        ],
+        "name": "Rotomotive ROBUS Inline Helical Gearbox",
+        "brand": "Rotomotive",
+        "imageKey": "cat-gear-box",
+        "gearboxType": "Inline Helical",
+        "torqueRating": "Up to 4,300 Nm",
+        "mounting": "Foot, Flange, Universal Mounting",
+        "housing": "Cast Iron / Die-Cast Aluminium",
+        "applications": "Conveyors, Agitators, Material Handling, Food Processing, Packaging"
+      },
+      {
+        "slug": "rotomotive-qubo-gearbox",
+        "href": "/products/rotomotive-qubo-gearbox/",
+        "longDescription": "Rotomotive QUBO series worm gearboxes distributed by Shree Raj Traders offer compact power transmission solutions with smooth operation and high reduction ratios in single stages. Built for harsh industrial environments, they deliver reliable torque handling with low vibration and minimal maintenance needs.",
+        "liveSpecs": [
+          "Gearbox Type: Worm Gearbox",
+          "Torque Rating: High Shock Load Resistance",
+          "Mounting: Universal Multi-Position Mounting",
+          "Lubrication: Long-life synthetic oil",
+          "Brand: Rotomotive"
+        ],
+        "name": "Rotomotive QUBO Worm Gearbox",
+        "brand": "Rotomotive",
+        "imageKey": "cat-gear-box",
+        "gearboxType": "Worm Gearbox",
+        "torqueRating": "High Shock Load Capacity",
+        "mounting": "Universal Multi-Position Mounting",
+        "applications": "Packaging Machinery, Automation Lines, Cranes, Lifts, Mixers"
+      }
+    ]
+  },
+  {
     "id": "frp-gratings",
     "title": "FRP Gratings",
     "badge": "Corrosion Resistant & Lightweight",
