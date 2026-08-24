@@ -32,30 +32,30 @@ export const copy = {
   // ---------------------------------------------------------------------------
   'seo.global': {
     siteName: 'Shree Raj Traders',
-    fallbackTitle: 'Shree Raj Traders | Siemens Switchgears, Motors, FRP Gratings & Cable Tray',
+    fallbackTitle: 'Siemens Switchgear & Motors | Shree Raj Traders',
     fallbackDescription:
-      'Authorized channel partner for Siemens, CGL (Crompton Greaves) and Hindustan Electric Motors. Switchgears, industrial motors, FRP gratings and cable trays supplied across Ahmedabad and Gujarat.',
+      'Authorized distributor for Siemens, CGL & HEM motors, switchgears & FRP cable trays in Ahmedabad, Gujarat. 10,000+ verified industrial SKUs in stock.',
     shareImage: 'logo-mini',
     shareImageAlt: 'Shree Raj Traders logo'
   },
 
   'seo.home': {
-    title: 'Siemens Switchgears, Motors & FRP Solutions',
+    title: 'Siemens Switchgear & Motors | Shree Raj Traders',
     description:
-      'Shree Raj Traders is a trusted distributor of Siemens low-voltage switchgears, CGL and Hindustan electric motors, FRP gratings, and FRP cable trays in Ahmedabad, Gujarat.'
+      'Authorized distributor for Siemens, CGL & HEM motors, switchgears & FRP cable trays in Ahmedabad, Gujarat. 10,000+ verified industrial SKUs in stock.'
   },
 
   'seo.about': {
-    title: 'About Us - Six Decades of Electro-Mechanical Excellence',
+    title: 'Industrial Electro-Mechanical Supplier | Shree Raj Traders',
     description:
-      'Learn more about Shree Raj Traders, an established industrial supplier and authorized partner for Siemens, CGL, and Hindustan motors & switchgears in Ahmedabad, Gujarat.'
+      'Authorized distributor of Siemens, CGL & HEM motors & switchgears in Ahmedabad, Gujarat. Over six decades of engineering supply trust.'
   },
 
   'seo.products': {
-    title: 'Industrial Products Catalog',
-    categoryTitle: '{category} Catalog',
+    title: 'Industrial Products Catalog | Shree Raj Traders',
+    categoryTitle: '{category} Catalog | Shree Raj Traders',
     description:
-      'Browse our inventory of Siemens low-voltage switchgears, CGL and Hindustan induction motors, and custom fire-retardant FRP cable trays and gratings.'
+      'Authorized supplier of Siemens low-voltage switchgears, CGL & HEM motors, Rotomotive gearboxes, and FRP cable trays across Gujarat.'
   },
 
   'seo.product-detail': {
