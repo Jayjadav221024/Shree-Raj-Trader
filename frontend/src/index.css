@@ -213,7 +213,11 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  /* Side padding only. This rule is unlayered, so a `padding` shorthand here
+     would beat Tailwind's layered `pt-*`/`pb-*` utilities and silently zero
+     out any vertical padding set on the same element. */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .section-header {
