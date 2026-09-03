@@ -36,7 +36,7 @@ export default function LocationsPage() {
                 <div className="w-8 h-8 rounded-lg bg-[var(--accent-orange-tint)] flex items-center justify-center mb-4 text-[var(--accent-orange-deep)]">
                   <MapPin className="w-4.5 h-4.5" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-display text-[var(--text-main)] group-hover:text-[var(--accent-orange)] transition-colors tracking-wide uppercase leading-none">
+                <h3 className="text-xl sm:text-2xl font-display font-bold text-[var(--text-main)] group-hover:text-[var(--accent-orange)] transition-colors leading-none">
                   {city.name}
                 </h3>
                 <p className="text-xs sm:text-sm text-[var(--text-muted)] mt-1.5 font-semibold">
@@ -44,7 +44,7 @@ export default function LocationsPage() {
                 </p>
               </div>
 
-              <div className="text-[var(--accent-orange-deep)] font-extrabold text-xs uppercase tracking-wider mt-6 inline-flex items-center gap-1.5">
+              <div className="text-[var(--accent-orange-deep)] font-extrabold text-xs mt-6 inline-flex items-center gap-1.5">
                 {c.cardCta} <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>

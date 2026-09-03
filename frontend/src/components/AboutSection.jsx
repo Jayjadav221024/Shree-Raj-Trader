@@ -147,7 +147,7 @@ export default function AboutSection() {
               <div className="w-12 h-12 rounded-[12px] bg-[var(--accent-cyan-tint)] border border-[rgba(20,96,122,0.2)] flex items-center justify-center mb-4">
                 <Icon className="w-6 h-6 text-teal" />
               </div>
-              <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)]">{title}</h3>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-main)]">{title}</h3>
               <p className="text-sm sm:text-base text-[var(--text-muted)] mt-2 leading-relaxed">{body}</p>
             </div>
           ))}
@@ -171,7 +171,7 @@ export default function AboutSection() {
               <Wrench className="w-6 h-6 text-orange" />
             </div>
             <div>
-              <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)]">{epcDivision.title}</h3>
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-main)]">{epcDivision.title}</h3>
               <p className="text-sm sm:text-base text-[var(--text-muted)] mt-1.5 leading-relaxed">
                 {epcDivision.description}
               </p>
@@ -180,54 +180,29 @@ export default function AboutSection() {
         </div>
         )}
 
-        {/* Our Team */}
-        <div data-section="about.team">
-        <div className="section-header">
-          <span className="eyebrow eyebrow-teal">{team.eyebrow}</span>
-          <h2 className="section-title">
-            {team.title} <span className="text-orange">{team.titleAccent}</span>
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-          {teamMembers.map((member) => (
-            <div key={member.name} className="card card-hover overflow-hidden">
-              <img
-                src={member.photo.src}
-                alt={member.photoAlt || member.name}
-                width={member.photo.width}
-                height={member.photo.height}
-                loading="lazy"
-                className="w-full h-auto object-cover"
-              />
-              <div className="p-4">
-                <div className="font-display text-lg tracking-wide leading-none text-[var(--text-main)]">
-                  {member.name}
-                </div>
-                <div className="text-xs font-bold uppercase tracking-wider text-orange mt-1.5 leading-snug">
-                  {member.role}
-                </div>
-              </div>
+        {/* Team Teaser & Link to dedicated Team Page */}
+        <div data-section="about.team" className="card p-8 sm:p-10 mb-14 sm:mb-16 bg-gradient-to-r from-white via-[var(--bg-card)] to-[var(--bg-secondary)] border border-[var(--border-color)]">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="space-y-3 max-w-xl">
+              <span className="eyebrow eyebrow-teal">{team.eyebrow}</span>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
+                {team.title} <span className="text-orange">{team.titleAccent}</span>
+              </h2>
+              <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+                Meet our dedicated team of industry specialists, technical sales advisors, and logistics managers who power our 60+ years of operational excellence.
+              </p>
             </div>
-          ))}
-        </div>
-        </div>
 
-        {/* Careers */}
-        <div data-section="about.careers" className="card p-8 sm:p-10 mb-14 sm:mb-16">
-          <span className="eyebrow">{careers.eyebrow}</span>
-          <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)] mt-2">{careers.heading}</h3>
-          <p className="font-display text-xl sm:text-2xl tracking-wide text-orange mt-2">{careers.tagline}</p>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] mt-3 leading-relaxed">
-            {careers.body}{' '}
-            <a
-              href={`mailto:${careers.email}`}
-              className="font-bold text-[var(--text-main)] hover:text-[var(--accent-orange)] transition inline-flex items-center gap-1.5"
-            >
-              <Mail className="w-3.5 h-3.5 text-orange" />
-              {careers.email}
-            </a>
-          </p>
+            <div className="flex flex-wrap items-center gap-4 shrink-0">
+              <a href="/our-team/" className="btn btn-primary inline-flex items-center gap-2">
+                Meet The Full Team
+                <span className="text-xs">→</span>
+              </a>
+              <a href="/career/" className="btn btn-secondary inline-flex items-center gap-2">
+                Join Our Team
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Timeline */}

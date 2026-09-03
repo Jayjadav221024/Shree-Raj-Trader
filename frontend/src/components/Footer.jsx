@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, ArrowUp, ShieldCheck, Clock, Truck, ChevronRight } from 'lucide-react';
+import { Phone, Mail, MapPin, ArrowUp, ShieldCheck, Clock, Truck } from 'lucide-react';
 import { companyInfo, siteMeta, groupCompanies } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 import { fillTemplate } from '../lib/siteContent';
@@ -62,8 +62,7 @@ export default function Footer() {
             <ul className="space-y-2 mt-3">
               {QUICK_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="footer-link group">
-                    <ChevronRight className="w-3.5 h-3.5 text-white/30 group-hover:text-[var(--accent-orange-bright)] group-hover:translate-x-0.5 transition-all mr-1" />
+                  <a href={link.href} className="footer-link">
                     <span>{link.label}</span>
                   </a>
                 </li>
@@ -77,8 +76,7 @@ export default function Footer() {
             <ul className="space-y-2 mt-3">
               {PRODUCT_LINKS.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="footer-link group">
-                    <ChevronRight className="w-3.5 h-3.5 text-white/30 group-hover:text-[var(--accent-orange-bright)] group-hover:translate-x-0.5 transition-all mr-1" />
+                  <a href={item.href} className="footer-link">
                     <span>{item.label}</span>
                   </a>
                 </li>

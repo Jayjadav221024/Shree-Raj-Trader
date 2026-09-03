@@ -142,7 +142,7 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
                 <button
                   key={tab.id}
                   onClick={() => handleTabClick(tab.id)}
-                  className={`px-5 py-2.5 rounded-xl border text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                  className={`px-5 py-2.5 rounded-xl border text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
                     isActive
                       ? 'bg-[var(--accent-orange)] text-white border-[var(--accent-orange)] shadow-[var(--shadow-glow)]'
                       : 'bg-white border-[var(--border-color)] text-[var(--text-muted)] hover:border-[var(--accent-orange)] hover:text-[var(--accent-orange)] shadow-xs hover:shadow-sm'

@@ -20,6 +20,7 @@ import LocationsPage from './pages/LocationsPage';
 import CityPage from './pages/CityPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CareerPage from './pages/CareerPage';
+import OurTeamPage from './pages/OurTeamPage';
 import SEO from './components/SEO';
 import SectionEditOverlay, { isSectionEditMode } from './components/SectionEditOverlay';
 import { SiteContentProvider, useSiteContent } from './lib/siteContent';
@@ -271,6 +272,9 @@ function AppShell() {
             }
           />
           <Route path="/about-us/" element={<AboutSection />} />
+          <Route path="/about-us" element={<Navigate to="/about-us/" replace />} />
+          <Route path="/our-team/" element={<OurTeamPage />} />
+          <Route path="/our-team" element={<Navigate to="/our-team/" replace />} />
           <Route path="/products/" element={<ProductCatalog categories={resolvedCategories} products={resolvedProducts} onSelectProductForRfq={handleOpenRfqForProduct} />} />
           <Route path="/products/:category" element={<ProductCatalog categories={resolvedCategories} products={resolvedProducts} onSelectProductForRfq={handleOpenRfqForProduct} />} />
           <Route path="/product/:slug" element={<ProductDetailPage products={resolvedProducts} onSelectProductForRfq={handleOpenRfqForProduct} />} />

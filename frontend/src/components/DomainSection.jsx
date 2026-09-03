@@ -34,7 +34,7 @@ export default function DomainSection() {
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
-                <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)]">{domain.title}</h3>
+                <h3 className="font-display text-xl sm:text-2xl text-[var(--text-main)] font-bold">{domain.title}</h3>
                 <p className="text-sm sm:text-base text-[var(--text-muted)] mt-2 leading-relaxed">
                   {domain.description}
                 </p>
@@ -82,7 +82,7 @@ export default function DomainSection() {
                 )}
 
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase leading-tight group-hover:text-[var(--accent-orange)] transition-colors">
+                  <h3 className="font-display text-xl sm:text-2xl font-bold leading-tight group-hover:text-[var(--accent-orange)] transition-colors">
                     {company.name}
                   </h3>
                   {isLinked && (
@@ -90,7 +90,7 @@ export default function DomainSection() {
                   )}
                 </div>
 
-                <p className="text-xs font-bold uppercase tracking-wider text-teal mt-1.5">
+                <p className="text-xs font-semibold text-teal mt-1.5">
                   {company.role}
                 </p>
 

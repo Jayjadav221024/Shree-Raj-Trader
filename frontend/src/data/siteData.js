@@ -107,7 +107,7 @@ export const productCategoryRoutes = {
 export const navMenus = {
   about: [
     { label: "About Shree Raj Traders", href: routes.aboutUs.path },
-    { label: "Our Team", href: routes.aboutUs.path }
+    { label: "Our Team", href: routes.ourTeam.path }
   ],
   products: {
     switchgears: [

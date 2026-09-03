@@ -39,10 +39,10 @@ export default function BrandMatrix({ onSelectBrand }) {
                     />
                   </div>
                   <div>
-                    <h3 className="font-display text-2xl sm:text-3xl tracking-wide uppercase group-hover:text-[var(--accent-orange)] transition-colors leading-tight">
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold group-hover:text-[var(--accent-orange)] transition-colors leading-tight">
                       {brand.name}
                     </h3>
-                    <p className="text-xs font-bold uppercase tracking-wider text-teal mt-1">
+                    <p className="text-xs font-semibold text-teal mt-1">
                       {brand.category}
                     </p>
                   </div>
@@ -50,7 +50,7 @@ export default function BrandMatrix({ onSelectBrand }) {
                     {brand.tagline}
                   </p>
                   
-                  <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-faint)] group-hover:text-[var(--accent-orange)] transition-all pt-2">
+                  <div className="inline-flex items-center gap-2 text-xs font-semibold text-[var(--text-faint)] group-hover:text-[var(--accent-orange)] transition-all pt-2">
                     <span>{c.viewLabel}</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
                   </div>
@@ -58,7 +58,7 @@ export default function BrandMatrix({ onSelectBrand }) {
 
                 {/* Right Side: Key Highlights */}
                 <div className="md:col-span-6 border-t md:border-t-0 md:border-l border-[var(--border-color)] pt-6 md:pt-0 md:pl-8 space-y-3.5">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[var(--accent-cyan)] mb-2.5">
+                  <div className="text-xs font-semibold text-[var(--accent-cyan)] mb-2.5">
                     {brand.authorizedPartner ? c.highlightsAuthorizedLabel : c.highlightsGenericLabel}
                   </div>
                   {brand.highlights.map((highlight) => (

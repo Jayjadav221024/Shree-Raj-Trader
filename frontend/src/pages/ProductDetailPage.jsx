@@ -143,7 +143,7 @@ export default function ProductDetailPage({ onSelectProductForRfq, products: pro
             <div className="pt-6 border-t border-[var(--border-color)]">
               <button
                 onClick={() => onSelectProductForRfq && onSelectProductForRfq(product)}
-                className="btn btn-primary px-8 py-4 text-sm font-bold uppercase tracking-wider rounded-xl shadow-[var(--shadow-glow)]"
+                className="btn btn-primary px-8 py-4 text-sm font-bold rounded-xl shadow-[var(--shadow-glow)]"
               >
                 {fillTemplate(c.quoteButton, { product: product.name })}
               </button>

@@ -99,10 +99,10 @@ export default function FeaturedCategories({ categories: propCategories }) {
                     )}
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[var(--accent-cyan)] block">
+                    <span className="text-xs font-semibold text-[var(--accent-cyan)] block">
                       {item.badge}
                     </span>
-                    <h4 className="text-base font-bold text-[var(--text-main)] uppercase mt-1 font-display">
+                    <h4 className="text-base font-bold text-[var(--text-main)] mt-1 font-display">
                       {item.title}
                     </h4>
                   </div>
@@ -115,11 +115,11 @@ export default function FeaturedCategories({ categories: propCategories }) {
           <div className="lg:col-span-4 text-center px-6 py-10 bg-white/80 rounded-3xl border border-[var(--border-color)] backdrop-blur-md shadow-[var(--shadow-lift)] flex flex-col items-center justify-center min-h-[300px] z-10">
             {hoveredItem && (
               <>
-                <span className="badge-tag bg-white/95 text-[10px] font-bold px-2.5 py-0.5 rounded-full shadow-sm text-[var(--accent-cyan)] border border-[var(--border-color)]">
+                <span className="badge-tag bg-white/95 text-[11px] font-semibold px-2.5 py-0.5 rounded-full shadow-sm text-[var(--accent-cyan)] border border-[var(--border-color)]">
                   {hoveredItem.badge}
                 </span>
                 
-                <h3 className="text-2xl font-bold text-[var(--text-main)] uppercase font-display leading-tight tracking-wide mt-4 min-h-[3rem] flex items-center justify-center">
+                <h3 className="text-2xl font-bold text-[var(--text-main)] font-display leading-tight mt-4 min-h-[3rem] flex items-center justify-center">
                   {hoveredItem.title}
                 </h3>
                 
@@ -129,7 +129,7 @@ export default function FeaturedCategories({ categories: propCategories }) {
 
                 <button
                   onClick={() => navigate(hoveredItem.isCustom ? '/contact/' : `/products/${hoveredItem.id}`)}
-                  className="mt-8 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[var(--accent-cyan)] hover:bg-[var(--accent-cyan-deep)] text-white text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-[var(--shadow-teal)] hover:shadow-lg hover:-translate-y-0.5"
+                  className="mt-8 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[var(--accent-cyan)] hover:bg-[var(--accent-cyan-deep)] text-white text-xs font-bold tracking-wide transition-all duration-300 shadow-[var(--shadow-teal)] hover:shadow-lg hover:-translate-y-0.5"
                 >
                   {hoveredItem.isCustom ? 'Open Calculator' : 'View Products'}
                   <ArrowRight className="w-4 h-4" />
@@ -155,10 +155,10 @@ export default function FeaturedCategories({ categories: propCategories }) {
                     )}
                   </div>
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[var(--accent-cyan)] block">
+                    <span className="text-xs font-semibold text-[var(--accent-cyan)] block">
                       {item.badge}
                     </span>
-                    <h4 className="text-base font-bold text-[var(--text-main)] uppercase mt-1 font-display">
+                    <h4 className="text-base font-bold text-[var(--text-main)] mt-1 font-display">
                       {item.title}
                     </h4>
                   </div>
@@ -185,10 +185,10 @@ export default function FeaturedCategories({ categories: propCategories }) {
                   )}
                 </div>
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-[var(--accent-cyan)] block">
+                  <span className="text-xs font-semibold text-[var(--accent-cyan)] block">
                     {item.badge}
                   </span>
-                  <h4 className="text-base font-bold text-[var(--text-main)] uppercase mt-0.5 font-display">
+                  <h4 className="text-base font-bold text-[var(--text-main)] mt-0.5 font-display">
                     {item.title}
                   </h4>
                 </div>
@@ -196,7 +196,7 @@ export default function FeaturedCategories({ categories: propCategories }) {
               <p className="text-xs text-[var(--text-muted)] leading-relaxed">
                 {item.description}
               </p>
-              <div className="text-[11px] font-bold text-[var(--accent-orange)] uppercase tracking-wider flex items-center gap-1 mt-1">
+              <div className="text-[11px] font-bold text-[var(--accent-orange)] tracking-wide flex items-center gap-1 mt-1">
                 {item.isCustom ? 'Open Calculator' : 'View Products'} <ArrowRight className="w-3.5 h-3.5" />
               </div>
             </div>

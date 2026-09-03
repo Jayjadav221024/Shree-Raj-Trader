@@ -52,7 +52,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
             onMouseEnter={() => setActiveDropdown('about')}
             onMouseLeave={() => setActiveDropdown(null)}
           >
-            <button className="nav-link flex items-center gap-1 py-2">
+            <button className="nav-link flex items-center gap-1 py-2 cursor-pointer">
               {c.navAbout} <ChevronDown className="w-3.5 h-3.5" />
             </button>
             {activeDropdown === 'about' && (
@@ -154,7 +154,7 @@ export default function Navbar({ onOpenRfq, onOpenSearch }) {
           <div>
             <button
               onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-              className="w-full flex items-center justify-between py-2.5 nav-link"
+              className="w-full flex items-center justify-between py-2.5 nav-link cursor-pointer"
             >
               <span>{c.navAbout}</span>
               <ChevronDown className={`w-4 h-4 transition-transform ${mobileAboutOpen ? 'rotate-180' : ''}`} />

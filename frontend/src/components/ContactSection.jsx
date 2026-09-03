@@ -63,7 +63,7 @@ export default function ContactSection({ faqs: propFaqs }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-14 sm:mb-16">
           {/* Details */}
           <div data-section="contact.head-office" className="lg:col-span-5 card p-6 sm:p-8 space-y-6">
-            <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)]">{office.heading}</h3>
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-main)]">{office.heading}</h3>
 
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-[10px] bg-[var(--accent-orange-tint)] border border-[rgba(217,101,59,0.2)] flex items-center justify-center shrink-0">
@@ -124,7 +124,7 @@ export default function ContactSection({ faqs: propFaqs }) {
 
           {/* Form */}
           <div data-section="contact.form" className="lg:col-span-7 card p-6 sm:p-8">
-            <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)] mb-5">{form.heading}</h3>
+            <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-main)] mb-5">{form.heading}</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -183,7 +183,7 @@ export default function ContactSection({ faqs: propFaqs }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {groupOffices.map((office) => (
               <div key={office.name} className="card p-6 sm:p-8 space-y-4">
-                <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)]">{office.name}</h3>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-main)]">{office.name}</h3>
                 
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-[var(--accent-orange-tint)] flex items-center justify-center shrink-0 mt-0.5">

@@ -165,7 +165,7 @@ export default function CareerPage() {
                   <div className="w-11 h-11 rounded-[12px] bg-[var(--accent-orange-tint)] border border-[rgba(217,101,59,0.2)] flex items-center justify-center">
                     <Icon className="w-5 h-5 text-orange" />
                   </div>
-                  <h3 className="font-display text-xl tracking-wide uppercase text-[var(--text-main)]">
+                  <h3 className="font-display text-xl font-bold text-[var(--text-main)]">
                     {item.title}
                   </h3>
                   <p className="text-sm text-[var(--text-muted)] leading-relaxed">{item.description}</p>
@@ -197,7 +197,7 @@ export default function CareerPage() {
               <div className="w-12 h-12 rounded-[12px] bg-[var(--accent-cyan-tint)] flex items-center justify-center mx-auto mb-4">
                 <Briefcase className="w-6 h-6 text-teal" />
               </div>
-              <h3 className="font-display text-xl sm:text-2xl tracking-wide uppercase text-[var(--text-main)]">
+              <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-main)]">
                 {openingsCopy.emptyTitle}
               </h3>
               <p className="text-sm text-[var(--text-muted)] mt-2 leading-relaxed">
@@ -215,11 +215,11 @@ export default function CareerPage() {
                   <div className="flex flex-col lg:flex-row lg:items-start gap-6">
                     <div className="flex-1 min-w-0 space-y-4">
                       <div>
-                        <h3 className="font-display text-2xl tracking-wide uppercase text-[var(--text-main)] leading-tight">
+                        <h3 className="font-display text-2xl font-bold text-[var(--text-main)] leading-tight">
                           {role.title}
                         </h3>
 
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2.5 text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mt-2.5 text-xs font-semibold text-[var(--text-muted)]">
                           {role.department && (
                             <span className="inline-flex items-center gap-1.5">
                               <Briefcase className="w-3.5 h-3.5 text-orange" />
