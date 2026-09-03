@@ -107,19 +107,19 @@
     font-family: var(--font-display);
     line-height: 1.2;
     color: var(--text-main);
-    font-weight: 700;
+    font-weight: 600;
   }
 
   h1 {
     font-size: clamp(2.35rem, 4vw, 3.6rem);
-    font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: -0.03em;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
   }
 
-  h2 { font-size: clamp(1.85rem, 3vw, 2.5rem); font-weight: 800; line-height: 1.18; letter-spacing: -0.025em; }
-  h3 { font-size: clamp(1.3rem, 2vw, 1.65rem); font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; }
-  h4 { font-size: clamp(1.05rem, 1.4vw, 1.25rem); font-weight: 700; line-height: 1.3; letter-spacing: -0.015em; }
+  h2 { font-size: clamp(1.85rem, 3vw, 2.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+  h3 { font-size: clamp(1.3rem, 2vw, 1.65rem); font-weight: 600; line-height: 1.25; letter-spacing: -0.015em; }
+  h4 { font-size: clamp(1.05rem, 1.4vw, 1.25rem); font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
 
   ::selection {
     background: var(--accent-orange);
@@ -160,7 +160,7 @@
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(1.85rem, 3.8vw, 2.65rem);
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.015em;
   color: var(--text-main);
@@ -362,10 +362,10 @@
 
 .stat-card-number {
   font-family: var(--font-display);
-  font-size: clamp(2.4rem, 3.8vw, 3.1rem);
-  font-weight: 800;
+  font-size: clamp(2.3rem, 3.6vw, 3rem);
+  font-weight: 700;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   color: var(--accent-orange);
 }
 
@@ -375,7 +375,7 @@
   display: inline-grid;
   grid-template-areas: 'n';
   font-variant-numeric: tabular-nums;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .count-up-ghost,
@@ -390,7 +390,7 @@
 
 .stat-card-label {
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--text-muted);
   line-height: 1.4;

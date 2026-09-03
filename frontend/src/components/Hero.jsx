@@ -141,7 +141,7 @@ export default function Hero({ onOpenRfq }) {
                     <div className="font-display text-base tracking-wide text-[var(--text-main)] leading-none">
                       {pill.label}
                     </div>
-                    <div className={`text-xs font-bold mt-1.5 transition-colors ${
+                    <div className={`text-xs font-semibold mt-1.5 transition-colors ${
                       isActive ? 'text-orange' : 'text-[var(--text-muted)]'
                     }`}>
                       {pill.spec}
