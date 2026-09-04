@@ -10,6 +10,7 @@ import { companyInfo, authorizedBrands } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 import { fillTemplate } from '../lib/siteContent';
 import SEO from '../components/SEO';
+import { CityLandmarkArt } from '../components/CityLandmarkArt';
 
 const CARD_ICONS = [ShieldCheck, Truck, Zap, CheckCircle];
 const COVERAGE_ICONS = [Building2, HardHat, Link, Star];
@@ -69,8 +70,8 @@ export default function CityPage() {
         title={fill(copy['seo.city'].title)}
         description={fill(copy['seo.city'].description)}
       />
-      {/* 1. Dynamic Hero Section */}
-      <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 border-b border-[var(--border-color)] bg-gradient-to-b from-white to-[var(--bg-primary)]">
+      {/* 1. Dynamic Hero Section with 2D Model Drawing */}
+      <section className="hero-section border-b border-[var(--border-color)]">
         {/* Oversized ghost text */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
           <span className="font-display text-[12vw] text-slate-100/50 leading-none uppercase tracking-widest font-black">
@@ -87,39 +88,62 @@ export default function CityPage() {
             {t.backLink}
           </button>
 
-          <div className="max-w-3xl space-y-6">
-            <span className="eyebrow eyebrow-teal">
-              {t.heroEyebrow}
-            </span>
-            <h1 className="leading-none">
-              {fill(t.heroTitle)} <span className="text-orange">{city.name}</span>
-            </h1>
-            <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl">
-              {fill(t.heroIntro)}
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-6">
+              <span className="eyebrow eyebrow-teal">
+                {t.heroEyebrow}
+              </span>
+              <h1 className="leading-none">
+                {fill(t.heroTitle)} <span className="text-orange">{city.name}</span>
+              </h1>
+              <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl">
+                {fill(t.heroIntro)}
+              </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-              <button
-                onClick={() => navigate('/contact/')}
-                className="btn btn-primary inline-flex items-center gap-2.5 shadow-[var(--shadow-glow)]"
-              >
-                <FileText className="w-4.5 h-4.5" />
-                {t.ctaRfq}
-              </button>
-              <button
-                onClick={() => navigate('/products/')}
-                className="btn btn-secondary inline-flex items-center gap-2"
-              >
-                <span>{t.ctaCatalog}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <button
+                  onClick={() => navigate('/contact/')}
+                  className="btn btn-primary inline-flex items-center gap-2.5 shadow-[var(--shadow-glow)]"
+                >
+                  <FileText className="w-4.5 h-4.5" />
+                  {t.ctaRfq}
+                </button>
+                <button
+                  onClick={() => navigate('/products/')}
+                  className="btn btn-secondary inline-flex items-center gap-2"
+                >
+                  <span>{t.ctaCatalog}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            {/* 2D Landmark Architectural Model Drawing Card */}
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="w-full max-w-xs card p-6 bg-white/90 backdrop-blur-md border-2 border-[var(--border-color)] rounded-3xl text-center shadow-lg hover:border-[var(--accent-orange)] transition-all duration-300">
+                <div className="w-36 h-28 mx-auto flex items-center justify-center p-2">
+                  <CityLandmarkArt
+                    slug={city.slug}
+                    className="w-full h-full text-slate-700"
+                    accentColor="#d9653b"
+                  />
+                </div>
+                <div className="mt-3 pt-3 border-t border-[var(--border-color)]">
+                  <div className="font-display font-bold text-lg text-[var(--text-main)]">
+                    {city.name} Landmark
+                  </div>
+                  <div className="text-xs font-semibold text-orange mt-0.5">
+                    {city.district} Industrial Zone
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 2. Brand Autoscroll Section */}
-      <section className="py-8 bg-white border-b border-[var(--border-color)] overflow-hidden">
+      <section className="section-tight bg-white border-b border-[var(--border-color)] overflow-hidden">
         <div className="container-page mb-3 text-center">
           <span className="text-xs font-bold uppercase tracking-widest text-[var(--text-faint)]">
             {t.brandsStripLabel}
@@ -129,24 +153,24 @@ export default function CityPage() {
           <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-          <div className="marquee-track flex gap-8 animate-marquee hover:[animation-play-state:paused] cursor-pointer">
+          <div className="marquee-track flex gap-6 animate-marquee hover:[animation-play-state:paused] cursor-pointer">
             {/* Set 1 */}
             {authorizedBrands.map((brand) => (
-              <div key={`brand1-${brand.id}`} className="client-chip w-44 shrink-0 flex flex-col items-center justify-center p-4 bg-white border border-[var(--border-color)] rounded-lg hover:border-[var(--accent-orange)] transition">
+              <div key={`brand1-${brand.id}`} className="client-chip w-60 sm:w-68 h-28 px-6 py-3.5 shrink-0 flex flex-col items-center justify-center bg-white border border-[var(--border-color)] rounded-xl hover:border-[var(--accent-orange)] transition">
                 <img
                   src={brand.logo.src}
                   alt={brand.logoAlt || `${brand.name} logo`}
-                  className="max-h-10 max-w-full object-contain"
+                  className="max-h-16 sm:max-h-18 max-w-[85%] object-contain"
                 />
               </div>
             ))}
             {/* Set 2 */}
             {authorizedBrands.map((brand) => (
-              <div key={`brand2-${brand.id}`} className="client-chip w-44 shrink-0 flex flex-col items-center justify-center p-4 bg-white border border-[var(--border-color)] rounded-lg hover:border-[var(--accent-orange)] transition">
+              <div key={`brand2-${brand.id}`} className="client-chip w-60 sm:w-68 h-28 px-6 py-3.5 shrink-0 flex flex-col items-center justify-center bg-white border border-[var(--border-color)] rounded-xl hover:border-[var(--accent-orange)] transition">
                 <img
                   src={brand.logo.src}
                   alt={brand.logoAlt || `${brand.name} logo`}
-                  className="max-h-10 max-w-full object-contain"
+                  className="max-h-16 sm:max-h-18 max-w-[85%] object-contain"
                 />
               </div>
             ))}

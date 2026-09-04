@@ -46,88 +46,92 @@ export default function OurTeamPage() {
     : teamMembers.filter((m) => getDepartment(m.role) === activeDept);
 
   return (
-    <div className="page-top-spacing pb-20">
+    <div className="min-h-screen">
       <SEO
         title="Our Team & Leadership | Shree Raj Traders Ahmedabad"
         description="Meet the experienced leadership and dedicated technical team driving electro-mechanical excellence at Shree Raj Traders for over six decades."
       />
 
-      <div className="container-page">
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="eyebrow eyebrow-teal">
-            <Users className="w-3.5 h-3.5" />
-            Our People & Leadership
-          </span>
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mt-2">
-            The Team Behind <span className="text-orange">60+ Years</span> of Trust
-          </h1>
-          <p className="text-[var(--text-muted)] text-base sm:text-lg mt-4 leading-relaxed">
-            From technical engineering consultants to warehouse specialists, our team is united by a singular mission: delivering robust electro-mechanical solutions and zero-downtime customer satisfaction.
-          </p>
-        </div>
-
-        {/* Leadership Messages */}
-        <div className="space-y-8 mb-20">
-          <div className="flex items-center gap-3 mb-2">
-            <span className="w-8 h-1 bg-[var(--accent-orange)] rounded-full inline-block"></span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
-              Executive Leadership Messages
-            </h2>
+      {/* Page Header */}
+      <section className="section page-top-spacing">
+        <div className="container-page">
+          <div className="section-header max-w-3xl mx-auto">
+            <span className="eyebrow eyebrow-teal">
+              <Users className="w-3.5 h-3.5" />
+              Our People & Leadership
+            </span>
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--text-main)] mt-2">
+              The Team Behind <span className="text-orange">60+ Years</span> of Trust
+            </h1>
+            <p className="text-[var(--text-muted)] text-base sm:text-lg mt-4 leading-relaxed">
+              From technical engineering consultants to warehouse specialists, our team is united by a singular mission: delivering robust electro-mechanical solutions and zero-downtime customer satisfaction.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {leadershipMessages.map((message) => (
-              <div
-                key={message.id}
-                className="card p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent-orange)] transition-all duration-300"
-              >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--accent-orange-tint)] rounded-bl-full -z-0 opacity-50 group-hover:opacity-100 transition-opacity" />
-                
-                <div className="relative z-10 space-y-4">
-                  <div className="flex items-center gap-4">
-                    {message.photo ? (
-                      <img
-                        src={message.photo.src}
-                        alt={message.photoAlt || message.name}
-                        width={message.photo.width}
-                        height={message.photo.height}
-                        loading="lazy"
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover object-top border-2 border-[var(--border-color)] shadow-sm shrink-0"
-                      />
-                    ) : (
-                      <div
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl flex items-center justify-center shrink-0 shadow-sm"
-                        style={{ background: 'var(--grad-orange)' }}
-                      >
-                        <Quote className="w-8 h-8 text-white" />
-                      </div>
-                    )}
-                    <div>
-                      <span className="text-xs font-bold text-[var(--accent-cyan)] tracking-wider block">
-                        {message.heading}
-                      </span>
-                      <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-main)] mt-0.5">
-                        {message.name}
-                      </h3>
-                      <div className="text-xs font-semibold text-orange">
-                        {message.role}
+          {/* Leadership Messages */}
+          <div className="space-y-8">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="w-8 h-1 bg-[var(--accent-orange)] rounded-full inline-block"></span>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-[var(--text-main)]">
+                Executive Leadership Messages
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {leadershipMessages.map((message) => (
+                <div
+                  key={message.id}
+                  className="card p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden group hover:border-[var(--accent-orange)] transition-all duration-300"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--accent-orange-tint)] rounded-bl-full -z-0 opacity-50 group-hover:opacity-100 transition-opacity" />
+                  
+                  <div className="relative z-10 space-y-6">
+                    <div className="flex items-center gap-4">
+                      {message.photo ? (
+                        <img
+                          src={message.photo.src}
+                          alt={message.photoAlt || message.name}
+                          width={message.photo.width}
+                          height={message.photo.height}
+                          loading="lazy"
+                          className="w-16 h-16 rounded-full object-cover object-top border-2 border-[var(--accent-orange)] shrink-0"
+                        />
+                      ) : (
+                        <div
+                          className="w-16 h-16 rounded-full flex items-center justify-center shrink-0 border-2 border-[var(--accent-orange)]"
+                          style={{ background: 'var(--grad-orange)' }}
+                        >
+                          <Quote className="w-7 h-7 text-white" />
+                        </div>
+                      )}
+                      <div>
+                        <div className="font-display text-xl font-bold text-[var(--text-main)]">
+                          {message.name}
+                        </div>
+                        <div className="text-xs font-bold uppercase tracking-wider text-orange mt-0.5">
+                          {message.role}
+                        </div>
+                        <div className="text-xs text-[var(--text-muted)] mt-0.5">
+                          {message.heading}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed pt-3 border-t border-[var(--border-color)]">
-                    &ldquo;{message.body}&rdquo;
-                  </p>
+                    <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed pt-3 border-t border-[var(--border-color)]">
+                      &ldquo;{message.body}&rdquo;
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Culture & Pillars */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-10">
+      {/* Culture & Pillars */}
+      <section className="section section-alt">
+        <div className="container-page">
+          <div className="section-header max-w-2xl mx-auto">
             <span className="eyebrow">Life @ Shree Raj Traders</span>
             <h2 className="section-title">
               Our Core <span className="text-orange">Work Philosophy</span>
@@ -158,9 +162,11 @@ export default function OurTeamPage() {
             })}
           </div>
         </div>
+      </section>
 
-        {/* Team Directory with Filters */}
-        <div className="mb-20">
+      {/* Team Directory with Filters */}
+      <section className="section">
+        <div className="container-page">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
             <div>
               <span className="eyebrow eyebrow-teal">Team Directory</span>
@@ -225,44 +231,48 @@ export default function OurTeamPage() {
             })}
           </div>
         </div>
+      </section>
 
-        {/* Join Our Team / Careers Banner */}
-        <div className="card p-8 sm:p-12 relative overflow-hidden bg-gradient-to-br from-white to-[var(--bg-secondary)] border-2 border-[var(--border-color)]">
-          <div className="max-w-2xl space-y-4">
-            <span className="eyebrow">{careers.eyebrow}</span>
-            <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[var(--text-main)]">
-              {careers.heading}: <span className="text-orange">{careers.tagline}</span>
-            </h2>
-            <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-              {careers.body}{' '}
-              <a
-                href={`mailto:${careers.email}`}
-                className="font-bold text-[var(--accent-orange)] hover:underline inline-flex items-center gap-1.5"
-              >
-                <Mail className="w-4 h-4 text-orange" />
-                {careers.email}
-              </a>
-            </p>
+      {/* Join Our Team / Careers Banner */}
+      <section className="section section-alt">
+        <div className="container-page">
+          <div className="card p-8 sm:p-12 relative overflow-hidden bg-gradient-to-br from-white to-[var(--bg-secondary)] border-2 border-[var(--border-color)]">
+            <div className="max-w-2xl space-y-4">
+              <span className="eyebrow">{careers.eyebrow}</span>
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[var(--text-main)]">
+                {careers.heading}: <span className="text-orange">{careers.tagline}</span>
+              </h2>
+              <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+                {careers.body}{' '}
+                <a
+                  href={`mailto:${careers.email}`}
+                  className="font-bold text-[var(--accent-orange)] hover:underline inline-flex items-center gap-1.5"
+                >
+                  <Mail className="w-4 h-4 text-orange" />
+                  {careers.email}
+                </a>
+              </p>
 
-            <div className="pt-4 flex flex-wrap items-center gap-4">
-              <a
-                href={`mailto:${careers.email}?subject=Career%20Application%20at%20Shree%20Raj%20Traders`}
-                className="btn btn-primary inline-flex items-center gap-2"
-              >
-                Send Your Resume
-                <ArrowRight className="w-4 h-4" />
-              </a>
-              <a
-                href="/career/"
-                className="btn btn-secondary inline-flex items-center gap-2"
-              >
-                <Briefcase className="w-4 h-4 text-teal" />
-                View Open Positions
-              </a>
+              <div className="pt-4 flex flex-wrap items-center gap-4">
+                <a
+                  href={`mailto:${careers.email}?subject=Career%20Application%20at%20Shree%20Raj%20Traders`}
+                  className="btn btn-primary inline-flex items-center gap-2"
+                >
+                  Send Your Resume
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a
+                  href="/career/"
+                  className="btn btn-secondary inline-flex items-center gap-2"
+                >
+                  <Briefcase className="w-4 h-4 text-teal" />
+                  View Open Positions
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -99,7 +99,7 @@ export default function AboutSection() {
         </div>
 
         {/* Leadership messages */}
-        <div id="leadership" data-section="about.leadership" className="space-y-6 mb-6 scroll-mt-28">
+        <div id="leadership" data-section="about.leadership" className="space-y-6 mb-10 scroll-mt-28">
           {leadershipMessages.map((message) => (
             <div key={message.id} className="card p-8 sm:p-10">
               <div className="flex flex-col md:flex-row gap-7">
@@ -138,7 +138,7 @@ export default function AboutSection() {
         </div>
 
         {/* Vision & mission */}
-        <div data-section="about.vision-mission" className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+        <div data-section="about.vision-mission" className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
           {[
             { icon: Eye, title: vm.visionTitle, body: companyInfo.vision },
             { icon: Target, title: vm.missionTitle, body: companyInfo.mission }
@@ -156,7 +156,7 @@ export default function AboutSection() {
         {/* Group Tagline */}
         <div
           data-section="about.group-tagline"
-          className="card p-7 mb-6 text-center border-l-4 border-l-[var(--accent-cyan)]"
+          className="card p-7 mb-10 text-center border-l-4 border-l-[var(--accent-cyan)]"
         >
           <p className="italic text-base md:text-lg text-[var(--text-main)] font-medium">
             &ldquo;{tagline.quote}&rdquo;
@@ -165,7 +165,7 @@ export default function AboutSection() {
 
         {/* EPC division */}
         {epcDivision.enabled && (
-        <div data-section="about.epc" className="card p-7 mb-14 sm:mb-16">
+        <div data-section="about.epc" className="card p-7 mb-10">
           <div className="flex flex-col sm:flex-row sm:items-center gap-5">
             <div className="w-12 h-12 rounded-[12px] bg-[var(--accent-orange-tint)] border border-[rgba(217,101,59,0.2)] flex items-center justify-center shrink-0">
               <Wrench className="w-6 h-6 text-orange" />
@@ -181,7 +181,7 @@ export default function AboutSection() {
         )}
 
         {/* Team Teaser & Link to dedicated Team Page */}
-        <div data-section="about.team" className="card p-8 sm:p-10 mb-14 sm:mb-16 bg-gradient-to-r from-white via-[var(--bg-card)] to-[var(--bg-secondary)] border border-[var(--border-color)]">
+        <div data-section="about.team" className="card p-8 sm:p-10 mb-12 bg-gradient-to-r from-white via-[var(--bg-card)] to-[var(--bg-secondary)] border border-[var(--border-color)]">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div className="space-y-3 max-w-xl">
               <span className="eyebrow eyebrow-teal">{team.eyebrow}</span>
@@ -206,7 +206,7 @@ export default function AboutSection() {
         </div>
 
         {/* Timeline */}
-        <div ref={timelineRef} data-section="about.journey" className="timeline-container mt-16 relative">
+        <div ref={timelineRef} data-section="about.journey" className="timeline-container mt-12 relative">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Left Column: Sticky Title */}
             <div className="lg:col-span-5 lg:sticky lg:top-28 h-fit space-y-4">

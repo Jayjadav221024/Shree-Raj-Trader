@@ -421,6 +421,29 @@ export const SECTIONS = [
   },
 
   {
+    id: 'global.map-section',
+    page: 'global',
+    label: 'Google Maps & Location Section',
+    description: 'The interactive Google Maps and facility details block displayed before the footer.',
+    icon: 'MapPin',
+    route: '/',
+    anchor: 'global.map-section',
+    fields: [
+      { key: 'eyebrow', label: 'Small label', type: 'text' },
+      { key: 'title', label: 'Heading (first part)', type: 'text' },
+      { key: 'titleAccent', label: 'Heading (orange part)', type: 'text' },
+      { key: 'subtitle', label: 'Intro description', type: 'textarea' },
+      { key: 'timingsLabel', label: 'Timings label', type: 'text', group: 'Timings' },
+      { key: 'timingsValue', label: 'Timings text', type: 'text', group: 'Timings' },
+      { key: 'supportNote', label: 'Support note', type: 'textarea', group: 'Timings' }
+    ],
+    defaults: clone(copy['global.map-section']),
+    apply(values) {
+      applyCopy('global.map-section', values);
+    }
+  },
+
+  {
     id: 'global.footer',
     page: 'global',
     label: 'Footer',

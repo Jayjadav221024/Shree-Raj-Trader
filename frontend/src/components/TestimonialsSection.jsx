@@ -67,30 +67,30 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
           <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-neutral-100 to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-neutral-100 to-transparent z-10 pointer-events-none" />
 
-          <div className="marquee-track flex gap-4 animate-marquee hover:[animation-play-state:paused] cursor-pointer">
+          <div className="marquee-track flex gap-6 animate-marquee hover:[animation-play-state:paused] cursor-pointer">
             {/* Set 1 */}
             {clientLogos.map((client) => (
-              <div key={`set1-${client.name}`} className="client-chip w-56 shrink-0">
+              <div key={`set1-${client.name}`} className="client-chip w-64 sm:w-72 h-28 sm:h-32 px-6 py-4 shrink-0 flex items-center justify-center">
                 <img
                   src={client.image.src}
                   alt={client.imageAlt || `${client.name} logo`}
                   width={client.image.width}
                   height={client.image.height}
                   loading="lazy"
-                  className="max-h-16 max-w-full object-contain"
+                  className="max-h-20 sm:max-h-24 w-auto max-w-[85%] object-contain"
                 />
               </div>
             ))}
             {/* Set 2 (Duplicated for infinite seamless loop transition) */}
             {clientLogos.map((client) => (
-              <div key={`set2-${client.name}`} className="client-chip w-56 shrink-0">
+              <div key={`set2-${client.name}`} className="client-chip w-64 sm:w-72 h-28 sm:h-32 px-6 py-4 shrink-0 flex items-center justify-center">
                 <img
                   src={client.image.src}
                   alt={client.imageAlt || `${client.name} logo`}
                   width={client.image.width}
                   height={client.image.height}
                   loading="lazy"
-                  className="max-h-16 max-w-full object-contain"
+                  className="max-h-20 sm:max-h-24 w-auto max-w-[85%] object-contain"
                 />
               </div>
             ))}

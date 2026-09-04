@@ -623,6 +623,17 @@ export const copy = {
     finalCtaWhatsapp: 'Connect on WhatsApp',
     notFoundTitle: 'Location Not Found',
     notFoundCta: 'View All Locations'
+  },
+
+  'global.map-section': {
+    eyebrow: 'Our Headquarters & Facility',
+    title: 'Visit Our Facility in',
+    titleAccent: 'Ahmedabad',
+    subtitle:
+      'Strategically located in Vatva GIDC Phase 1 with rapid logistics connectivity across Gujarat & Pan-India.',
+    timingsLabel: 'Operating Hours',
+    timingsValue: 'Monday – Saturday: 9:30 AM to 7:00 PM',
+    supportNote: 'Direct warehouse pickup, technical inspection & express freight dispatch available.'
   }
 };
 

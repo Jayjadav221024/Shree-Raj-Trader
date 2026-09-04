@@ -186,8 +186,8 @@
 /* ==========================================================================
    LAYOUT & UNIFIED SECTION SPACING
    ========================================================================== */
-.section { padding: 4.5rem 0; position: relative; }
-.section-tight { padding: 3rem 0; }
+.section { padding: 5rem 0; position: relative; }
+.section-tight { padding: 3.5rem 0; }
 .section-alt { background: var(--bg-secondary); }
 .section-ink { background: var(--bg-ink); color: var(--text-on-dark); }
 
@@ -232,7 +232,8 @@
 }
 
 @media (max-width: 640px) {
-  .section { padding: 3.25rem 0; }
+  .section { padding: 3.5rem 0; }
+  .section-tight { padding: 2.5rem 0; }
   .section-header { margin-bottom: 2rem; }
   .section-header p { font-size: 0.95rem; }
 }
@@ -669,9 +670,16 @@
 .hero-section {
   position: relative;
   padding-top: 8.5rem;
-  padding-bottom: 4rem;
+  padding-bottom: 5rem;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff 0%, var(--bg-primary) 60%);
+}
+
+@media (max-width: 640px) {
+  .hero-section {
+    padding-top: 7rem;
+    padding-bottom: 3.5rem;
+  }
 }
 
 /* Oversized ghost wordmark behind the hero copy. */
@@ -713,8 +721,8 @@
 .site-footer {
   background: var(--bg-ink);
   color: var(--text-on-dark);
-  padding-top: 4.5rem;
-  padding-bottom: 2.5rem;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 

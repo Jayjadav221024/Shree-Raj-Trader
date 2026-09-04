@@ -111,7 +111,7 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
       {/* Header Section */}
       <section
         data-section="products.header"
-        className="section section-alt page-top-spacing border-b border-[var(--border-color)] relative overflow-hidden pb-10"
+        className="section-tight section-alt page-top-spacing border-b border-[var(--border-color)] relative overflow-hidden"
       >
         <div className="container-page relative z-10">
           <div className="max-w-3xl">
@@ -135,7 +135,7 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
           </div>
 
           {/* Category Tabs */}
-          <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar pt-10 pb-4">
+          <div className="flex items-center gap-2.5 overflow-x-auto no-scrollbar pt-8">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -157,7 +157,8 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
       </section>
 
       {/* Product Grid Area */}
-      <div className="container-page pt-10 pb-24 md:pb-32">
+      <section className="section">
+        <div className="container-page">
         {filteredProducts.length === 0 ? (
           <div className="card p-16 text-center max-w-lg mx-auto my-8">
             <div className="w-16 h-16 rounded-2xl bg-[var(--accent-orange-tint)] flex items-center justify-center mx-auto mb-4 text-[var(--accent-orange-deep)]">
@@ -248,7 +249,8 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
             ))}
           </div>
         )}
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

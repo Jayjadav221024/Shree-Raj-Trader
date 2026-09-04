@@ -12,6 +12,7 @@ import RfqCalculator from './components/RfqCalculator';
 import DomainSection from './components/DomainSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import ContactSection from './components/ContactSection';
+import LocationMapSection from './components/LocationMapSection';
 import Footer from './components/Footer';
 import GalleryPage from './pages/GalleryPage';
 import BlogPage from './pages/BlogPage';
@@ -379,7 +380,12 @@ function AppShell() {
         </Routes>
       </main>
 
-      {!isAdminRoute && <Footer />}
+      {!isAdminRoute && (
+        <>
+          <LocationMapSection />
+          <Footer />
+        </>
+      )}
 
       {/* Search modal */}
       {searchModalOpen && !isAdminRoute && (
