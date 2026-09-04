@@ -1,0 +1,43 @@
+services:
+  # ----------------------------------------------------------------------------
+  # 1. FRONTEND: Static Site (React + Vite + Tailwind CSS v4)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: shreeraj-traders-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: VITE_BACKEND_URL
+        value: https://shreeraj-traders-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  # ----------------------------------------------------------------------------
+  # 2. BACKEND: Web Service (Node.js + Express + TypeScript)
+  # ----------------------------------------------------------------------------
+  - type: web
+    name: shreeraj-traders-backend
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        sync: false
