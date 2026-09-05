@@ -12,6 +12,7 @@ export default function Hero({ onOpenRfq }) {
   // Read at render, not at module scope: the Website Editor rewrites these
   // objects in place once saved content arrives.
   const c = copy['home.hero'];
+  const cNav = copy['global.navbar'];
   const PRODUCT_PILLS = c.productPills;
 
   useEffect(() => {
@@ -39,26 +40,32 @@ export default function Hero({ onOpenRfq }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* Copy */}
           <div className="lg:col-span-7 space-y-6">
-            <span className="eyebrow">
-              <CheckCircle2 className="w-3.5 h-3.5" />
-              {c.eyebrow}
-            </span>
+            {/* Brand Text Logo in Hero - displayed on sm and up since mobile header shows it, or nicely scaled */}
+            <div className="hidden sm:inline-block logo-3d-container">
+              <div className="leading-none logo-text-3d">
+                <div className="font-display text-2xl sm:text-3xl tracking-wide font-extrabold">
+                  <span className="logo-gradient-text">{cNav.wordmarkPrimary}</span>{' '}
+                  <span className="logo-gradient-accent">{cNav.wordmarkAccent}</span>
+                </div>
+                <div className="text-xs sm:text-sm font-bold tracking-[0.16em] uppercase logo-sub-gradient mt-1.5">
+                  {cNav.wordmarkSub}
+                </div>
+              </div>
+            </div>
 
-            <h1>
-              {c.headingLine1}<br />
-              <span className="text-orange inline-block overflow-hidden h-[1.15em] align-bottom">
-                <span key={activeIndex} className="inline-block animate-slideUp">
-                  {PRODUCT_PILLS[activeIndex]?.label}
+            <h1 className="hero-headline text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.2] sm:leading-[1.15] tracking-tight">
+              <span className="block">{c.headingLine1}</span>
+              <span className="block mt-1">
+                <span className="text-orange inline-block overflow-hidden h-[1.25em] align-bottom">
+                  <span key={activeIndex} className="inline-block animate-slideUp">
+                    {PRODUCT_PILLS[activeIndex]?.label}
+                  </span>
                 </span>
-              </span><br />
-              {c.headingLine3}
+              </span>
+              <span className="block mt-1">{c.headingLine3}</span>
             </h1>
 
-            <p className="text-[var(--text-muted)] max-w-xl">
-              {companyInfo.about}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <button onClick={onOpenRfq} className="btn btn-primary">
                 {c.ctaPrimary}
                 <ArrowRight className="w-4 h-4" />
@@ -69,11 +76,11 @@ export default function Hero({ onOpenRfq }) {
               </a>
             </div>
 
-            <div className="flex flex-wrap gap-2.5 pt-2">
+            <div className="flex flex-wrap gap-2 pt-2">
               {heroAssurances.map((assurance) => (
                 <span key={assurance} className="hero-feature-pill">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-orange shrink-0" />
-                  {assurance}
+                  <CheckCircle2 className="w-3.5 h-3.5 text-orange shrink-0 mt-0.5 sm:mt-0" />
+                  <span>{assurance}</span>
                 </span>
               ))}
             </div>

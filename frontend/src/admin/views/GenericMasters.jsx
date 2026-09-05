@@ -440,14 +440,29 @@ export default function GenericMasters() {
       testimonial: {
         title: 'Testimonials Master',
         apiEndpoint: '/testimonials-master',
-        searchFields: ['client', 'company', 'feedback'],
+        searchFields: ['client', 'company', 'designation', 'feedback'],
         columns: [
+          {
+            accessorKey: 'imageKey',
+            header: 'Photo',
+            cell: ({ row }) => (
+              <MasterImageCell imageKey={row.original.imageKey} group="team" alt={row.original.client} />
+            ),
+          },
           {
             accessorKey: 'client',
             header: 'Client / Representative',
-            cell: ({ row }) => <span className="font-semibold text-adm-text">{row.original.client}</span>,
+            cell: ({ row }) => (
+              <div>
+                <span className="font-semibold text-adm-text block">{row.original.client}</span>
+                {row.original.designation && (
+                  <span className="text-[11px] text-adm-faint">{row.original.designation}</span>
+                )}
+              </div>
+            ),
           },
           { accessorKey: 'company', header: 'Company Name' },
+          { accessorKey: 'tag', header: 'Event / Tag' },
           {
             accessorKey: 'feedback',
             header: 'Client Review Words',
@@ -465,7 +480,16 @@ export default function GenericMasters() {
         ],
         fields: [
           { key: 'client', label: 'Client Representative Name', type: 'text', required: true },
+          { key: 'designation', label: 'Designation / Role (e.g. Director General, ICFA)', type: 'text', required: false },
           { key: 'company', label: 'Company Name', type: 'text', required: true },
+          { key: 'tag', label: 'Event Tag / Year (e.g. GSA 2025, GSA 2024)', type: 'text', required: false },
+          {
+            key: 'imageKey',
+            label: 'Person Profile Photo',
+            type: 'image',
+            group: 'team',
+            required: false,
+          },
           { key: 'feedback', label: 'Client Review Words', type: 'textarea', required: true },
           { key: 'isActive', label: 'Is Active', type: 'boolean' },
         ],

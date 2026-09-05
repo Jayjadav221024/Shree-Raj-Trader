@@ -31,6 +31,8 @@ import { resolveImageUrl } from './admin/lib/imageResolver';
 import { useQuery } from '@tanstack/react-query';
 import api from './admin/lib/axios';
 
+import { useGlobalTextScrollBlur } from './components/ScrollBlurReveal';
+
 // Admin imports
 import QueryProvider from './admin/providers/QueryProvider';
 import AuthProvider from './admin/providers/AuthProvider';
@@ -52,11 +54,21 @@ function ScrollManager() {
   const { pathname, hash } = useLocation();
   useEffect(() => {
     if (hash) {
-      const el = document.getElementById(hash.slice(1));
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-        return;
+      const targetId = hash.slice(1);
+      const scrollToTarget = () => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          return true;
+        }
+        return false;
+      };
+
+      if (!scrollToTarget()) {
+        const timer = setTimeout(scrollToTarget, 100);
+        return () => clearTimeout(timer);
       }
+      return;
     }
     window.scrollTo({ top: 0 });
   }, [pathname, hash]);
@@ -64,6 +76,7 @@ function ScrollManager() {
 }
 
 function AppShell() {
+  useGlobalTextScrollBlur();
   const [selectedProductForRfq, setSelectedProductForRfq] = useState(null);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [globalSearchQuery, setGlobalSearchQuery] = useState('');
@@ -211,12 +224,26 @@ function AppShell() {
   };
 
   const scrollToRfq = () => {
-    navigate('/contact/');
+    if (pathname === '/contact' || pathname === '/contact/') {
+      const el = document.getElementById('calculator');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    navigate('/contact/#calculator');
   };
 
   const handleOpenRfqForProduct = (product) => {
     setSelectedProductForRfq(product);
-    navigate('/contact/');
+    if (pathname === '/contact' || pathname === '/contact/') {
+      const el = document.getElementById('calculator');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    navigate('/contact/#calculator');
   };
 
   const handleBrandSelect = () => {

@@ -119,12 +119,24 @@ export default function Footer() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {groupCompanies.map((company) => (
-                  <span
-                    key={company.name}
-                    className="text-[0.75rem] px-2 py-0.5 rounded bg-white/5 text-[var(--text-on-dark-muted)] border border-white/10"
-                  >
-                    {company.name}
-                  </span>
+                  company.href ? (
+                    <a
+                      key={company.name}
+                      href={company.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[0.75rem] px-2.5 py-1 rounded bg-white/5 hover:bg-white/10 text-[var(--text-on-dark-muted)] hover:text-white border border-white/10 hover:border-white/30 transition-all duration-200 inline-flex items-center gap-1 group/item"
+                    >
+                      <span>{company.name}</span>
+                    </a>
+                  ) : (
+                    <span
+                      key={company.name}
+                      className="text-[0.75rem] px-2.5 py-1 rounded bg-white/5 text-[var(--text-on-dark-muted)] border border-white/10"
+                    >
+                      {company.name}
+                    </span>
+                  )
                 ))}
               </div>
             </div>

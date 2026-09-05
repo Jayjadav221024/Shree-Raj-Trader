@@ -298,13 +298,6 @@ export const epcDivision = flaggedEpc;
 // -----------------------------------------------------------------------------
 export const groupCompanies = [
   {
-    name: "Shree Raj Traders",
-    logo: images.group["shree-raj-traders"],
-    role: "Authorized Motors & Switchgear Supplier",
-    location: "39, Mahalaxmi Industrial Estate, Vatva Phase 1, Ahmedabad",
-    href: "/"
-  },
-  {
     name: "Apidel Technologies",
     logo: images.group["apidel-technologies"],
     role: "Technology Services",
@@ -318,7 +311,7 @@ export const groupCompanies = [
     role: "Engineering Supplier",
     location:
       "8/5-6, Kewal Shopping Centre, Old N.H. No. 8, GIDC, Ankleshwar, Gujarat 393002",
-    href: null
+    href: "https://technosales.co.in/"
   },
   {
     name: "Transpower Technologies Pvt. Ltd.",

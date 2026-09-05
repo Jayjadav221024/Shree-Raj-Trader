@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Layers } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { productCategories } from '../data/siteData';
+import { copy } from '../data/sectionCopy';
 
 // Custom component to handle scroll-driven scattering/alignment transitions
 function ScatterRevealCard({ children, index, side = 'left' }) {
@@ -59,6 +60,13 @@ function ScatterRevealCard({ children, index, side = 'left' }) {
 
 export default function FeaturedCategories({ categories: propCategories }) {
   const navigate = useNavigate();
+  const c = copy['home.featured-categories'] || {
+    eyebrow: 'Product Portfolio',
+    title: 'Featured',
+    titleAccent: 'Product Categories',
+    intro: 'Explore our comprehensive range of high-performance electro-mechanical equipment and composite infrastructure solutions.'
+  };
+
   const itemsList = propCategories && propCategories.length > 0 ? propCategories : productCategories;
   const [hoveredItem, setHoveredItem] = useState(itemsList[0]);
 
@@ -78,6 +86,14 @@ export default function FeaturedCategories({ categories: propCategories }) {
       data-section="home.featured-categories"
     >
       <div className="container-page">
+        {/* Section Header */}
+        <div className="section-header">
+          <span className="eyebrow">{c.eyebrow}</span>
+          <h2 className="section-title">
+            {c.title} <span className="text-orange">{c.titleAccent}</span>
+          </h2>
+          <p>{c.intro}</p>
+        </div>
         
         {/* Desktop Layout (lg screens and above) */}
         <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-center min-h-[300px]">
@@ -89,7 +105,7 @@ export default function FeaturedCategories({ categories: propCategories }) {
                 <div
                   onMouseEnter={() => setHoveredItem(item)}
                   onClick={() => navigate(item.isCustom ? '/contact/' : `/products/${item.id}`)}
-                  className={`flat-category-card bg-white rounded-xl p-5 border border-[var(--border-color)] shadow-[var(--shadow-card)] hover:border-[var(--accent-orange)] transition-all duration-300 flex items-center gap-4 cursor-pointer ${hoveredItem?.id === item.id ? 'active-highlight' : ''}`}
+                  className="flat-category-card bg-white rounded-xl p-5 border border-[var(--border-color)] shadow-[var(--shadow-card)] hover:border-[var(--accent-orange)] transition-all duration-300 flex items-center gap-4 cursor-pointer"
                 >
                   <div className="w-20 h-20 bg-[var(--bg-secondary)] rounded-xl overflow-hidden flex items-center justify-center p-2.5 shrink-0">
                     {item.isCustom ? (
@@ -99,10 +115,7 @@ export default function FeaturedCategories({ categories: propCategories }) {
                     )}
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-[var(--accent-cyan)] block">
-                      {item.badge}
-                    </span>
-                    <h4 className="text-base font-bold text-[var(--text-main)] mt-1 font-display">
+                    <h4 className="text-base font-bold text-[var(--text-main)] font-display">
                       {item.title}
                     </h4>
                   </div>
@@ -115,11 +128,7 @@ export default function FeaturedCategories({ categories: propCategories }) {
           <div className="lg:col-span-4 text-center px-6 py-10 bg-white/80 rounded-3xl border border-[var(--border-color)] backdrop-blur-md shadow-[var(--shadow-lift)] flex flex-col items-center justify-center min-h-[300px] z-10">
             {hoveredItem && (
               <>
-                <span className="badge-tag bg-white/95 text-[11px] font-semibold px-2.5 py-0.5 rounded-full shadow-sm text-[var(--accent-cyan)] border border-[var(--border-color)]">
-                  {hoveredItem.badge}
-                </span>
-                
-                <h3 className="text-2xl font-bold text-[var(--text-main)] font-display leading-tight mt-4 min-h-[3rem] flex items-center justify-center">
+                <h3 className="text-2xl font-bold text-[var(--text-main)] font-display leading-tight min-h-[3rem] flex items-center justify-center">
                   {hoveredItem.title}
                 </h3>
                 
@@ -145,7 +154,7 @@ export default function FeaturedCategories({ categories: propCategories }) {
                 <div
                   onMouseEnter={() => setHoveredItem(item)}
                   onClick={() => navigate(item.isCustom ? '/contact/' : `/products/${item.id}`)}
-                  className={`flat-category-card bg-white rounded-xl p-5 border border-[var(--border-color)] shadow-[var(--shadow-card)] hover:border-[var(--accent-orange)] transition-all duration-300 flex items-center gap-4 cursor-pointer ${hoveredItem?.id === item.id ? 'active-highlight' : ''}`}
+                  className="flat-category-card bg-white rounded-xl p-5 border border-[var(--border-color)] shadow-[var(--shadow-card)] hover:border-[var(--accent-orange)] transition-all duration-300 flex items-center gap-4 cursor-pointer"
                 >
                   <div className="w-20 h-20 bg-[var(--bg-secondary)] rounded-xl overflow-hidden flex items-center justify-center p-2.5 shrink-0">
                     {item.isCustom ? (
@@ -155,10 +164,7 @@ export default function FeaturedCategories({ categories: propCategories }) {
                     )}
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-[var(--accent-cyan)] block">
-                      {item.badge}
-                    </span>
-                    <h4 className="text-base font-bold text-[var(--text-main)] mt-1 font-display">
+                    <h4 className="text-base font-bold text-[var(--text-main)] font-display">
                       {item.title}
                     </h4>
                   </div>
@@ -185,10 +191,7 @@ export default function FeaturedCategories({ categories: propCategories }) {
                   )}
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-[var(--accent-cyan)] block">
-                    {item.badge}
-                  </span>
-                  <h4 className="text-base font-bold text-[var(--text-main)] mt-0.5 font-display">
+                  <h4 className="text-base font-bold text-[var(--text-main)] font-display">
                     {item.title}
                   </h4>
                 </div>

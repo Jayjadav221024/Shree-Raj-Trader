@@ -283,6 +283,9 @@ const productMasterSchema = z.object({
 const testimonialMasterSchema = z.object({
   client: z.string().min(2),
   company: z.string().min(2),
+  designation: z.string().optional().default(''),
+  tag: z.string().optional().default(''),
+  imageKey: z.string().optional().default(''),
   feedback: z.string().min(2),
   isActive: z.boolean().default(true)
 });

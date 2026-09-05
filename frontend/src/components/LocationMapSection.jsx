@@ -88,30 +88,30 @@ export default function LocationMapSection() {
               </div>
 
               {/* Contact Channels */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+                <div className="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col justify-between">
                   <span className="text-xs font-bold text-[var(--text-faint)] uppercase block mb-1">
                     Call Direct
                   </span>
                   <a
                     href={`tel:${companyInfo.telPrimary}`}
-                    className="font-bold text-sm text-[var(--text-main)] hover:text-[var(--accent-orange)] transition-colors flex items-center gap-1.5"
+                    className="font-bold text-[13px] sm:text-sm text-[var(--text-main)] hover:text-[var(--accent-orange)] transition-colors flex items-center gap-1.5 whitespace-nowrap"
                   >
-                    <Phone className="w-3.5 h-3.5 text-orange shrink-0" />
+                    <Phone className="w-4 h-4 text-orange shrink-0" />
                     <span>{companyInfo.phonePrimary}</span>
                   </a>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)]">
+                <div className="p-3.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] flex flex-col justify-between">
                   <span className="text-xs font-bold text-[var(--text-faint)] uppercase block mb-1">
                     Sales Email
                   </span>
                   <a
                     href={`mailto:${companyInfo.emailPrimary}`}
-                    className="font-bold text-sm text-[var(--text-main)] hover:text-[var(--accent-orange)] transition-colors flex items-center gap-1.5 truncate"
+                    className="font-bold text-[11px] sm:text-xs xl:text-[13px] text-[var(--text-main)] hover:text-[var(--accent-orange)] transition-colors flex items-center gap-1.5 whitespace-nowrap tracking-tight"
                   >
                     <Mail className="w-3.5 h-3.5 text-orange shrink-0" />
-                    <span className="truncate">{companyInfo.emailPrimary}</span>
+                    <span className="whitespace-nowrap">{companyInfo.emailPrimary}</span>
                   </a>
                 </div>
               </div>
@@ -128,12 +128,12 @@ export default function LocationMapSection() {
               </div>
 
               {/* Google Maps Actions */}
-              <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="pt-2 flex flex-col gap-3">
                 <a
                   href={companyInfo.googleMaps}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-primary w-full inline-flex items-center justify-center gap-2 text-xs sm:text-[13px] font-bold py-3.5 px-4 whitespace-nowrap shadow-[var(--shadow-glow)]"
+                  className="btn btn-primary w-full inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-bold py-3.5 px-4 whitespace-nowrap shadow-[var(--shadow-glow)] tracking-wide"
                 >
                   <Navigation className="w-4 h-4 shrink-0" />
                   <span>Get Driving Directions</span>
@@ -142,7 +142,7 @@ export default function LocationMapSection() {
                   href={companyInfo.googleMaps}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-secondary w-full inline-flex items-center justify-center gap-2 text-xs sm:text-[13px] font-bold py-3.5 px-4 whitespace-nowrap"
+                  className="btn btn-secondary w-full inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-bold py-3.5 px-4 whitespace-nowrap tracking-wide"
                   aria-label="Open in Google Maps"
                 >
                   <ExternalLink className="w-4 h-4 text-orange shrink-0" />

@@ -5,68 +5,58 @@ import { copy } from '../data/sectionCopy';
 export default function JourneySection() {
   const c = copy['home.journey'];
   const timelineRef = useRef(null);
+  const trackRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
-  // Initialize the first year as active by default so it shows up immediately
-  const [activeItems, setActiveItems] = useState({
-    [companyTimeline[0]?.year]: true
-  });
+  const [activeItems, setActiveItems] = useState({});
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!timelineRef.current) return;
-      const rect = timelineRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
+      if (!timelineRef.current || !trackRef.current) return;
       
-      const start = rect.top - viewportHeight * 0.7;
-      const end = rect.bottom - viewportHeight * 0.3;
-      const total = end - start;
-      const current = -start;
+      const trackRect = trackRef.current.getBoundingClientRect();
+      const triggerY = window.innerHeight * 0.55; // Milestone activates when at 55% of viewport
       
-      let progress = Math.max(0, Math.min(100, (current / total) * 100));
-      setScrollProgress(progress);
+      // Calculate filled line height based on viewport center relative to track
+      const topOffset = triggerY - trackRect.top;
+      const progressPercent = Math.max(0, Math.min(100, (topOffset / trackRect.height) * 100));
+      setScrollProgress(progressPercent);
+
+      // Check which milestone items have crossed the trigger line
+      const nodes = timelineRef.current.querySelectorAll('.timeline-node-item');
+      const newActive = {};
+      nodes.forEach((node) => {
+        const nodeRect = node.getBoundingClientRect();
+        const year = node.getAttribute('data-year');
+        if (nodeRect.top + nodeRect.height * 0.25 <= triggerY) {
+          newActive[year] = true;
+        }
+      });
+
+      // Keep at least the first item active if top of section is reached
+      if (trackRect.top <= triggerY && companyTimeline[0]?.year) {
+        newActive[companyTimeline[0].year] = true;
+      }
+
+      setActiveItems(newActive);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (!timelineRef.current) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const year = entry.target.getAttribute('data-year');
-            if (year) {
-              setActiveItems((prev) => ({ ...prev, [year]: true }));
-            }
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -10% 0px'
-      }
-    );
-
-    // Query elements locally inside this container
-    const elements = timelineRef.current.querySelectorAll('.timeline-node-item');
-    elements.forEach((el) => observer.observe(el));
 
     return () => {
-      elements.forEach((el) => observer.unobserve(el));
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
   return (
-    <section id="journey" data-section="home.journey" className="section bg-[var(--bg-card)]">
+    <section id="journey" data-section="home.journey" className="section bg-[var(--bg-card)] overflow-hidden">
       <div className="container-page">
         <div className="timeline-container relative" ref={timelineRef}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             
-            {/* Left Column: Sticky Title */}
+            {/* Left Column: Sticky Title & Info */}
             <div className="lg:col-span-5 lg:sticky lg:top-28 h-fit">
               <span className="eyebrow eyebrow-teal">{c.eyebrow}</span>
               <h2 className="section-title">
@@ -80,17 +70,20 @@ export default function JourneySection() {
             {/* Right Column: Animated Track and Cards */}
             <div className="lg:col-span-7 relative pl-12 lg:pl-16">
               {/* Vertical timeline track line */}
-              <div className="absolute left-6 lg:left-8 top-4 bottom-4 w-1 bg-[var(--border-color)] rounded-full">
-                {/* Scroll progress fill overlay */}
+              <div 
+                ref={trackRef}
+                className="absolute left-6 lg:left-8 top-6 bottom-6 w-1 bg-slate-200 rounded-full overflow-hidden"
+              >
+                {/* Dynamic liquid glowing scroll progress fill */}
                 <div 
-                  className="w-full bg-[var(--accent-orange)] rounded-full transition-all duration-150 ease-out"
+                  className="w-full bg-gradient-to-b from-[var(--accent-orange)] via-[var(--accent-orange-bright)] to-[var(--accent-orange)] rounded-full transition-all duration-100 ease-linear shadow-[0_0_12px_rgba(217,101,59,0.8)]"
                   style={{ height: `${scrollProgress}%` }}
                 />
               </div>
 
-              <div className="space-y-10">
+              <div className="space-y-12">
                 {companyTimeline.map((milestone, idx) => {
-                  const isActive = activeItems[milestone.year];
+                  const isActive = !!activeItems[milestone.year];
                   return (
                     <div 
                       key={milestone.year} 
@@ -101,23 +94,31 @@ export default function JourneySection() {
                     >
                       {/* Interactive dot/node indicator */}
                       <div 
-                        className={`absolute -left-12 lg:-left-16 w-10 h-10 rounded-full border-4 bg-white flex items-center justify-center transition-all duration-300 z-10 ${
+                        className={`absolute -left-12 lg:-left-16 w-11 h-11 rounded-full border-[3px] bg-white flex items-center justify-center transition-all duration-500 z-10 ${
                           isActive 
-                            ? 'border-[var(--accent-orange)] shadow-[var(--shadow-glow)] scale-110' 
-                            : 'border-[var(--border-color)]'
+                            ? 'border-[var(--accent-orange)] shadow-[0_0_20px_rgba(217,101,59,0.55)] scale-110 bg-[var(--accent-orange-tint)]' 
+                            : 'border-slate-300 opacity-60'
                         }`}
                       >
-                        <span className="text-[0.62rem] font-bold text-[var(--accent-cyan)] uppercase">
+                        <span className={`text-[0.7rem] font-black transition-colors ${
+                          isActive ? 'text-[var(--accent-orange-deep)]' : 'text-slate-400'
+                        }`}>
                           {String(idx + 1).padStart(2, '0')}
                         </span>
                       </div>
 
                       {/* Milestone details card */}
-                      <div className="card card-hover p-6 w-full flex-1 relative border-l-4 border-l-[var(--accent-orange)]">
-                        <div className="font-display text-3xl leading-none text-orange">
+                      <div className={`card p-6 sm:p-7 w-full flex-1 relative border-l-4 transition-all duration-500 ${
+                        isActive
+                          ? 'border-l-[var(--accent-orange)] border-[var(--border-color)] shadow-[var(--shadow-lift)]'
+                          : 'border-l-slate-300 border-slate-200/80 shadow-sm opacity-60'
+                      }`}>
+                        <div className={`font-display text-3xl sm:text-4xl font-extrabold leading-none transition-colors duration-300 ${
+                          isActive ? 'text-[var(--accent-orange)]' : 'text-slate-400'
+                        }`}>
                           {milestone.year}
                         </div>
-                        <p className="text-sm text-[var(--text-muted)] mt-2 leading-relaxed">
+                        <p className="text-sm sm:text-base text-[var(--text-muted)] mt-2.5 leading-relaxed font-medium">
                           {milestone.event}
                         </p>
                       </div>

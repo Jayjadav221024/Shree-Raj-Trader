@@ -43,6 +43,7 @@ import group_ShreeRajTraders from '../assets/group/techno-sales-agency.webp';
 import group_ApidelTechnologies from '../assets/group/apidel-technologies.webp';
 import group_TechnoSalesAgency from '../assets/group/shree-raj-traders.webp';
 import group_TranspowerTechnologies from '../assets/group/transpower-technologies.webp';
+import team_HemantPatel from '../assets/team/hemant-patel.png';
 import team_DharakParikh from '../assets/team/dharak-parikh.webp';
 import team_AbhayDave from '../assets/team/abhay-dave.webp';
 import team_ParagParikh from '../assets/team/parag-parikh.webp';
@@ -120,6 +121,7 @@ export const images = {
     'transpower-technologies': { src: group_TranspowerTechnologies, width: 400, height: 166 },
   },
   team: {
+    'hemant-patel': { src: team_HemantPatel, width: 338, height: 508 },
     'dharak-parikh': { src: team_DharakParikh, width: 338, height: 508 },
     'abhay-dave': { src: team_AbhayDave, width: 338, height: 508 },
     'parag-parikh': { src: team_ParagParikh, width: 338, height: 508 },

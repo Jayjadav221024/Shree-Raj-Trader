@@ -102,7 +102,7 @@ export default function CityPage() {
 
               <div className="flex flex-wrap gap-4 pt-4">
                 <button
-                  onClick={() => navigate('/contact/')}
+                  onClick={() => navigate('/contact/#calculator')}
                   className="btn btn-primary inline-flex items-center gap-2.5 shadow-[var(--shadow-glow)]"
                 >
                   <FileText className="w-4.5 h-4.5" />
@@ -381,7 +381,7 @@ export default function CityPage() {
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <button
-              onClick={() => navigate('/contact/')}
+              onClick={() => navigate('/contact/#calculator')}
               className="btn btn-primary inline-flex items-center gap-2"
             >
               <FileText className="w-4.5 h-4.5" />

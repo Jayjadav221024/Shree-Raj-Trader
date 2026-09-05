@@ -62,6 +62,9 @@ export const Product = mongoose.model<IProduct>('Product', ProductSchema);
 export interface ITestimonial extends Document {
   client: string;
   company: string;
+  designation?: string;
+  tag?: string;
+  imageKey?: string;
   feedback: string;
   isActive: boolean;
 }
@@ -69,6 +72,9 @@ export interface ITestimonial extends Document {
 const TestimonialSchema = new Schema<ITestimonial>({
   client: { type: String, required: true },
   company: { type: String, required: true },
+  designation: { type: String, default: '' },
+  tag: { type: String, default: '' },
+  imageKey: { type: String, default: '' },
   feedback: { type: String, required: true },
   isActive: { type: Boolean, default: true }
 }, { timestamps: true });

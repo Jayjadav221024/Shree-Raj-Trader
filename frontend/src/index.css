@@ -186,18 +186,18 @@
 /* ==========================================================================
    LAYOUT & UNIFIED SECTION SPACING
    ========================================================================== */
-.section { padding: 5rem 0; position: relative; }
-.section-tight { padding: 3.5rem 0; }
+.section { padding: 3.25rem 0; position: relative; }
+.section-tight { padding: 2.25rem 0; }
 .section-alt { background: var(--bg-secondary); }
 .section-ink { background: var(--bg-ink); color: var(--text-on-dark); }
 
 .page-top-spacing {
-  padding-top: 8rem;
+  padding-top: 6.5rem;
 }
 
 @media (max-width: 640px) {
   .page-top-spacing {
-    padding-top: 6.5rem;
+    padding-top: 5.5rem;
   }
 }
 
@@ -221,21 +221,21 @@
 .section-header {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 3rem;
+  margin: 0 auto 2rem;
 }
 
 .section-header p {
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 0.975rem;
+  line-height: 1.6;
   color: var(--text-muted);
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 640px) {
-  .section { padding: 3.5rem 0; }
-  .section-tight { padding: 2.5rem 0; }
-  .section-header { margin-bottom: 2rem; }
-  .section-header p { font-size: 0.95rem; }
+  .section { padding: 2.25rem 0; }
+  .section-tight { padding: 1.75rem 0; }
+  .section-header { margin-bottom: 1.5rem; }
+  .section-header p { font-size: 0.9rem; }
 }
 
 /* ==========================================================================
@@ -669,16 +669,16 @@
    ========================================================================== */
 .hero-section {
   position: relative;
-  padding-top: 8.5rem;
-  padding-bottom: 5rem;
+  padding-top: 6.5rem;
+  padding-bottom: 3.25rem;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff 0%, var(--bg-primary) 60%);
 }
 
 @media (max-width: 640px) {
   .hero-section {
-    padding-top: 7rem;
-    padding-bottom: 3.5rem;
+    padding-top: 5.5rem;
+    padding-bottom: 2rem;
   }
 }
 
@@ -703,8 +703,8 @@
 .hero-feature-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 0.9rem;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
   background: #fff;
   border: 1px solid var(--border-color);
   border-radius: 9999px;
@@ -712,7 +712,16 @@
   font-size: 0.78rem;
   font-weight: 600;
   color: var(--text-main);
-  white-space: nowrap;
+  max-width: 100%;
+  line-height: 1.35;
+}
+
+@media (max-width: 640px) {
+  .hero-feature-pill {
+    font-size: 0.74rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 12px;
+  }
 }
 
 /* ==========================================================================
@@ -820,41 +829,35 @@
 .brand-sticky-card:hover {
   border-color: var(--accent-orange) !important;
   box-shadow: var(--shadow-glow), 0 20px 40px -15px rgba(14, 26, 43, 0.25) !important;
-  /* Elevate the hovered card above others */
-  z-index: 100 !important;
-  transform: translateY(-4px) !important;
 }
 /* Scroll-Driven Vertical Timeline with 3D Reveal and Tilt */
 .timeline-container {
   content-visibility: auto;
   contain-intrinsic-size: 800px;
-  perspective: 1200px;
 }
 
 .timeline-node-item {
-  opacity: 0;
-  transform-style: preserve-3d;
-  transform: rotateX(15deg) rotateY(-12deg) translate3d(-35px, 20px, -80px) scale(0.96);
-  filter: blur(4px);
-  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
-              filter 0.85s ease !important;
+  opacity: 0.4;
+  transform: translateY(20px) scale(0.97);
+  filter: blur(2px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.6s ease !important;
 }
 
 .timeline-node-item.active {
   opacity: 1;
-  transform: rotateX(0deg) rotateY(0deg) translate3d(0, 0, 0) scale(1);
+  transform: translateY(0) scale(1);
   filter: blur(0);
 }
 
 .timeline-node-item .card {
-  transform-style: preserve-3d;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.3s ease !important;
 }
 
 .timeline-node-item.active:hover .card {
-  transform: translateZ(24px) rotateX(3deg) rotateY(-3deg) translateY(-5px);
-  box-shadow: 0 20px 40px -10px rgba(217, 101, 59, 0.25), var(--shadow-glow) !important;
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift), 0 12px 28px -10px rgba(217, 101, 59, 0.2) !important;
   border-color: var(--accent-orange) !important;
 }
 
@@ -911,7 +914,19 @@
   }
 }
 
-/* 3D Animated Text Logo */
+/* 3D Animated Text Logo & Theme Gradient Flow */
+@keyframes logoGradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .logo-3d-container {
   perspective: 500px;
   display: inline-flex;
@@ -922,23 +937,55 @@
   display: inline-block;
   font-family: var(--font-display);
   font-weight: 700;
-  color: var(--text-main);
   transform-style: preserve-3d;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  /* Crisp 3D text shadow layers (no blur) */
-  text-shadow: 
-    1px 1px 0px rgba(217, 101, 59, 0.15),
-    2px 2px 0px rgba(217, 101, 59, 0.1),
-    3px 3px 0px rgba(14, 26, 43, 0.05);
 }
 
-.logo-3d-container:hover .logo-text-3d {
-  transform: translateY(-2px) rotateX(10deg) rotateY(10deg) scale(1.02);
-  text-shadow: 
-    1px 1px 0px rgba(217, 101, 59, 0.3),
-    2px 2px 0px rgba(217, 101, 59, 0.2),
-    3px 3px 0px rgba(217, 101, 59, 0.1),
-    4px 4px 6px rgba(14, 26, 43, 0.15);
+.logo-gradient-text {
+  background: linear-gradient(
+    135deg,
+    var(--text-main) 0%,
+    var(--accent-cyan) 35%,
+    var(--accent-orange) 70%,
+    var(--text-main) 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: logoGradientFlow 5s ease-in-out infinite;
+  display: inline-block;
+}
+
+.logo-gradient-accent {
+  background: linear-gradient(
+    135deg,
+    #d9653b 0%,
+    #ff7849 35%,
+    #ea580c 65%,
+    #d9653b 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: logoGradientFlow 4s ease-in-out infinite;
+  display: inline-block;
+}
+
+.logo-sub-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--text-faint) 0%,
+    var(--accent-cyan) 50%,
+    var(--text-faint) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: logoGradientFlow 6s ease-in-out infinite;
+  display: inline-block;
 }
 
 /* 3D Scatter Card Transitions (Left & Right Entrance) */
@@ -1032,8 +1079,8 @@
   height: 580px; /* Cover height */
   transform-style: preserve-3d;
   transition: transform var(--book-flip-duration) var(--book-flip-ease);
-  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.65),
-              0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 25px 60px -15px rgba(14, 26, 43, 0.25),
+              0 10px 25px -5px rgba(14, 26, 43, 0.12);
   border-radius: 12px;
 }
 
@@ -1044,24 +1091,24 @@
   top: 0;
   width: 12px;
   height: 100%;
-  background: linear-gradient(to right, #05070a, #111822, #05070a);
+  background: linear-gradient(to right, #cbd5e1, #f1f5f9, #cbd5e1);
   transform: translateZ(-2px);
   /* Sits below the paper sheets (z 1..10) but above the hardcovers. */
   z-index: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8) inset;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15) inset;
   transition: opacity var(--book-flip-duration) ease;
 }
 
-/* Static Left & Right Cover backgrounds */
+/* Static Left & Right Cover backgrounds matching theme white & light ground */
 .book-cover-left,
 .book-cover-right {
   position: absolute;
   width: 50%;
   height: 100%;
   top: 0;
-  background: linear-gradient(135deg, #090e17 0%, #05080c 100%);
-  border: 2px solid rgba(217, 101, 59, 0.25);
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 2px solid rgba(217, 101, 59, 0.4);
+  box-shadow: inset 0 0 20px rgba(14, 26, 43, 0.04);
 }
 
 /* Backing plates behind each half of the open book. Neither one rotates: the
@@ -1112,9 +1159,9 @@
   backface-visibility: hidden;
   transform-style: flat;
   overflow: hidden;
-  background: linear-gradient(135deg, #131d2e 0%, #0a101b 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid var(--border-color);
+  box-shadow: inset 0 0 25px rgba(14, 26, 43, 0.03);
   pointer-events: auto; /* Active elements inside page can be interactive */
 }
 
@@ -1135,9 +1182,9 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 12%;
+  width: 10%;
   height: 100%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to right, rgba(14, 26, 43, 0.12) 0%, rgba(14, 26, 43, 0) 100%);
   pointer-events: none;
   z-index: 4;
 }
@@ -1147,9 +1194,9 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 12%;
+  width: 10%;
   height: 100%;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to left, rgba(14, 26, 43, 0.12) 0%, rgba(14, 26, 43, 0) 100%);
   pointer-events: none;
   z-index: 4;
 }
@@ -1165,10 +1212,10 @@
   opacity: 0;
   pointer-events: none;
   background: linear-gradient(105deg,
-    rgba(0, 0, 0, 0.55) 0%,
-    rgba(0, 0, 0, 0.1) 35%,
-    rgba(255, 255, 255, 0.07) 62%,
-    rgba(0, 0, 0, 0.45) 100%);
+    rgba(14, 26, 43, 0.1) 0%,
+    rgba(255, 255, 255, 0.4) 35%,
+    rgba(255, 255, 255, 0.8) 62%,
+    rgba(14, 26, 43, 0.08) 100%);
 }
 
 .book-page-3d.is-flipping .page-face::before {
@@ -1187,10 +1234,10 @@
   top: 22px;
   width: 5px;
   height: 536px;
-  background: repeating-linear-gradient(to bottom, #131d2e, #131d2e 2px, #05080c 2px, #05080c 4px);
+  background: repeating-linear-gradient(to bottom, #ffffff, #ffffff 2px, #e2e8f0 2px, #e2e8f0 4px);
   border-radius: 0 4px 4px 0;
   transform: translateZ(-5px);
-  opacity: 0.85;
+  opacity: 0.95;
   pointer-events: none;
   transition: opacity var(--book-flip-duration) ease;
 }
@@ -1451,8 +1498,40 @@ dialog[open] {
   transition: opacity 0.25s ease-out, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* ==========================================================================
+   SCROLL BLUR-TO-FOCUS REVEAL ANIMATION
+   Text and headings smoothly transition from blurred & slightly offset to sharp & visible
+   ========================================================================== */
+.scroll-blur-reveal {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(22px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
+}
 
+.scroll-blur-reveal.is-in-view {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0) scale(1);
+}
 
+.scroll-blur-reveal.no-initial-transition {
+  transition: none !important;
+}
 
+/* Stagger delay helpers */
+.scroll-blur-reveal.delay-100 { transition-delay: 100ms; }
+.scroll-blur-reveal.delay-200 { transition-delay: 200ms; }
+.scroll-blur-reveal.delay-300 { transition-delay: 300ms; }
 
-
+@media (prefers-reduced-motion: reduce) {
+  .scroll-blur-reveal {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

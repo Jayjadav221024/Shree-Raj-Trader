@@ -16,22 +16,22 @@ import SEO from '../components/SEO';
 const buildSheets = () => [
   {
     front: { kind: 'cover' },
-    back: { kind: 'intro', page: 1, gradient: 'from-[#111e30] to-[#0a101b]' }
+    back: { kind: 'intro', page: 1, gradient: 'from-[#ffffff] via-[#f8fafc] to-[#f1f5f9]' }
   },
   {
-    front: { kind: 'photo', section: galleryPhotos[0], page: 2, gradient: 'from-[#16253b] to-[#0e172a]' },
-    back: { kind: 'photo', section: galleryPhotos[1], page: 3, gradient: 'from-[#0f172a] to-[#0a0e15]' }
+    front: { kind: 'photo', section: galleryPhotos[0], page: 2, gradient: 'from-[#ffffff] via-[#f8fafc] to-[#f1f5f9]' },
+    back: { kind: 'photo', section: galleryPhotos[1], page: 3, gradient: 'from-[#ffffff] via-[#f8fafc] to-[#f1f5f9]' }
   },
   {
-    front: { kind: 'photo', section: galleryPhotos[2], page: 4, gradient: 'from-[#1e293b] to-[#111e30]' },
-    back: { kind: 'photo', section: galleryPhotos[3], page: 5, gradient: 'from-[#111e30] to-[#0e1a2b]' }
+    front: { kind: 'photo', section: galleryPhotos[2], page: 4, gradient: 'from-[#ffffff] via-[#f8fafc] to-[#f1f5f9]' },
+    back: { kind: 'photo', section: galleryPhotos[3], page: 5, gradient: 'from-[#ffffff] via-[#f8fafc] to-[#f1f5f9]' }
   },
   {
-    front: { kind: 'photo', section: galleryPhotos[4], page: 6, gradient: 'from-[#16253b] to-[#1c2d46]' },
-    back: { kind: 'photo', section: galleryPhotos[5], page: 7, gradient: 'from-[#1c2d46] to-[#0e1a2b]' }
+    front: { kind: 'photo', section: galleryPhotos[4], page: 6, gradient: 'from-[#ffffff] via-[#f8fafc] to-[#f1f5f9]' },
+    back: { kind: 'photo', section: galleryPhotos[5], page: 7, gradient: 'from-[#ffffff] via-[#f8fafc] to-[#f1f5f9]' }
   },
   {
-    front: { kind: 'photo', section: galleryPhotos[6], page: 8, gradient: 'from-[#0e1a2b] to-[#0a0e15]' },
+    front: { kind: 'photo', section: galleryPhotos[6], page: 8, gradient: 'from-[#ffffff] via-[#f8fafc] to-[#f1f5f9]' },
     back: { kind: 'outro', page: 9 }
   }
 ];
@@ -71,10 +71,10 @@ function PhotoFace({ face, side }) {
   return (
     <div
       data-section="gallery.photos"
-      className={`page-face ${isBack ? 'page-face-back' : 'page-face-front'} p-6 flex flex-col bg-gradient-to-br ${gradient} text-white border border-white/5`}
+      className={`page-face ${isBack ? 'page-face-back' : 'page-face-front'} p-6 flex flex-col bg-gradient-to-br ${gradient} text-[var(--text-main)] border border-[var(--border-color)]`}
     >
       <div className={`flex justify-between items-start gap-3 shrink-0 ${isBack ? 'flex-row-reverse' : ''}`}>
-        <h3 className={`text-xl font-display text-white tracking-wide uppercase leading-tight ${isBack ? 'text-right' : ''}`}>
+        <h3 className={`text-xl font-display text-[var(--color-ink)] font-bold tracking-wide uppercase leading-tight ${isBack ? 'text-right' : ''}`}>
           {section.num}
         </h3>
         <span className="inline-flex items-center gap-1 shrink-0 text-[10px] font-bold uppercase tracking-wider text-orange bg-orange/10 px-2.5 py-1 rounded-full border border-orange/20">
@@ -83,24 +83,24 @@ function PhotoFace({ face, side }) {
         </span>
       </div>
 
-      <div className="flex-1 min-h-0 my-3 border border-white/10 p-1 rounded-xl bg-black/30 overflow-hidden">
+      <div className="flex-1 min-h-0 my-3 border border-[var(--border-color)] p-1.5 rounded-xl bg-slate-50/80 overflow-hidden shadow-xs flex items-center justify-center">
         <img
           src={section.image.src}
           alt={section.alt}
           width={section.image.width}
           height={section.image.height}
           decoding="async"
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-contain rounded-lg"
         />
       </div>
 
-      <p className="text-xs text-white/80 leading-relaxed shrink-0">
+      <p className="text-xs text-[var(--text-muted)] leading-relaxed shrink-0">
         {section.description}
       </p>
 
-      <div className={`flex justify-between items-center text-[10px] text-white/40 border-t border-white/10 pt-3 mt-3 shrink-0 ${isBack ? 'flex-row-reverse' : ''}`}>
-        <span>{copy['gallery.book'].pageFooterLabel}</span>
-        <span>PAGE {page}</span>
+      <div className={`flex justify-between items-center text-[10px] text-[var(--text-faint)] border-t border-[var(--border-color)] pt-3 mt-3 shrink-0 ${isBack ? 'flex-row-reverse' : ''}`}>
+        <span className="font-semibold">{copy['gallery.book'].pageFooterLabel}</span>
+        <span className="font-bold">PAGE {page}</span>
       </div>
     </div>
   );
@@ -111,23 +111,23 @@ function CoverFace() {
   return (
     <div
       data-section="gallery.book"
-      className="page-face page-face-front flex flex-col justify-between p-8 bg-radial from-[#1e293b] to-[#0a0f18] text-white border border-white/5 shadow-2xl"
+      className="page-face page-face-front flex flex-col justify-between p-8 bg-gradient-to-br from-[#ffffff] via-[#f8fafc] to-[#eef2f6] text-[var(--text-main)] border border-[rgba(217,101,59,0.3)] shadow-xl"
     >
       <div className="text-center pt-8">
         <span className="eyebrow eyebrow-orange mb-3">{b.coverEyebrow}</span>
-        <h2 className="text-4xl sm:text-5xl font-display uppercase tracking-wider text-orange leading-none">
+        <h2 className="text-4xl sm:text-5xl font-display uppercase tracking-wider text-orange leading-none font-bold">
           {b.coverTitleLine1} <br /> {b.coverTitleLine2}
         </h2>
         <div className="h-0.5 w-16 bg-orange mx-auto my-4"></div>
-        <p className="text-xs tracking-widest text-white/50 uppercase font-bold">
+        <p className="text-xs tracking-widest text-[var(--text-muted)] uppercase font-bold">
           {b.coverLocation}
         </p>
       </div>
 
       {/* Embossed Motif */}
-      <div className="border border-white/10 bg-white/5 p-6 rounded-xl max-w-[260px] mx-auto text-center shadow-lg">
-        <div className="text-3xl font-display text-orange">{b.coverStatValue}</div>
-        <div className="text-[10px] text-white/40 tracking-wider mt-1 uppercase">{b.coverStatLabel}</div>
+      <div className="border border-[var(--border-color)] bg-white p-6 rounded-xl max-w-[260px] mx-auto text-center shadow-md">
+        <div className="text-3xl font-display font-bold text-orange">{b.coverStatValue}</div>
+        <div className="text-[10px] text-[var(--text-muted)] tracking-wider mt-1 uppercase font-semibold">{b.coverStatLabel}</div>
       </div>
 
       <div className="text-center pb-4 animate-bounce">
@@ -142,26 +142,26 @@ function CoverFace() {
 function IntroFace({ face }) {
   const b = copy['gallery.book'];
   return (
-    <div className={`page-face page-face-back p-8 flex flex-col justify-between bg-gradient-to-br ${face.gradient} text-white border border-white/5 shadow-2xl`}>
+    <div className={`page-face page-face-back p-8 flex flex-col justify-between bg-gradient-to-br ${face.gradient} text-[var(--text-main)] border border-[var(--border-color)] shadow-xl`}>
       <div className="space-y-4">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-orange bg-orange/10 px-2 py-1 rounded border border-orange/20 inline-block">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-orange bg-orange/10 px-2.5 py-1 rounded-full border border-orange/20 inline-block">
           {b.introBadge}
         </span>
-        <h3 className="text-2xl font-display text-white tracking-wide">{b.introTitle}</h3>
+        <h3 className="text-2xl font-display text-[var(--color-ink)] font-bold tracking-wide">{b.introTitle}</h3>
         <div className="h-0.5 w-12 bg-orange"></div>
-        <p className="text-xs sm:text-sm text-white/80 leading-relaxed pt-2">
+        <p className="text-xs sm:text-sm text-[var(--text-main)] leading-relaxed pt-2">
           {b.introBody1}
         </p>
-        <p className="text-[11px] sm:text-xs text-white/60 leading-relaxed">
+        <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed">
           {b.introBody2}
         </p>
-        <p className="text-[11px] sm:text-xs text-white/60 leading-relaxed">
+        <p className="text-[11px] sm:text-xs text-[var(--text-muted)] leading-relaxed">
           {b.introBody3}
         </p>
       </div>
-      <div className="flex justify-between items-center text-[10px] text-white/40 border-t border-white/10 pt-4">
-        <span>{b.brandFooterLabel}</span>
-        <span>PAGE {face.page}</span>
+      <div className="flex justify-between items-center text-[10px] text-[var(--text-faint)] border-t border-[var(--border-color)] pt-4">
+        <span className="font-semibold">{b.brandFooterLabel}</span>
+        <span className="font-bold">PAGE {face.page}</span>
       </div>
     </div>
   );
@@ -170,53 +170,53 @@ function IntroFace({ face }) {
 function OutroFace({ face }) {
   const b = copy['gallery.book'];
   return (
-    <div className="page-face page-face-back p-8 flex flex-col justify-between bg-radial from-[#1e293b] to-[#0a0f18] text-white border border-white/5 shadow-2xl">
+    <div className="page-face page-face-back p-8 flex flex-col justify-between bg-gradient-to-br from-[#ffffff] via-[#f8fafc] to-[#eef2f6] text-[var(--text-main)] border border-[rgba(20,96,122,0.3)] shadow-xl">
       <div className="space-y-4">
-        <span className="text-[10px] font-bold uppercase tracking-widest text-orange bg-orange/10 px-2.5 py-1 rounded border border-orange/20 inline-block">
+        <span className="text-[10px] font-bold uppercase tracking-widest text-orange bg-orange/10 px-2.5 py-1 rounded-full border border-orange/20 inline-block">
           {b.outroBadge}
         </span>
-        <h3 className="text-2xl font-display text-orange tracking-wide">{b.outroTitle}</h3>
+        <h3 className="text-2xl font-display text-orange font-bold tracking-wide">{b.outroTitle}</h3>
         <div className="h-0.5 w-12 bg-orange"></div>
 
-        <p className="text-xs text-white/70 leading-relaxed">
+        <p className="text-xs text-[var(--text-muted)] leading-relaxed">
           {b.outroBody}
         </p>
 
         {/* Phone and email come from the shared company details so they can never
             drift from the footer and contact page. */}
-        <div className="pt-2 space-y-2 text-xs text-white/60">
+        <div className="pt-2 space-y-2 text-xs text-[var(--text-main)]">
           <div className="flex items-center gap-2">
             <span className="text-orange font-bold">{b.outroHotlineLabel}</span>
-            <span>{companyInfo.phonePrimary}</span>
+            <span className="text-[var(--text-muted)] font-medium">{companyInfo.phonePrimary}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-orange font-bold">{b.outroEmailLabel}</span>
-            <span>{companyInfo.emailPrimary}</span>
+            <span className="text-[var(--text-muted)] font-medium">{companyInfo.emailPrimary}</span>
           </div>
           <div className="flex items-start gap-2">
             <span className="text-orange font-bold shrink-0">{b.outroAddressLabel}</span>
-            <span className="leading-tight">{b.outroAddress}</span>
+            <span className="leading-tight text-[var(--text-muted)] font-medium">{b.outroAddress}</span>
           </div>
         </div>
 
         <div className="pt-3 flex gap-2">
           <Link
             to="/products/"
-            className="inline-flex items-center justify-center px-3 py-1.5 rounded bg-orange hover:bg-orange/80 text-white font-bold text-xs uppercase tracking-wider transition-colors duration-200"
+            className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg bg-orange hover:bg-orange/90 text-white font-bold text-xs uppercase tracking-wider transition-colors duration-200 shadow-sm"
           >
             {b.outroCtaProducts}
           </Link>
           <Link
             to="/contact/"
-            className="inline-flex items-center justify-center px-3 py-1.5 rounded border border-white/20 hover:bg-white/10 text-white font-bold text-xs uppercase tracking-wider transition-colors duration-200"
+            className="inline-flex items-center justify-center px-3.5 py-2 rounded-lg border border-[var(--border-strong)] bg-white hover:bg-slate-100 text-[var(--text-main)] font-bold text-xs uppercase tracking-wider transition-colors duration-200 shadow-xs"
           >
             {b.outroCtaContact}
           </Link>
         </div>
       </div>
-      <div className="flex justify-between items-center text-[10px] text-white/40 border-t border-white/10 pt-4">
-        <span>PAGE {face.page}</span>
-        <span>{b.brandFooterLabel}</span>
+      <div className="flex justify-between items-center text-[10px] text-[var(--text-faint)] border-t border-[var(--border-color)] pt-4">
+        <span className="font-bold">PAGE {face.page}</span>
+        <span className="font-semibold">{b.brandFooterLabel}</span>
       </div>
     </div>
   );
@@ -397,36 +397,34 @@ export default function GalleryPage() {
   return (
     <div
       ref={mainContainerRef}
-      className="bg-[#0a0e15] h-screen min-h-screen text-white font-sans overflow-hidden flex flex-col justify-between select-none pt-[80px]"
+      className="bg-[var(--bg-primary)] h-screen min-h-screen text-[var(--text-main)] font-sans overflow-hidden flex flex-col justify-between select-none pt-[80px]"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       <SEO title={copy['seo.gallery'].title} description={copy['seo.gallery'].description} />
 
-      {/* Compact header — every pixel spent here is a pixel the book loses, so
-          the eyebrow sits inline with the title rather than stacked above it. */}
+      {/* Compact header with site theme styling */}
       <header
         data-section="gallery.header"
-        className="w-full text-center py-2 px-6 bg-[#0a0e15] border-b border-[rgba(255,255,255,0.03)] shrink-0 z-10"
+        className="w-full text-center py-2.5 px-6 bg-white/90 border-b border-[var(--border-color)] backdrop-blur-md shrink-0 z-10 shadow-xs"
       >
         <div className="flex items-center justify-center gap-3 flex-wrap">
           <span className="eyebrow eyebrow-teal mb-0 text-[9px] py-0.5 px-2.5 hidden sm:inline-flex">
             {header.eyebrow}
           </span>
-          <h1 className="text-xl sm:text-2xl font-display uppercase tracking-wider text-white leading-tight">
+          <h1 className="text-xl sm:text-2xl font-display uppercase tracking-wider text-[var(--color-ink)] font-bold leading-tight">
             {header.title} <span className="text-orange">{header.titleAccent}</span>
           </h1>
         </div>
-        <p className="text-[10px] text-[rgba(255,255,255,0.45)] leading-tight">
+        <p className="text-[10px] text-[var(--text-muted)] leading-tight mt-0.5">
           {header.hint}
         </p>
       </header>
 
-      {/* Book Presentation Viewport. No padding here — STAGE_GUTTER_X/Y own the
-          clear space, so the measured slot and the visible gap stay in step. */}
+      {/* Book Presentation Viewport */}
       <div
         ref={stageRef}
-        className="flex-grow flex items-center justify-center relative w-full min-h-0 overflow-hidden"
+        className="flex-grow flex items-center justify-center relative w-full min-h-0 overflow-hidden bg-radial from-[#ffffff] via-[#f1f5f9] to-[#e2e8f0]"
       >
 
         {/* 3D Book Layout Container */}
@@ -445,15 +443,14 @@ export default function GalleryPage() {
               style={{ opacity: currentPageIndex > 0 ? 1 : 0.5 }}
             ></div>
 
-            {/* Hardcover backing plates — static backdrops, never rotated. */}
+            {/* Hardcover backing plates */}
             <div
               className="book-cover-left"
               style={{ opacity: currentPageIndex > 0 ? 1 : 0, pointerEvents: 'none' }}
             ></div>
             <div className="book-cover-right" style={{ pointerEvents: 'none' }}></div>
 
-            {/* Paper sheets — every sheet stays mounted so a flip is never
-                interrupted by a display toggle, which would drop its transition. */}
+            {/* Paper sheets */}
             {/* eslint-disable-next-line react/no-array-index-key -- fixed layout */}
             {SHEETS.map((sheet, idx) => (
               <div
@@ -483,19 +480,19 @@ export default function GalleryPage() {
 
       </div>
 
-      {/* Interactive Navigation Panel */}
-      <div className="w-full py-3 bg-[#0a0e15]/90 border-t border-white/5 backdrop-blur-md flex flex-col items-center space-y-1.5 shrink-0 z-20">
+      {/* Interactive Navigation Panel matching site light theme */}
+      <div className="w-full py-3 bg-white/95 border-t border-[var(--border-color)] backdrop-blur-md flex flex-col items-center space-y-1.5 shrink-0 z-20 shadow-xs">
         <div className="flex items-center gap-3">
           <button
             onClick={handlePagePrev}
             disabled={currentPageIndex === 0 || flippingPage !== null}
-            className="p-2.5 rounded-full border border-white/10 bg-white/5 text-white hover:bg-orange hover:border-orange disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:border-white/10 transition-all duration-300 cursor-pointer"
+            className="p-2.5 rounded-full border border-[var(--border-color)] bg-white text-[var(--text-main)] hover:bg-orange hover:text-white hover:border-orange disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-[var(--text-main)] disabled:hover:border-[var(--border-color)] transition-all duration-300 cursor-pointer shadow-xs"
             aria-label="Previous Page"
           >
             <ArrowLeft className="w-5 h-5" />
           </button>
 
-          <div className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/5 bg-black/40">
+          <div className="flex items-center gap-1.5 px-4 py-2 rounded-full border border-[var(--border-color)] bg-slate-100 shadow-inner">
             {SPREAD_LABELS.map((label, idx) => (
               <button
                 key={idx}
@@ -503,13 +500,13 @@ export default function GalleryPage() {
                 disabled={flippingPage !== null}
                 className="w-3.5 h-3.5 rounded-full transition-all duration-300 relative group cursor-pointer"
                 style={{
-                  backgroundColor: currentPageIndex === idx ? 'var(--accent-orange)' : 'rgba(255,255,255,0.2)',
+                  backgroundColor: currentPageIndex === idx ? 'var(--accent-orange)' : '#cbd5e1',
                   transform: currentPageIndex === idx ? 'scale(1.25)' : 'scale(1)'
                 }}
                 title={label}
                 aria-label={label}
               >
-                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 px-2 py-1 bg-black text-[10px] text-white rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 shadow-md">
+                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2.5 px-2.5 py-1 bg-[var(--color-ink)] text-[10px] text-white rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-50 shadow-xl">
                   {label}
                 </span>
               </button>
@@ -519,14 +516,14 @@ export default function GalleryPage() {
           <button
             onClick={handlePageNext}
             disabled={currentPageIndex === LAST_SPREAD || flippingPage !== null}
-            className="p-2.5 rounded-full border border-white/10 bg-white/5 text-white hover:bg-orange hover:border-orange disabled:opacity-30 disabled:hover:bg-white/5 disabled:hover:border-white/10 transition-all duration-300 cursor-pointer"
+            className="p-2.5 rounded-full border border-[var(--border-color)] bg-white text-[var(--text-main)] hover:bg-orange hover:text-white hover:border-orange disabled:opacity-30 disabled:hover:bg-white disabled:hover:text-[var(--text-main)] disabled:hover:border-[var(--border-color)] transition-all duration-300 cursor-pointer shadow-xs"
             aria-label="Next Page"
           >
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="text-[11px] font-bold uppercase tracking-widest text-white/50 text-center select-none">
+        <div className="text-[11px] font-bold uppercase tracking-widest text-[var(--text-muted)] text-center select-none">
           {SPREAD_LABELS[currentPageIndex]}
         </div>
       </div>

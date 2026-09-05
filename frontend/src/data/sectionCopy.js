@@ -117,8 +117,8 @@ export const copy = {
     navGallery: 'Gallery',
     navProducts: 'Products',
     navLocations: 'Locations',
-    navBlog: 'Blog',
-    navContact: 'Contact',
+    navBlog: 'Blogs',
+    navContact: 'Contact Us',
     ctaQuote: 'Get Quote',
     productGroups: [
       { key: 'switchgears', label: 'Switchgears' },
@@ -204,6 +204,14 @@ export const copy = {
     ]
   },
 
+  'home.featured-categories': {
+    eyebrow: 'Product Portfolio',
+    title: 'Featured',
+    titleAccent: 'Product Categories',
+    intro:
+      'Explore our comprehensive range of high-performance electro-mechanical equipment and composite infrastructure solutions.'
+  },
+
   'home.brands': {
     eyebrow: 'Our Brand Partners',
     title: 'Our',
@@ -230,9 +238,9 @@ export const copy = {
   },
 
   'home.testimonials': {
-    eyebrow: 'In Their Own Words',
-    title: 'What Our',
-    titleAccent: 'Clients Say',
+    eyebrow: 'IN THEIR WORDS',
+    title: 'THE LINES THAT',
+    titleAccent: 'MOVED THE ROOM',
     intro:
       'Trusted by leading manufacturing facilities, infrastructure developers, and industrial plants across India.'
   },

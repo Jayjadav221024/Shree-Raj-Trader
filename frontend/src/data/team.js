@@ -11,7 +11,7 @@ export const leadershipMessages = [
       "Shree Raj Traders's success is rooted in our unwavering commitment to excellence, innovation and customer satisfaction. With a dedicated workforce and cutting-edge technology, we continue to lead the Electro-Mechanical industry globally. Our goal is to provide an exceptional experience for our customers, ensuring joy and satisfaction In every Interaction.",
     name: 'Mr. Hemant Patel',
     role: 'Director',
-    photo: null
+    photo: images.team['hemant-patel']
   },
   {
     id: 'associate-partner',
@@ -25,8 +25,9 @@ export const leadershipMessages = [
   // TODO: Kiran Parekh (General Manager) block removed pending client verification (not found on live site)
 ];
 
-/** The nine team members listed on the live Our Team page, in live order. */
+/** The team members listed on the Our Team page. */
 export const teamMembers = [
+  { name: 'Hemant Patel', role: 'Director', photo: images.team['hemant-patel'] },
   { name: 'Dharak Parikh', role: 'Associated Partner', photo: images.team['dharak-parikh'] },
   { name: 'Abhay Dave', role: 'Head Accountant', photo: images.team['abhay-dave'] },
   { name: 'Parag Parikh', role: 'Territory Manager', photo: images.team['parag-parikh'] },
