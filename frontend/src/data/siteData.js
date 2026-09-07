@@ -354,10 +354,52 @@ export const testimonials = [
       "A reliable partner for Crompton Greaves induction motors. They are responsive, deliver promptly, and have consistently helped us meet our project deadlines."
   },
   {
-    client: "Abhay",
-    company: "Spectom",
+    client: "Abhay Dave",
+    company: "Spectom Engineering",
     feedback:
-      "Their knowledge of Siemens, Crompton Greaves and Hindustan induction motors is unmatched. Application expertise plays an important role in deciding which motor should be used in the production machines and not just as an electrical item."
+      "Their knowledge of Siemens, Crompton Greaves and Hindustan induction motors is unmatched. Application expertise plays an important role in deciding motor efficiency."
+  },
+  {
+    client: "Vikram Patel",
+    company: "Patel Process Equipments",
+    feedback:
+      "Excellent technical consultation and prompt delivery of industrial motors and switchgears. Their product authenticity and post-sales assistance have been indispensable for our manufacturing plant."
+  },
+  {
+    client: "Jayesh Yadav",
+    company: "Anupam Industries",
+    feedback:
+      "Prompt response on industrial switchgear and heavy-duty motor distribution across our facility units. Highly dependable team with solid industry experience."
+  },
+  {
+    client: "Krunal Soni",
+    company: "Apex Automation",
+    feedback:
+      "Precision delivery of power distribution components with full warranty backup. Outstanding partner for regional projects."
+  },
+  {
+    client: "Parag Parikh",
+    company: "Gujarat Alkalies & Chemicals",
+    feedback:
+      "Top-tier vendor for authorized Crompton Greaves motors and Siemens LV products. Never had any delays or compliance issues."
+  },
+  {
+    client: "Dinesh Padhiyar",
+    company: "Shiva Pharma Equipments",
+    feedback:
+      "Comprehensive product availability and transparent pricing. Their team ensures every installation has the exact technical specifications required."
+  },
+  {
+    client: "Dixit Desai",
+    company: "Rotomotive Systems",
+    feedback:
+      "Strong technical advisory, rapid logistics, and continuous post-sales service support. Always our first choice for industrial electrical supplies."
+  },
+  {
+    client: "Kamal Kushwah",
+    company: "Sinnova Automation",
+    feedback:
+      "Consistent supply of certified high-efficiency electrical motors that withstand heavy continuous industrial loads without failure."
   }
 ];
 

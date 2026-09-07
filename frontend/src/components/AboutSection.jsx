@@ -129,38 +129,6 @@ export default function AboutSection() {
               </p>
             </div>
 
-            {/* Group Tagline - Prominent Position below Intro with Soft Floating Animation */}
-            <div
-              data-section="about.group-tagline"
-              className="relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 mb-10 border border-[var(--border-color)] bg-gradient-to-r from-white via-[var(--accent-orange-tint)]/30 to-white shadow-[0_8px_25px_-8px_rgba(217,101,59,0.12)] text-center group hover:shadow-[0_12px_32px_-6px_rgba(217,101,59,0.2)] hover:border-[var(--accent-orange)]/40 transition-all duration-500"
-            >
-              {/* Soft Ambient Background Glow */}
-              <div className="absolute top-0 right-1/4 w-48 h-48 bg-[var(--accent-orange)]/6 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
-              <div className="absolute bottom-0 left-1/4 w-48 h-48 bg-[var(--accent-cyan)]/6 rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-700" />
-
-              {/* Top Accent Line */}
-              <div className="absolute top-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-transparent via-[var(--accent-orange)] to-transparent" />
-
-              {/* Centered Floating Quote Icon */}
-              <div className="w-10 h-10 mx-auto mb-3 rounded-xl bg-white border border-[var(--border-color)] shadow-xs flex items-center justify-center text-[var(--accent-orange)] group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                <Quote className="w-5 h-5 rotate-180" />
-              </div>
-
-              {/* Quote Statement */}
-              <blockquote className="relative z-10 max-w-2xl mx-auto">
-                <p className="font-display italic text-base sm:text-xl lg:text-[21px] text-[var(--color-ink)] font-bold leading-relaxed tracking-wide">
-                  &ldquo;{tagline.quote}&rdquo;
-                </p>
-                <div className="flex items-center justify-center gap-2 mt-3">
-                  <span className="w-6 h-[1.5px] bg-[var(--accent-orange)] rounded-full" />
-                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-[var(--accent-orange)] font-mono">
-                    SHREE RAJ TRADERS COMMITMENT
-                  </span>
-                  <span className="w-6 h-[1.5px] bg-[var(--accent-orange)] rounded-full" />
-                </div>
-              </blockquote>
-            </div>
-
             {/* Facility photo */}
             <div className="card overflow-hidden mb-12 shadow-[var(--shadow-lift)] rounded-3xl border-2 border-[var(--border-color)]">
               <img

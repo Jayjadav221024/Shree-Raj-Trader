@@ -153,63 +153,66 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
             <div className="w-16 h-[3px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-cyan)] to-transparent mt-3 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10 min-h-[380px]">
-            {/* LEFT COLUMN: Curved Arc Orbital Avatar Path (True Geometry Matching Image) */}
-            <div className="lg:col-span-5 relative py-8 min-h-[320px] flex items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10 min-h-[420px]">
+            {/* LEFT COLUMN: 3-Node Rotating Circular Orbit Window across 10+ Testimonials */}
+            <div className="lg:col-span-5 relative py-8 min-h-[360px] flex items-center overflow-visible">
               {/* Perfect SVG Arc connecting avatar centers */}
               <svg
                 className="absolute left-0 top-0 bottom-0 w-full h-full pointer-events-none stroke-slate-300"
-                viewBox="0 0 400 320"
+                viewBox="0 0 400 360"
                 fill="none"
               >
-                {/* Smooth quadratic arc passing through (45, 45), (105, 160), (45, 275) */}
+                {/* Smooth quadratic arc passing through avatar centers */}
                 <path
-                  d="M 20 10 Q 140 160 20 310"
+                  d="M 20 15 Q 140 180 20 345"
                   stroke="#cbd5e1"
                   strokeWidth="1.5"
                 />
               </svg>
 
-              {/* Avatar Nodes precisely placed */}
-              <div className="flex flex-col justify-between h-[280px] w-full relative z-10">
-                {enhancedList.map((item, idx) => {
-                  const isActive = idx === activeIndex;
+              {/* 3 Visible Nodes Rotating on the Arc (Top, Active Center, Bottom) */}
+              <div className="flex flex-col justify-between h-[330px] w-full relative z-10">
+                {[-1, 0, 1].map((slotOffset) => {
+                  const itemIndex = (activeIndex + slotOffset + enhancedList.length) % enhancedList.length;
+                  const item = enhancedList[itemIndex];
+                  const isActive = slotOffset === 0;
 
-                  // 3-point arc positions matching the SVG curve:
-                  // idx 0 (top): x = 32px
-                  // idx 1 (middle): x = 74px
-                  // idx 2 (bottom): x = 32px
-                  const total = enhancedList.length;
-                  const factor = total > 1 ? idx / (total - 1) : 0.5; // 0 to 1
-                  const normalized = (factor - 0.5) * 2; // -1 to 1
-                  const offsetX = Math.round((1 - normalized * normalized) * 44) + 12;
+                  // 3 Fixed Geometric Curve positions:
+                  // slotOffset -1 (top): x = 12px
+                  // slotOffset 0 (center): x = 56px (peaks outward)
+                  // slotOffset 1 (bottom): x = 12px
+                  const offsetX = isActive ? 56 : 12;
 
                   return (
                     <div
-                      key={`${item.client}-${idx}`}
-                      onClick={() => setActiveIndex(idx)}
+                      key={`slot-${slotOffset}-${item.client}`}
+                      onClick={() => setActiveIndex(itemIndex)}
                       style={{
                         paddingLeft: `${offsetX}px`,
                       }}
-                      className="flex items-center gap-3.5 cursor-pointer transition-all duration-300 select-none group w-fit"
+                      className={`flex items-center gap-3.5 cursor-pointer transition-all duration-700 select-none group w-fit ${
+                        isActive
+                          ? 'opacity-100 scale-100 z-20'
+                          : 'opacity-70 hover:opacity-100 scale-95 z-10'
+                      }`}
                     >
-                      {/* Avatar Circle on the Arc with solid white boundary */}
-                      <div className="relative shrink-0">
+                      {/* Avatar Circle cleanly on the Arc */}
+                      <div className="relative shrink-0 flex items-center justify-center">
                         {item.hasRealPhoto ? (
                           <img
                             src={item.image}
                             alt={item.client}
-                            className={`rounded-full object-cover transition-all duration-300 bg-white ring-4 ring-white ${
+                            className={`rounded-full object-cover transition-all duration-500 bg-white ${
                               isActive
-                                ? 'w-14 h-14 shadow-lg ring-emerald-500 scale-110'
-                                : 'w-10 h-10 ring-slate-300 grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0'
+                                ? 'w-14 h-14 shadow-lg ring-3 ring-emerald-500 scale-110'
+                                : 'w-10 h-10 ring-1 ring-slate-200 grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0'
                             }`}
                           />
                         ) : item.companyLogo ? (
-                          <div className={`rounded-full bg-white border border-slate-200 p-1.5 flex items-center justify-center transition-all duration-300 ring-4 ring-white ${
+                          <div className={`rounded-full bg-white border border-slate-200 p-1.5 flex items-center justify-center transition-all duration-500 ${
                             isActive
-                              ? 'w-14 h-14 shadow-lg ring-emerald-500 scale-110'
-                              : 'w-10 h-10 ring-slate-300 opacity-75 group-hover:opacity-100'
+                              ? 'w-14 h-14 shadow-lg ring-3 ring-emerald-500 scale-110'
+                              : 'w-10 h-10 ring-1 ring-slate-200 opacity-75 group-hover:opacity-100'
                           }`}>
                             <img
                               src={item.companyLogo}
@@ -218,10 +221,10 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
                             />
                           </div>
                         ) : (
-                          <div className={`rounded-full bg-gradient-to-tr ${item.theme.badgeBg} text-white font-bold flex items-center justify-center shadow-md transition-all duration-300 ring-4 ring-white ${
+                          <div className={`rounded-full bg-gradient-to-tr ${item.theme.badgeBg} text-white font-bold flex items-center justify-center shadow-xs transition-all duration-500 ${
                             isActive
-                              ? 'w-14 h-14 text-base ring-emerald-500 scale-110'
-                              : 'w-10 h-10 text-xs ring-slate-300 opacity-75 group-hover:opacity-100'
+                              ? 'w-14 h-14 text-base ring-3 ring-emerald-500 scale-110'
+                              : 'w-10 h-10 text-xs ring-1 ring-slate-200 opacity-75 group-hover:opacity-100'
                           }`}>
                             {item.initials}
                           </div>
@@ -229,7 +232,7 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
                       </div>
 
                       {/* Person Details (Exact style matching reference image) */}
-                      <div className="text-left min-w-0 transition-all duration-300">
+                      <div className="text-left min-w-0 transition-all duration-500">
                         <h4 className={`font-bold tracking-tight truncate transition-colors duration-300 ${
                           isActive ? 'text-base sm:text-lg text-slate-900' : 'text-sm sm:text-base text-slate-700 group-hover:text-slate-900'
                         }`}>
@@ -239,7 +242,7 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
                           <span className="text-emerald-600 font-bold flex items-center gap-0.5">
                             ★ 4.9
                           </span>
-                          <span>on 29 Aug, 2025</span>
+                          <span>· {item.company}</span>
                         </div>
                       </div>
                     </div>
