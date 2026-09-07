@@ -3,6 +3,7 @@ import { Send, Check, Copy, FileText, MapPin, Phone, Mail } from 'lucide-react';
 import { companyInfo } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 import api from '../admin/lib/axios';
+import CustomSelect from './CustomSelect';
 
 export default function RfqCalculator({ preselectedProduct }) {
   const c = copy['contact.rfq'];
@@ -136,41 +137,57 @@ export default function RfqCalculator({ preselectedProduct }) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="form-label">Brand</label>
-                    <select value={brand} onChange={(e) => setBrand(e.target.value)} className="form-control">
-                      <option value="Siemens">Siemens</option>
-                      <option value="CGL (Crompton Greaves)">CGL (Crompton Greaves)</option>
-                      <option value="Hindustan Electric">Hindustan Electric</option>
-                    </select>
+                    <CustomSelect
+                      value={brand}
+                      onChange={(e) => setBrand(e.target.value)}
+                      options={[
+                        { value: 'Siemens', label: 'Siemens' },
+                        { value: 'CGL (Crompton Greaves)', label: 'CGL (Crompton Greaves)' },
+                        { value: 'Hindustan Electric', label: 'Hindustan Electric' }
+                      ]}
+                      placeholder="Select Brand"
+                    />
                   </div>
                   <div>
                     <label className="form-label">Output Power</label>
-                    <select value={powerRating} onChange={(e) => setPowerRating(e.target.value)} className="form-control">
-                      <option value="3 HP (2.2 kW)">3 HP (2.2 kW)</option>
-                      <option value="5.5 HP (4 kW)">5.5 HP (4 kW)</option>
-                      <option value="10 HP (7.5 kW)">10 HP (7.5 kW)</option>
-                      <option value="15 HP (11 kW)">15 HP (11 kW)</option>
-                      <option value="25 HP (18.5 kW)">25 HP (18.5 kW)</option>
-                      <option value="50 HP (37 kW)">50 HP (37 kW)</option>
-                      <option value="100 HP (75 kW)">100 HP (75 kW)</option>
-                      <option value="200 HP - 425 HP">200 HP - 425 HP</option>
-                    </select>
+                    <CustomSelect
+                      value={powerRating}
+                      onChange={(e) => setPowerRating(e.target.value)}
+                      options={[
+                        '3 HP (2.2 kW)',
+                        '5.5 HP (4 kW)',
+                        '10 HP (7.5 kW)',
+                        '15 HP (11 kW)',
+                        '25 HP (18.5 kW)',
+                        '50 HP (37 kW)',
+                        '100 HP (75 kW)',
+                        '200 HP - 425 HP'
+                      ]}
+                      placeholder="Select Power Rating"
+                    />
                   </div>
                   <div>
                     <label className="form-label">Speed / Poles</label>
-                    <select value={rpm} onChange={(e) => setRpm(e.target.value)} className="form-control">
-                      <option value="3000 RPM (2 Pole)">3000 RPM (2 Pole)</option>
-                      <option value="1500 RPM (4 Pole)">1500 RPM (4 Pole)</option>
-                      <option value="1000 RPM (6 Pole)">1000 RPM (6 Pole)</option>
-                      <option value="750 RPM (8 Pole)">750 RPM (8 Pole)</option>
-                    </select>
+                    <CustomSelect
+                      value={rpm}
+                      onChange={(e) => setRpm(e.target.value)}
+                      options={[
+                        '3000 RPM (2 Pole)',
+                        '1500 RPM (4 Pole)',
+                        '1000 RPM (6 Pole)',
+                        '750 RPM (8 Pole)'
+                      ]}
+                      placeholder="Select Speed / Poles"
+                    />
                   </div>
                   <div>
                     <label className="form-label">Degree of Protection</label>
-                    <select value={enclosure} onChange={(e) => setEnclosure(e.target.value)} className="form-control">
-                      <option value="IP55">IP55</option>
-                      <option value="IP56">IP56</option>
-                      <option value="IP65">IP65</option>
-                    </select>
+                    <CustomSelect
+                      value={enclosure}
+                      onChange={(e) => setEnclosure(e.target.value)}
+                      options={['IP55', 'IP56', 'IP65']}
+                      placeholder="Select Protection"
+                    />
                   </div>
                 </div>
               )}
@@ -179,22 +196,32 @@ export default function RfqCalculator({ preselectedProduct }) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="form-label">Product</label>
-                    <select value={powerRating} onChange={(e) => setPowerRating(e.target.value)} className="form-control">
-                      <option value="SIEMENS Switchgear Low Voltage Power Distribution Product">LV Power Distribution (Contactors)</option>
-                      <option value="Low Voltage Control Product">Low Voltage Control Product (MCCB)</option>
-                      <option value="MCB">MCB</option>
-                      <option value="Sinnova">Sinnova</option>
-                    </select>
+                    <CustomSelect
+                      value={powerRating}
+                      onChange={(e) => setPowerRating(e.target.value)}
+                      options={[
+                        { value: 'SIEMENS Switchgear Low Voltage Power Distribution Product', label: 'LV Power Distribution (Contactors)' },
+                        { value: 'Low Voltage Control Product', label: 'Low Voltage Control Product (MCCB)' },
+                        { value: 'MCB', label: 'MCB' },
+                        { value: 'Sinnova', label: 'Sinnova' }
+                      ]}
+                      placeholder="Select Product"
+                    />
                   </div>
                   <div>
                     <label className="form-label">Current Rating</label>
-                    <select value={enclosure} onChange={(e) => setEnclosure(e.target.value)} className="form-control">
-                      <option value="0.5A - 63A">0.5A - 63A (MCB)</option>
-                      <option value="7A - 500A">7A - 500A (Contactors)</option>
-                      <option value="16A - 630A">16A - 630A (Sinnova MCCB)</option>
-                      <option value="16A - 1250A">16A - 1250A (MCCB)</option>
-                      <option value="800A - 4000A">800A - 4000A (Sinnova ACB)</option>
-                    </select>
+                    <CustomSelect
+                      value={enclosure}
+                      onChange={(e) => setEnclosure(e.target.value)}
+                      options={[
+                        '0.5A - 63A',
+                        '7A - 500A',
+                        '16A - 630A',
+                        '16A - 1250A',
+                        '800A - 4000A'
+                      ]}
+                      placeholder="Select Current Rating"
+                    />
                   </div>
                 </div>
               )}
@@ -203,21 +230,27 @@ export default function RfqCalculator({ preselectedProduct }) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="form-label">Product</label>
-                    <select value={powerRating} onChange={(e) => setPowerRating(e.target.value)} className="form-control">
-                      <option value="Meniscus Top">Meniscus Top</option>
-                      <option value="Grit Top">Grit Top</option>
-                      <option value="Checkered Plate">Checkered Plate</option>
-                      <option value="Ladder Type Cable Tray">Ladder Type Cable Tray</option>
-                      <option value="Perforated Cable Tray">Perforated Cable Tray</option>
-                    </select>
+                    <CustomSelect
+                      value={powerRating}
+                      onChange={(e) => setPowerRating(e.target.value)}
+                      options={[
+                        'Meniscus Top',
+                        'Grit Top',
+                        'Checkered Plate',
+                        'Ladder Type Cable Tray',
+                        'Perforated Cable Tray'
+                      ]}
+                      placeholder="Select Product"
+                    />
                   </div>
                   <div>
                     <label className="form-label">Height (Gratings)</label>
-                    <select value={enclosure} onChange={(e) => setEnclosure(e.target.value)} className="form-control">
-                      <option value="25 mm">25 mm</option>
-                      <option value="30 mm">30 mm</option>
-                      <option value="38 mm">38 mm</option>
-                    </select>
+                    <CustomSelect
+                      value={enclosure}
+                      onChange={(e) => setEnclosure(e.target.value)}
+                      options={['25 mm', '30 mm', '38 mm']}
+                      placeholder="Select Height"
+                    />
                   </div>
                 </div>
               )}

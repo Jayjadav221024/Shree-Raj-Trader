@@ -580,7 +580,40 @@
   font-family: var(--font-sans);
   font-size: 0.92rem;
   line-height: 1.5;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23566880' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 1.1em;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+select.form-control option {
+  background: #ffffff;
+  color: #0e1a2b;
+  padding: 8px 12px;
+}
+
+.custom-select-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-select-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-select-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 9999px;
+}
+
+.custom-select-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-orange);
 }
 
 .form-control::placeholder { color: var(--text-faint); }
@@ -639,11 +672,26 @@
 .nav-link:hover::after { width: 100%; }
 
 .dropdown-panel {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lift);
-  padding: 0.4rem;
+  box-shadow: 0 14px 34px -6px rgba(14, 26, 43, 0.16), 0 2px 6px rgba(14, 26, 43, 0.04);
+  padding: 0.45rem;
+  transform-origin: top;
+  animation: dropdownIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dropdownIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .dropdown-item {
@@ -651,17 +699,19 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.6rem 0.85rem;
+  padding: 0.65rem 0.9rem;
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-main);
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition: all var(--transition-fast);
+  cursor: pointer;
 }
 
 .dropdown-item:hover {
   background: var(--accent-orange-tint);
   color: var(--accent-orange-deep);
+  transform: translateX(3px);
 }
 
 /* ==========================================================================

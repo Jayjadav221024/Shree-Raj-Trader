@@ -339,26 +339,36 @@ export default function CityPage() {
             <p>{fill(t.faqIntro)}</p>
           </div>
 
-          <div className="max-w-3xl mx-auto space-y-4">
+          <div className="max-w-3xl mx-auto space-y-3">
             {cityFaqs.map((faq, index) => {
               const isOpen = openFaqIndex === index;
               return (
                 <div 
                   key={index} 
-                  className="card bg-white border border-[var(--border-color)] overflow-hidden transition-all duration-300"
+                  className="card overflow-hidden transition-all duration-300"
                 >
                   <button
                     onClick={() => toggleFaq(index)}
-                    className="w-full p-5 text-left flex justify-between items-center gap-4 font-bold text-sm sm:text-base text-[var(--text-main)] uppercase hover:text-[var(--accent-orange)] transition"
+                    className="w-full p-5 text-left flex justify-between items-center gap-4 font-bold text-sm sm:text-base text-[var(--text-main)] group cursor-pointer"
                   >
-                    <span>{faq.q}</span>
-                    <ChevronDown className={`w-5 h-5 shrink-0 text-[var(--text-faint)] transition-transform duration-300 ${isOpen ? 'rotate-180 text-[var(--accent-orange)]' : ''}`} />
-                  </button>
-                  {isOpen && (
-                    <div className="p-5 pt-0 border-t border-[var(--border-color)] text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed bg-[var(--bg-secondary)]">
-                      {faq.a}
+                    <span className="group-hover:text-[var(--accent-orange)] transition-colors">{faq.q}</span>
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 ${
+                      isOpen ? 'bg-[var(--accent-orange)] text-white rotate-180' : 'bg-[var(--bg-secondary)] text-[var(--text-faint)] group-hover:bg-[var(--accent-orange-tint)] group-hover:text-[var(--accent-orange)]'
+                    }`}>
+                      <ChevronDown className="w-4 h-4" />
                     </div>
-                  )}
+                  </button>
+                  <div
+                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="p-5 pt-3 border-t border-[var(--border-color)] text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed bg-[var(--bg-secondary)]/40">
+                        {faq.a}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               );
             })}

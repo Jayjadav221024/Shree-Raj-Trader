@@ -4,6 +4,7 @@ import { ArrowRight, Calendar, Search, LayoutGrid, List, SlidersHorizontal, X, B
 import { blogPostsWithImages } from '../data/blog';
 import { copy } from '../data/sectionCopy';
 import SEO from '../components/SEO';
+import CustomSelect from '../components/CustomSelect';
 
 const formatDate = (iso) =>
   new Date(`${iso}T00:00:00`).toLocaleDateString('en-IN', {
@@ -119,16 +120,19 @@ export default function BlogPage({ blogs: propBlogs }) {
               <div className="flex items-center gap-2">
                 <SlidersHorizontal className="w-4 h-4 text-[var(--text-muted)] shrink-0 hidden sm:inline" />
                 <span className="text-xs font-semibold text-[var(--text-muted)] hidden sm:inline">Sort:</span>
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-2 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs font-semibold text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-orange)] cursor-pointer"
-                >
-                  <option value="newest">Newest First</option>
-                  <option value="oldest">Oldest First</option>
-                  <option value="title-asc">Title (A - Z)</option>
-                  <option value="title-desc">Title (Z - A)</option>
-                </select>
+                <div className="w-40">
+                  <CustomSelect
+                    value={sortBy}
+                    onChange={(e) => setSortBy(e.target.value)}
+                    options={[
+                      { value: 'newest', label: 'Newest First' },
+                      { value: 'oldest', label: 'Oldest First' },
+                      { value: 'title-asc', label: 'Title (A - Z)' },
+                      { value: 'title-desc', label: 'Title (Z - A)' }
+                    ]}
+                    buttonClassName="px-3 py-1.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs font-semibold text-[var(--text-main)] hover:border-[var(--accent-orange)]"
+                  />
+                </div>
               </div>
 
               {/* View Toggle: Grid vs List */}

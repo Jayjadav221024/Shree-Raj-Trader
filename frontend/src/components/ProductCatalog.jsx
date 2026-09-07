@@ -5,6 +5,7 @@ import { productCategories } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 import { fillTemplate } from '../lib/siteContent';
 import SEO from './SEO';
+import CustomSelect from './CustomSelect';
 
 const CATEGORY_MAP = {
   'switchgears': 'switchgears',
@@ -237,16 +238,19 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
                 <div className="flex items-center gap-2">
                   <SlidersHorizontal className="w-4 h-4 text-[var(--text-muted)] shrink-0 hidden sm:inline" />
                   <span className="text-xs font-semibold text-[var(--text-muted)] hidden sm:inline">Sort:</span>
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="px-3 py-2 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs font-semibold text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-orange)] cursor-pointer"
-                  >
-                    <option value="featured">Featured Order</option>
-                    <option value="name-asc">Product Name (A - Z)</option>
-                    <option value="name-desc">Product Name (Z - A)</option>
-                    <option value="brand">By Brand</option>
-                  </select>
+                  <div className="w-44">
+                    <CustomSelect
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      options={[
+                        { value: 'featured', label: 'Featured Order' },
+                        { value: 'name-asc', label: 'Product Name (A - Z)' },
+                        { value: 'name-desc', label: 'Product Name (Z - A)' },
+                        { value: 'brand', label: 'By Brand' }
+                      ]}
+                      buttonClassName="px-3 py-1.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs font-semibold text-[var(--text-main)] hover:border-[var(--accent-orange)]"
+                    />
+                  </div>
                 </div>
 
                 {/* View Toggle: Grid vs List */}

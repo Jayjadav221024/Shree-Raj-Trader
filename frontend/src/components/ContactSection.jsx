@@ -4,6 +4,7 @@ import { companyInfo, faqs, groupCompanies } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 import SEO from './SEO';
 import api from '../admin/lib/axios';
+import CustomSelect from './CustomSelect';
 
 export default function ContactSection({ faqs: propFaqs }) {
   const head = copy['contact.header'];
@@ -144,11 +145,12 @@ export default function ContactSection({ faqs: propFaqs }) {
                 </div>
                 <div>
                   <label className="form-label">{form.subjectLabel}</label>
-                  <select value={formState.subject} onChange={update('subject')} className="form-control">
-                    {SUBJECTS.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
+                  <CustomSelect
+                    value={formState.subject}
+                    onChange={(e) => setFormState((prev) => ({ ...prev, subject: e.target.value }))}
+                    options={SUBJECTS}
+                    placeholder="Select Subject"
+                  />
                 </div>
               </div>
 
@@ -228,21 +230,31 @@ export default function ContactSection({ faqs: propFaqs }) {
               const qText = faq.question || faq.q;
               const aText = faq.answer || faq.a;
               return (
-                <div key={qText} className="card overflow-hidden">
+                <div key={qText} className="card overflow-hidden transition-all duration-300">
                   <button
                     onClick={() => setOpenFaq(isOpen ? -1 : idx)}
-                    className="w-full flex items-center justify-between gap-4 p-5 text-left"
+                    className="w-full flex items-center justify-between gap-4 p-5 text-left cursor-pointer group"
                   >
-                    <span className="font-bold text-[var(--text-main)] text-[0.95rem]">{qText}</span>
-                    {isOpen
-                      ? <ChevronUp className="w-4 h-4 text-orange shrink-0" />
-                      : <ChevronDown className="w-4 h-4 text-[var(--text-faint)] shrink-0" />}
+                    <span className="font-bold text-[var(--text-main)] text-[0.95rem] group-hover:text-[var(--accent-orange)] transition-colors">
+                      {qText}
+                    </span>
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 ${
+                      isOpen ? 'bg-[var(--accent-orange)] text-white rotate-180' : 'bg-[var(--bg-secondary)] text-[var(--text-faint)] group-hover:bg-[var(--accent-orange-tint)] group-hover:text-[var(--accent-orange)]'
+                    }`}>
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
                   </button>
-                  {isOpen && (
-                    <p className="px-5 pb-5 -mt-1 text-sm text-[var(--text-muted)] leading-relaxed animate-fadeIn">
-                      {aText}
-                    </p>
-                  )}
+                  <div
+                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                      isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="px-5 pb-5 pt-1 text-sm text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-color)]/60 bg-[var(--bg-secondary)]/30">
+                        {aText}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               );
             })}
