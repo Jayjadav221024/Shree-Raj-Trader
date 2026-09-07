@@ -12,14 +12,14 @@ export interface ICategory extends Document {
 }
 
 const CategorySchema = new Schema<ICategory>({
-  id: { type: String, required: true, unique: true },
+  id: { type: String, required: true, unique: true, index: true },
   title: { type: String, required: true },
   badge: { type: String, required: true },
   description: { type: String, required: true },
   imageKey: { type: String, required: true },
   // Screen-reader / SEO description of the picture. Blank falls back to the title.
   imageAlt: { type: String, default: '' },
-  isActive: { type: Boolean, default: true }
+  isActive: { type: Boolean, default: true, index: true }
 }, { timestamps: true });
 
 export const Category = mongoose.model<ICategory>('Category', CategorySchema);
@@ -41,10 +41,10 @@ export interface IProduct extends Document {
 }
 
 const ProductSchema = new Schema<IProduct>({
-  slug: { type: String, required: true, unique: true },
+  slug: { type: String, required: true, unique: true, index: true },
   name: { type: String, required: true },
   brand: { type: String, required: true },
-  categoryId: { type: String, required: true },
+  categoryId: { type: String, required: true, index: true },
   imageKey: { type: String, required: true },
   // Screen-reader / SEO description of the picture. Blank falls back to the name.
   imageAlt: { type: String, default: '' },
@@ -53,7 +53,7 @@ const ProductSchema = new Schema<IProduct>({
   specs: { type: [String], default: [] },
   liveSpecs: { type: [String], default: [] },
   attributes: { type: Schema.Types.Mixed, default: {} },
-  isActive: { type: Boolean, default: true }
+  isActive: { type: Boolean, default: true, index: true }
 }, { timestamps: true });
 
 export const Product = mongoose.model<IProduct>('Product', ProductSchema);
@@ -76,7 +76,7 @@ const TestimonialSchema = new Schema<ITestimonial>({
   tag: { type: String, default: '' },
   imageKey: { type: String, default: '' },
   feedback: { type: String, required: true },
-  isActive: { type: Boolean, default: true }
+  isActive: { type: Boolean, default: true, index: true }
 }, { timestamps: true });
 
 export const Testimonial = mongoose.model<ITestimonial>('Testimonial', TestimonialSchema);
@@ -92,8 +92,8 @@ export interface IFAQ extends Document {
 const FAQSchema = new Schema<IFAQ>({
   question: { type: String, required: true },
   answer: { type: String, required: true },
-  order: { type: Number, default: 0 },
-  isActive: { type: Boolean, default: true }
+  order: { type: Number, default: 0, index: true },
+  isActive: { type: Boolean, default: true, index: true }
 }, { timestamps: true });
 
 export const FAQ = mongoose.model<IFAQ>('FAQ', FAQSchema);
@@ -115,7 +115,7 @@ export interface IBlog extends Document {
 
 const BlogSchema = new Schema<IBlog>({
   title: { type: String, required: true },
-  slug: { type: String, required: true, unique: true },
+  slug: { type: String, required: true, unique: true, index: true },
   excerpt: { type: String, required: true },
   content: { type: String, required: true },
   author: { type: String, default: 'Shree Raj Traders Admin' },
@@ -125,7 +125,7 @@ const BlogSchema = new Schema<IBlog>({
   // Screen-reader / SEO description of the picture. Blank falls back to the title.
   imageAlt: { type: String, default: '' },
   tags: { type: [String], default: [] },
-  isActive: { type: Boolean, default: true }
+  isActive: { type: Boolean, default: true, index: true }
 }, { timestamps: true });
 
 export const Blog = mongoose.model<IBlog>('Blog', BlogSchema);
@@ -150,7 +150,7 @@ const InquirySchema = new Schema<IInquiry>({
   productName: { type: String, required: true },
   quantity: { type: Number, default: 1 },
   message: { type: String, default: '' },
-  timestamp: { type: Date, default: Date.now }
+  timestamp: { type: Date, default: Date.now, index: true }
 }, { timestamps: true });
 
 export const Inquiry = mongoose.model<IInquiry>('Inquiry', InquirySchema);

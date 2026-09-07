@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { 
-  MapPin, Phone, Mail, FileText, ArrowLeft, ArrowRight, 
-  ShieldCheck, Truck, Zap, Plus, Minus, CheckCircle, ChevronDown,
+  Phone, Mail, FileText, ArrowLeft, ArrowRight, 
+  ShieldCheck, Truck, Zap, CheckCircle, ChevronDown,
   Building2, HardHat, Link, Star
 } from 'lucide-react';
 import { CITIES } from '../data/cities';

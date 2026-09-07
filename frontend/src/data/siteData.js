@@ -343,6 +343,7 @@ export const testimonials = [
   {
     client: "Mukesh Dobariya",
     company: "HI-MAKE",
+    companyLogo: images.clients["hi-make"],
     feedback:
       "We received exceptional value for money on Siemens switchgear, along with valuable technical assistance in selecting the right products for our requirements."
   },

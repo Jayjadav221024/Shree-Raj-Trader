@@ -70,7 +70,7 @@ export const useAuthStore = create((set, get) => ({
         isInitialized: true,
         isLoading: false,
       });
-    } catch (error) {
+    } catch {
       set({ ...EMPTY_SESSION, isInitialized: true, isLoading: false });
     }
   },

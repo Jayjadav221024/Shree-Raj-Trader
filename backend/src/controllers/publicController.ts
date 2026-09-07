@@ -14,42 +14,42 @@ const inquirySchema = z.object({
 
 export const getPublicCategories = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const items = await Category.find({ isActive: true });
+    const items = await Category.find({ isActive: true }).lean();
     res.status(200).json({ success: true, data: items });
   } catch (error) { next(error); }
 };
 
 export const getPublicProducts = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const items = await Product.find({ isActive: true });
+    const items = await Product.find({ isActive: true }).lean();
     res.status(200).json({ success: true, data: items });
   } catch (error) { next(error); }
 };
 
 export const getPublicTestimonials = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const items = await Testimonial.find({ isActive: true });
+    const items = await Testimonial.find({ isActive: true }).lean();
     res.status(200).json({ success: true, data: items });
   } catch (error) { next(error); }
 };
 
 export const getPublicFAQs = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const items = await FAQ.find({ isActive: true }).sort({ order: 1 });
+    const items = await FAQ.find({ isActive: true }).sort({ order: 1 }).lean();
     res.status(200).json({ success: true, data: items });
   } catch (error) { next(error); }
 };
 
 export const getPublicBlogs = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const items = await Blog.find({ isActive: true }).sort({ createdAt: -1 });
+    const items = await Blog.find({ isActive: true }).sort({ createdAt: -1 }).lean();
     res.status(200).json({ success: true, data: items });
   } catch (error) { next(error); }
 };
 
 export const getPublicBlogBySlug = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const item = await Blog.findOne({ slug: req.params.slug, isActive: true });
+    const item = await Blog.findOne({ slug: req.params.slug, isActive: true }).lean();
     if (!item) {
       res.status(404).json({ success: false, message: 'Blog post not found' });
       return;

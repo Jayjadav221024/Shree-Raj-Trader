@@ -25,7 +25,8 @@ const handlePagedRequest = async (res, model, query, searchFields, populateField
         let dbQuery = model.find(filter)
             .sort({ [sortBy]: order })
             .skip((page - 1) * limit)
-            .limit(limit);
+            .limit(limit)
+            .lean();
         if (populateFields.length > 0) {
             populateFields.forEach((field) => {
                 dbQuery = dbQuery.populate(field);

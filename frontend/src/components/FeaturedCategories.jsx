@@ -5,11 +5,14 @@ import { productCategories } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 
 // Custom component to handle scroll-driven scattering/alignment transitions
-function ScatterRevealCard({ children, index, side = 'left' }) {
+function ScatterRevealCard({ children, index }) {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef(null);
 
   useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -24,14 +27,10 @@ function ScatterRevealCard({ children, index, side = 'left' }) {
       }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
-    }
+    observer.observe(el);
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
-      }
+      observer.disconnect();
     };
   }, []);
 

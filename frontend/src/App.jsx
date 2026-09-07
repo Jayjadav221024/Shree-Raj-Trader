@@ -26,7 +26,7 @@ import SEO from './components/SEO';
 import SectionEditOverlay, { isSectionEditMode } from './components/SectionEditOverlay';
 import { SiteContentProvider, useSiteContent } from './lib/siteContent';
 import { copy } from './data/sectionCopy';
-import { allProducts, productCategories, images } from './data/siteData';
+import { allProducts, productCategories } from './data/siteData';
 import { resolveImageUrl } from './admin/lib/imageResolver';
 import { useQuery } from '@tanstack/react-query';
 import api from './admin/lib/axios';
@@ -46,8 +46,6 @@ import EmailForPage from './admin/views/EmailFor';
 import EmailTemplatePage from './admin/views/EmailTemplate';
 import WebsiteEditorPage from './admin/views/WebsiteEditor';
 import { ProtectedRoute, PublicOnlyRoute } from './admin/components/ProtectedRoute';
-
-const ALL_ITEMS = allProducts;
 
 /** Scrolls to top on route change, or to the hash target when one is present. */
 function ScrollManager() {
@@ -213,15 +211,6 @@ function AppShell() {
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
-  /** Scrolls to a homepage section, navigating home first when off-route. */
-  const goToSection = (id) => {
-    if (pathname !== '/') {
-      navigate(`/#${id}`);
-      return;
-    }
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-  };
 
   const scrollToRfq = () => {
     if (pathname === '/contact' || pathname === '/contact/') {

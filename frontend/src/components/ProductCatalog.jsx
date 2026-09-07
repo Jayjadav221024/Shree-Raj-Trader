@@ -1,6 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { Search, FileText, ArrowRight, X, LayoutGrid, List, SlidersHorizontal, Layers, CheckCircle2 } from 'lucide-react';
+import { Search, FileText, ArrowRight, X, LayoutGrid, List, SlidersHorizontal } from 'lucide-react';
 import { productCategories } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 import { fillTemplate } from '../lib/siteContent';
@@ -13,12 +13,20 @@ const CATEGORY_MAP = {
   'gearbox': 'gearboxes',
   'gear-box': 'gearboxes',
   'gearboxes': 'gearboxes',
-  'gratings': 'frp-gratings',
   'frp-gratings': 'frp-gratings',
-  'trays': 'frp-cable-trays',
-  'frp-cable-trays': 'frp-cable-trays',
-  'frp-cable-tray': 'frp-cable-trays'
+  'gratings': 'frp-gratings',
+  'frp-cable-tray': 'frp-cable-tray',
+  'cable-tray': 'frp-cable-tray',
+  'cable-trays': 'frp-cable-tray',
+  'trays': 'frp-cable-tray'
 };
+
+const SORT_OPTIONS = [
+  { value: 'featured', label: 'Featured' },
+  { value: 'name-asc', label: 'Name (A to Z)' },
+  { value: 'name-desc', label: 'Name (Z to A)' },
+  { value: 'brand', label: 'Brand Name' },
+];
 
 // Spec keys promoted onto the card face, in display order.
 const CARD_SPECS = [
@@ -50,11 +58,11 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
     ...categories.map((cat) => ({ id: cat.id, label: cat.title }))
   ], [categories, c.allTabLabel]);
 
-  const getNormalizedCategory = (cat) => {
+  const getNormalizedCategory = useCallback((cat) => {
     if (!cat) return 'all';
     const normalized = CATEGORY_MAP[cat] || cat;
     return tabs.some(t => t.id === normalized) ? normalized : 'all';
-  };
+  }, [tabs]);
 
   const initialTab = getNormalizedCategory(category);
   const [activeTab, setActiveTab] = useState(initialTab);
@@ -63,7 +71,7 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
   React.useEffect(() => {
     const normalized = getNormalizedCategory(category);
     setActiveTab(normalized);
-  }, [category, tabs]);
+  }, [category, getNormalizedCategory]);
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);

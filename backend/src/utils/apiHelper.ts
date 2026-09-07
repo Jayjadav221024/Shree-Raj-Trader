@@ -45,7 +45,8 @@ export const handlePagedRequest = async <T extends Document>(
     let dbQuery = model.find(filter)
       .sort({ [sortBy]: order })
       .skip((page - 1) * limit)
-      .limit(limit);
+      .limit(limit)
+      .lean();
 
     if (populateFields.length > 0) {
       populateFields.forEach((field) => {

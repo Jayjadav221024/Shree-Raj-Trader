@@ -32,7 +32,7 @@ const jobApplicationSchema = z.object({
 
 export const getPublicJobOpenings = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const items = await JobOpening.find({ isActive: true }).sort({ order: 1, createdAt: -1 });
+    const items = await JobOpening.find({ isActive: true }).sort({ order: 1, createdAt: -1 }).lean();
     res.status(200).json({ success: true, message: 'Job openings retrieved', data: items });
   } catch (error) {
     next(error);

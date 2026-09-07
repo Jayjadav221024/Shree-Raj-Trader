@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Quote, Users, Mail, ArrowRight, ShieldCheck, Award, HeartHandshake, Sparkles, Briefcase } from 'lucide-react';
 import { leadershipMessages, teamMembers, careers } from '../data/team';
-import { siteMeta, routes, companyInfo } from '../data/siteData';
-import { copy } from '../data/sectionCopy';
 import SEO from '../components/SEO';
 
 const DEPARTMENTS = ['All', 'Leadership', 'Sales & Support', 'Operations & Logistics', 'Finance & Accounts'];

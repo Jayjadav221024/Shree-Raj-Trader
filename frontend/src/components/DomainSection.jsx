@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Cpu, Building2, Users, Leaf, Zap, Truck, ExternalLink, MapPin, ShieldCheck, Wrench } from 'lucide-react';
-import { domains, groupCompanies, images } from '../data/siteData';
+import { Cpu, Building2, Users, Leaf, Zap, Truck, ExternalLink, MapPin, Wrench } from 'lucide-react';
+import { domains, images } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 
 const ICONS = { Cpu, Building2, Users, Leaf, Zap, Truck };

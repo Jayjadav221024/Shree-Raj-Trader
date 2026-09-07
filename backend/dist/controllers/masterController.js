@@ -362,6 +362,9 @@ const productMasterSchema = zod_1.z.object({
 const testimonialMasterSchema = zod_1.z.object({
     client: zod_1.z.string().min(2),
     company: zod_1.z.string().min(2),
+    designation: zod_1.z.string().optional().default(''),
+    tag: zod_1.z.string().optional().default(''),
+    imageKey: zod_1.z.string().optional().default(''),
     feedback: zod_1.z.string().min(2),
     isActive: zod_1.z.boolean().default(true)
 });

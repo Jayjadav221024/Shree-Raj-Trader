@@ -14,7 +14,7 @@ const inquirySchema = zod_1.z.object({
 });
 const getPublicCategories = async (req, res, next) => {
     try {
-        const items = await WebsiteContent_1.Category.find({ isActive: true });
+        const items = await WebsiteContent_1.Category.find({ isActive: true }).lean();
         res.status(200).json({ success: true, data: items });
     }
     catch (error) {
@@ -24,7 +24,7 @@ const getPublicCategories = async (req, res, next) => {
 exports.getPublicCategories = getPublicCategories;
 const getPublicProducts = async (req, res, next) => {
     try {
-        const items = await WebsiteContent_1.Product.find({ isActive: true });
+        const items = await WebsiteContent_1.Product.find({ isActive: true }).lean();
         res.status(200).json({ success: true, data: items });
     }
     catch (error) {
@@ -34,7 +34,7 @@ const getPublicProducts = async (req, res, next) => {
 exports.getPublicProducts = getPublicProducts;
 const getPublicTestimonials = async (req, res, next) => {
     try {
-        const items = await WebsiteContent_1.Testimonial.find({ isActive: true });
+        const items = await WebsiteContent_1.Testimonial.find({ isActive: true }).lean();
         res.status(200).json({ success: true, data: items });
     }
     catch (error) {
@@ -44,7 +44,7 @@ const getPublicTestimonials = async (req, res, next) => {
 exports.getPublicTestimonials = getPublicTestimonials;
 const getPublicFAQs = async (req, res, next) => {
     try {
-        const items = await WebsiteContent_1.FAQ.find({ isActive: true }).sort({ order: 1 });
+        const items = await WebsiteContent_1.FAQ.find({ isActive: true }).sort({ order: 1 }).lean();
         res.status(200).json({ success: true, data: items });
     }
     catch (error) {
@@ -54,7 +54,7 @@ const getPublicFAQs = async (req, res, next) => {
 exports.getPublicFAQs = getPublicFAQs;
 const getPublicBlogs = async (req, res, next) => {
     try {
-        const items = await WebsiteContent_1.Blog.find({ isActive: true }).sort({ createdAt: -1 });
+        const items = await WebsiteContent_1.Blog.find({ isActive: true }).sort({ createdAt: -1 }).lean();
         res.status(200).json({ success: true, data: items });
     }
     catch (error) {
@@ -64,7 +64,7 @@ const getPublicBlogs = async (req, res, next) => {
 exports.getPublicBlogs = getPublicBlogs;
 const getPublicBlogBySlug = async (req, res, next) => {
     try {
-        const item = await WebsiteContent_1.Blog.findOne({ slug: req.params.slug, isActive: true });
+        const item = await WebsiteContent_1.Blog.findOne({ slug: req.params.slug, isActive: true }).lean();
         if (!item) {
             res.status(404).json({ success: false, message: 'Blog post not found' });
             return;

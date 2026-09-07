@@ -30,7 +30,7 @@ const jobApplicationSchema = zod_1.z.object({
 // ---------------------------------------------------------------------------
 const getPublicJobOpenings = async (req, res, next) => {
     try {
-        const items = await Career_1.JobOpening.find({ isActive: true }).sort({ order: 1, createdAt: -1 });
+        const items = await Career_1.JobOpening.find({ isActive: true }).sort({ order: 1, createdAt: -1 }).lean();
         res.status(200).json({ success: true, message: 'Job openings retrieved', data: items });
     }
     catch (error) {

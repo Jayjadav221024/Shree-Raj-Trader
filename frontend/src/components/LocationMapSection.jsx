@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Navigation, ExternalLink, ShieldCheck, Building2, CheckCircle2, Copy, Check } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Navigation, ExternalLink, Building2, Copy, Check } from 'lucide-react';
 import { companyInfo } from '../data/siteData';
 import { copy } from '../data/sectionCopy';
 
