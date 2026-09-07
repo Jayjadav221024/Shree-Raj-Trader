@@ -153,9 +153,9 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
             <div className="w-16 h-[3px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-cyan)] to-transparent mt-3 rounded-full" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10 min-h-[420px]">
-            {/* LEFT COLUMN: 3-Node Rotating Circular Orbit Window across 10+ Testimonials */}
-            <div className="lg:col-span-5 relative py-8 min-h-[360px] flex items-center overflow-visible">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10 min-h-0 lg:min-h-[420px]">
+            {/* DESKTOP (lg:): 3-Node Rotating Circular Orbit Window across 10+ Testimonials */}
+            <div className="hidden lg:flex lg:col-span-5 relative py-8 min-h-[360px] items-center overflow-visible">
               {/* Perfect SVG Arc connecting avatar centers */}
               <svg
                 className="absolute left-0 top-0 bottom-0 w-full h-full pointer-events-none stroke-slate-300"
@@ -251,18 +251,91 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
               </div>
             </div>
 
+            {/* MOBILE ONLY (< lg): Premium Compact Client Avatar Carousel */}
+            <div className="lg:hidden flex flex-col gap-4">
+              <div className="flex items-center justify-center gap-3 py-2 overflow-x-auto no-scrollbar">
+                {[-1, 0, 1].map((slotOffset) => {
+                  const itemIndex = (activeIndex + slotOffset + enhancedList.length) % enhancedList.length;
+                  const item = enhancedList[itemIndex];
+                  const isActive = slotOffset === 0;
+
+                  return (
+                    <button
+                      key={`mob-${slotOffset}-${item.client}`}
+                      onClick={() => setActiveIndex(itemIndex)}
+                      className={`flex flex-col items-center gap-1.5 p-2 rounded-2xl transition-all duration-500 cursor-pointer ${
+                        isActive
+                          ? 'scale-105 opacity-100 bg-slate-50 border border-[var(--accent-orange)]/40 shadow-xs'
+                          : 'scale-90 opacity-50 hover:opacity-80'
+                      }`}
+                    >
+                      <div className="relative">
+                        {item.hasRealPhoto ? (
+                          <img
+                            src={item.image}
+                            alt={item.client}
+                            className={`rounded-full object-cover transition-all ${
+                              isActive
+                                ? 'w-14 h-14 ring-3 ring-[var(--accent-orange)] shadow-md'
+                                : 'w-10 h-10 ring-1 ring-slate-200 grayscale'
+                            }`}
+                          />
+                        ) : item.companyLogo ? (
+                          <div className={`rounded-full bg-white border p-1 flex items-center justify-center transition-all ${
+                            isActive
+                              ? 'w-14 h-14 ring-3 ring-[var(--accent-orange)] border-transparent shadow-md'
+                              : 'w-10 h-10 ring-1 ring-slate-200 border-slate-200'
+                          }`}>
+                            <img
+                              src={item.companyLogo}
+                              alt={item.company}
+                              className="max-h-full max-w-full object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className={`rounded-full bg-gradient-to-tr ${item.theme.badgeBg} text-white font-bold flex items-center justify-center transition-all ${
+                            isActive
+                              ? 'w-14 h-14 text-base ring-3 ring-[var(--accent-orange)] shadow-md'
+                              : 'w-10 h-10 text-xs ring-1 ring-slate-200'
+                          }`}>
+                            {item.initials}
+                          </div>
+                        )}
+                        {isActive && (
+                          <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white flex items-center justify-center shadow-xs text-[8px] text-white">
+                            ✓
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="text-center max-w-[90px]">
+                        <p className={`text-xs font-bold truncate ${isActive ? 'text-[var(--color-ink)]' : 'text-slate-500'}`}>
+                          {item.client.split(' ')[0]}
+                        </p>
+                        {isActive && (
+                          <p className="text-[10px] text-emerald-600 font-semibold truncate flex items-center justify-center gap-0.5">
+                            ★ 4.9
+                          </p>
+                        )}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* RIGHT COLUMN: Clean Quotation Display */}
-            <div className="lg:col-span-7 flex flex-col justify-between text-left lg:pl-8 border-t lg:border-t-0 lg:border-l border-slate-200 pt-8 lg:pt-0 min-h-[280px]">
+            <div className="lg:col-span-7 flex flex-col justify-between text-left lg:pl-8 border-t lg:border-t-0 lg:border-l border-slate-200 pt-6 lg:pt-0 min-h-0 lg:min-h-[280px]">
               <div className="relative">
                 {/* Quotation mark */}
-                <div className="text-4xl sm:text-5xl lg:text-6xl text-[var(--accent-orange)] font-bold leading-none mb-3 select-none opacity-80">
+                <div className="text-3xl sm:text-5xl lg:text-6xl text-[var(--accent-orange)] font-bold leading-none mb-2 sm:mb-3 select-none opacity-80">
                   &ldquo;
                 </div>
 
                 {/* Animated Quote Feedback matching Website Sans-Serif font */}
                 <blockquote
                   key={`quote-${activeIndex}`}
-                  className="text-lg sm:text-xl lg:text-2xl text-[var(--color-ink)] font-sans font-medium leading-relaxed mb-8 min-h-[6.5rem] animate-fadeIn relative z-10"
+                  className="text-base sm:text-xl lg:text-2xl text-[var(--color-ink)] font-sans font-medium leading-relaxed mb-6 sm:mb-8 min-h-[4.5rem] sm:min-h-[6.5rem] animate-fadeIn relative z-10"
                 >
                   {activeItem.feedback}
                 </blockquote>
@@ -270,11 +343,11 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
                 {/* Active Client Sub-signature */}
                 <div
                   key={`client-${activeIndex}`}
-                  className="flex items-center gap-3 animate-fadeIn text-sm text-[var(--color-muted)] font-sans"
+                  className="flex items-center gap-3 animate-fadeIn text-xs sm:text-sm text-[var(--color-muted)] font-sans"
                 >
-                  <span className="w-8 h-[2px] bg-[var(--accent-orange)] inline-block rounded-full" />
+                  <span className="w-6 sm:w-8 h-[2px] bg-[var(--accent-orange)] inline-block rounded-full" />
                   <span className="text-[var(--color-ink)] font-bold tracking-wide">{activeItem.client}</span>
-                  <span>({activeItem.company})</span>
+                  <span className="truncate">({activeItem.company})</span>
                 </div>
               </div>
 

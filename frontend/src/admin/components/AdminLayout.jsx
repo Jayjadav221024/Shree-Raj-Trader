@@ -22,9 +22,8 @@ export default function AdminLayout({ children }) {
       <Sidebar />
 
       <div
-        className={`flex-1 flex flex-col min-h-screen min-w-0 transition-[padding] duration-300 ${
-          sidebarCollapsed ? 'md:pl-[4.5rem]' : 'md:pl-64'
-        }`}
+        className={`flex-1 flex flex-col min-h-screen min-w-0 transition-[padding] duration-300 ${sidebarCollapsed ? 'md:pl-[4.5rem]' : 'md:pl-64'
+          }`}
       >
         <Topbar />
 

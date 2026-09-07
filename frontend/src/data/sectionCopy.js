@@ -147,8 +147,8 @@ export const copy = {
       { label: 'Products', href: '/products/' },
       { label: 'Locations', href: '/locations/' },
       { label: 'Gallery', href: '/gallery/' },
-      { label: 'Blog', href: '/blog/' },
-      { label: 'Contact', href: '/contact/' }
+      { label: 'Blogs', href: '/blog/' },
+      { label: 'Contact Us', href: '/contact/' }
     ],
     productsHeading: 'Product Solutions',
     productLinks: [
@@ -373,7 +373,7 @@ export const copy = {
   // ---------------------------------------------------------------------------
   'blog.header': {
     eyebrow: 'Insights & Guides',
-    titleAccent: 'Blog',
+    titleAccent: 'Blogs',
     intro:
       'Technical guidance on switchgears, industrial motors, FRP gratings and cable trays.'
   },
