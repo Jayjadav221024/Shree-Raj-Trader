@@ -233,7 +233,7 @@ export const copy = {
 
   'home.group-companies': {
     eyebrow: 'Synergistic Group Alliance',
-    title: 'Transpower Group &',
+    title: 'Our Group &',
     titleAccent: 'Sister Companies'
   },
 
