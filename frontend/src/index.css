@@ -1585,3 +1585,44 @@ dialog[open] {
     transition: none !important;
   }
 }
+
+/* ==========================================================================
+   INTERACTIVE CARD HOVER COLOR MOVEMENT & SHIMMER SWEEP
+   ========================================================================== */
+.interactive-glow-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
+}
+
+@keyframes cardShimmerSweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.card-shimmer-sweep {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 40%,
+    rgba(217, 101, 59, 0.15) 50%,
+    rgba(20, 96, 122, 0.15) 60%,
+    transparent 100%
+  );
+  width: 60%;
+  height: 100%;
+  animation: cardShimmerSweep 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.interactive-glow-card:hover .card-shimmer-sweep {
+  opacity: 1;
+}
+

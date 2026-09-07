@@ -51,13 +51,13 @@ export default function JourneySection() {
   }, []);
 
   return (
-    <section id="journey" data-section="home.journey" className="section bg-[var(--bg-card)] overflow-hidden">
+    <section id="journey" data-section="home.journey" className="section bg-[var(--bg-card)] relative">
       <div className="container-page">
         <div className="timeline-container relative" ref={timelineRef}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             
-            {/* Left Column: Sticky Title & Info */}
-            <div className="lg:col-span-5 lg:sticky lg:top-28 h-fit">
+            {/* Left Column: Sticky Title & Info while scrolling down and up */}
+            <div className="lg:col-span-5 lg:sticky lg:top-32 self-start">
               <span className="eyebrow eyebrow-teal">{c.eyebrow}</span>
               <h2 className="section-title">
                 {c.title} <span className="text-orange">{c.titleAccent}</span>

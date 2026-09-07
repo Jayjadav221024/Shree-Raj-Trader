@@ -108,7 +108,7 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
     if (isPaused || enhancedList.length <= 1) return;
     timerRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % enhancedList.length);
-    }, 6000);
+    }, 2000);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
@@ -127,79 +127,166 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
   return (
     <section id="testimonials" className="section section-alt overflow-hidden py-16">
       <div className="container-page">
-        {/* Cinematic Testimonial Showcase Box matching theme colors */}
+        {/* Testimonial Showcase Box in clean white surface matching site theme */}
         <div
           data-section="home.testimonials"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
-          className="relative rounded-2xl md:rounded-[24px] overflow-hidden bg-[#0a121e] border border-slate-800 shadow-[0_24px_50px_-12px_rgba(10,18,30,0.6)] p-6 sm:p-10 lg:p-12 mb-16"
+          className="relative rounded-2xl md:rounded-[28px] overflow-hidden bg-white border border-[var(--border-color)] shadow-[0_12px_40px_-10px_rgba(14,26,43,0.08)] p-6 sm:p-10 lg:p-14 mb-16"
         >
-          {/* Subtle Ambient Background Gradients in theme terracotta and teal */}
-          <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[var(--accent-cyan)]/25 via-transparent to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[450px] h-[450px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-[var(--accent-orange)]/20 via-transparent to-transparent pointer-events-none" />
+          {/* Subtle Ambient Background Gradients */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[var(--accent-cyan-tint)]/60 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-[var(--accent-orange-tint)]/60 via-transparent to-transparent pointer-events-none" />
           
-          {/* Top Multi-Color Gradient Line matching theme palette */}
+          {/* Top Multi-Color Gradient Line */}
           <div className="absolute top-0 inset-x-0 h-[3px] bg-gradient-to-r from-[var(--accent-cyan)] via-[var(--accent-orange)] to-[var(--accent-orange-bright)]" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center relative z-10">
-            {/* LEFT COLUMN: Quote & Information */}
-            <div className="lg:col-span-6 xl:col-span-6 flex flex-col justify-between text-left">
-              <div>
-                <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.22em] text-[var(--accent-orange)] block mb-2 font-mono">
-                  {c.eyebrow || 'IN THEIR WORDS'}
-                </span>
+          {/* Section Eyebrow & Title */}
+          <div className="mb-10 text-left relative z-10">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.22em] text-[var(--accent-orange)] block mb-2 font-mono">
+              {c.eyebrow || 'IN THEIR WORDS'}
+            </span>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-black uppercase text-[var(--color-ink)] leading-tight tracking-wide">
+              {c.title || 'THE LINES THAT'}{' '}
+              <span className="text-[var(--accent-orange)]">{c.titleAccent || 'MOVED THE ROOM'}</span>
+            </h2>
+            <div className="w-16 h-[3px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-cyan)] to-transparent mt-3 rounded-full" />
+          </div>
 
-                <h2 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-black uppercase text-white leading-tight mb-4 tracking-wide">
-                  {c.title || 'THE LINES THAT'}{' '}
-                  <span className="text-[var(--accent-orange)]">{c.titleAccent || 'MOVED THE ROOM'}</span>
-                </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10 min-h-[380px]">
+            {/* LEFT COLUMN: Curved Arc Orbital Avatar Path (True Geometry Matching Image) */}
+            <div className="lg:col-span-5 relative py-8 min-h-[320px] flex items-center">
+              {/* Perfect SVG Arc connecting avatar centers */}
+              <svg
+                className="absolute left-0 top-0 bottom-0 w-full h-full pointer-events-none stroke-slate-300"
+                viewBox="0 0 400 320"
+                fill="none"
+              >
+                {/* Smooth quadratic arc passing through (45, 45), (105, 160), (45, 275) */}
+                <path
+                  d="M 20 10 Q 140 160 20 310"
+                  stroke="#cbd5e1"
+                  strokeWidth="1.5"
+                />
+              </svg>
 
-                {/* Accent quote symbol and bar */}
-                <div className="mb-4">
-                  <div className="w-14 h-[2.5px] bg-gradient-to-r from-[var(--accent-orange)] via-[var(--accent-cyan)] to-transparent mb-1 rounded-full" />
-                  <Quote className="w-6 h-6 text-[var(--accent-orange)] rotate-180 inline-block fill-[var(--accent-orange)]" />
+              {/* Avatar Nodes precisely placed */}
+              <div className="flex flex-col justify-between h-[280px] w-full relative z-10">
+                {enhancedList.map((item, idx) => {
+                  const isActive = idx === activeIndex;
+
+                  // 3-point arc positions matching the SVG curve:
+                  // idx 0 (top): x = 32px
+                  // idx 1 (middle): x = 74px
+                  // idx 2 (bottom): x = 32px
+                  const total = enhancedList.length;
+                  const factor = total > 1 ? idx / (total - 1) : 0.5; // 0 to 1
+                  const normalized = (factor - 0.5) * 2; // -1 to 1
+                  const offsetX = Math.round((1 - normalized * normalized) * 44) + 12;
+
+                  return (
+                    <div
+                      key={`${item.client}-${idx}`}
+                      onClick={() => setActiveIndex(idx)}
+                      style={{
+                        paddingLeft: `${offsetX}px`,
+                      }}
+                      className="flex items-center gap-3.5 cursor-pointer transition-all duration-300 select-none group w-fit"
+                    >
+                      {/* Avatar Circle on the Arc with solid white boundary */}
+                      <div className="relative shrink-0">
+                        {item.hasRealPhoto ? (
+                          <img
+                            src={item.image}
+                            alt={item.client}
+                            className={`rounded-full object-cover transition-all duration-300 bg-white ring-4 ring-white ${
+                              isActive
+                                ? 'w-14 h-14 shadow-lg ring-emerald-500 scale-110'
+                                : 'w-10 h-10 ring-slate-300 grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0'
+                            }`}
+                          />
+                        ) : item.companyLogo ? (
+                          <div className={`rounded-full bg-white border border-slate-200 p-1.5 flex items-center justify-center transition-all duration-300 ring-4 ring-white ${
+                            isActive
+                              ? 'w-14 h-14 shadow-lg ring-emerald-500 scale-110'
+                              : 'w-10 h-10 ring-slate-300 opacity-75 group-hover:opacity-100'
+                          }`}>
+                            <img
+                              src={item.companyLogo}
+                              alt={item.company}
+                              className="max-h-full max-w-full object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className={`rounded-full bg-gradient-to-tr ${item.theme.badgeBg} text-white font-bold flex items-center justify-center shadow-md transition-all duration-300 ring-4 ring-white ${
+                            isActive
+                              ? 'w-14 h-14 text-base ring-emerald-500 scale-110'
+                              : 'w-10 h-10 text-xs ring-slate-300 opacity-75 group-hover:opacity-100'
+                          }`}>
+                            {item.initials}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Person Details (Exact style matching reference image) */}
+                      <div className="text-left min-w-0 transition-all duration-300">
+                        <h4 className={`font-bold tracking-tight truncate transition-colors duration-300 ${
+                          isActive ? 'text-base sm:text-lg text-slate-900' : 'text-sm sm:text-base text-slate-700 group-hover:text-slate-900'
+                        }`}>
+                          {item.client}
+                        </h4>
+                        <div className="flex items-center gap-1.5 text-xs text-slate-500 mt-0.5">
+                          <span className="text-emerald-600 font-bold flex items-center gap-0.5">
+                            ★ 4.9
+                          </span>
+                          <span>on 29 Aug, 2025</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* RIGHT COLUMN: Clean Quotation Display */}
+            <div className="lg:col-span-7 flex flex-col justify-between text-left lg:pl-8 border-t lg:border-t-0 lg:border-l border-slate-200 pt-8 lg:pt-0 min-h-[280px]">
+              <div className="relative">
+                {/* Quotation mark */}
+                <div className="text-4xl sm:text-5xl lg:text-6xl text-[var(--accent-orange)] font-bold leading-none mb-3 select-none opacity-80">
+                  &ldquo;
                 </div>
 
-                {/* Quote Body */}
-                <blockquote className="text-base sm:text-lg lg:text-[19px] text-slate-100 font-normal leading-relaxed mb-8 min-h-[4.5rem]">
-                  "{activeItem.feedback}"
+                {/* Animated Quote Feedback matching Website Sans-Serif font */}
+                <blockquote
+                  key={`quote-${activeIndex}`}
+                  className="text-lg sm:text-xl lg:text-2xl text-[var(--color-ink)] font-sans font-medium leading-relaxed mb-8 min-h-[6.5rem] animate-fadeIn relative z-10"
+                >
+                  {activeItem.feedback}
                 </blockquote>
 
-                {/* Client Name & Designation & Company Badge */}
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-slate-800 to-slate-700 border-2 border-[var(--accent-orange)] flex items-center justify-center font-bold text-white tracking-wider text-sm shadow-md shrink-0">
-                    {activeItem.initials}
-                  </div>
-                  <div className="space-y-0.5">
-                    <div className="text-sm sm:text-base font-black uppercase text-white tracking-wider font-display flex items-center gap-2">
-                      {activeItem.client}
-                      <ShieldCheck className="w-4 h-4 text-emerald-400 inline" title="Verified Client" />
-                    </div>
-                    <div className="text-xs sm:text-sm text-slate-300 font-medium tracking-wide flex items-center gap-2">
-                      <span>{activeItem.company}</span>
-                      {activeItem.designation && activeItem.designation !== activeItem.company && (
-                        <>
-                          <span className="text-slate-500">•</span>
-                          <span className="text-slate-400">{activeItem.designation}</span>
-                        </>
-                      )}
-                    </div>
-                  </div>
+                {/* Active Client Sub-signature */}
+                <div
+                  key={`client-${activeIndex}`}
+                  className="flex items-center gap-3 animate-fadeIn text-sm text-[var(--color-muted)] font-sans"
+                >
+                  <span className="w-8 h-[2px] bg-[var(--accent-orange)] inline-block rounded-full" />
+                  <span className="text-[var(--color-ink)] font-bold tracking-wide">{activeItem.client}</span>
+                  <span>({activeItem.company})</span>
                 </div>
               </div>
 
-              {/* Progress Bar & Navigation controls */}
-              <div className="flex items-center justify-between pt-4 border-t border-slate-800/80">
+              {/* Progress Indicators & Manual Navigation */}
+              <div className="flex items-center justify-between pt-6 mt-6 border-t border-slate-200">
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1.5">
                     {enhancedList.map((_, idx) => (
                       <button
                         key={idx}
                         onClick={() => setActiveIndex(idx)}
-                        className={`h-1 rounded-full transition-all duration-300 ${
+                        className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                           idx === activeIndex
-                            ? 'w-8 bg-[var(--accent-orange)]'
-                            : 'w-3.5 bg-slate-700/80 hover:bg-slate-500'
+                            ? 'w-10 bg-[var(--accent-orange)]'
+                            : 'w-4 bg-slate-300 hover:bg-slate-400'
                         }`}
                         aria-label={`Go to testimonial ${idx + 1}`}
                       />
@@ -213,14 +300,14 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
                 <div className="flex items-center gap-2">
                   <button
                     onClick={handlePrev}
-                    className="w-8 h-8 rounded-full bg-slate-900/90 hover:bg-[var(--accent-orange)] text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-700 cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-slate-100 hover:bg-[var(--accent-orange)] text-slate-600 hover:text-white flex items-center justify-center transition-colors border border-slate-200 cursor-pointer shadow-sm"
                     aria-label="Previous testimonial"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     onClick={handleNext}
-                    className="w-8 h-8 rounded-full bg-slate-900/90 hover:bg-[var(--accent-orange)] text-slate-300 hover:text-white flex items-center justify-center transition-colors border border-slate-700 cursor-pointer"
+                    className="w-9 h-9 rounded-full bg-slate-100 hover:bg-[var(--accent-orange)] text-slate-600 hover:text-white flex items-center justify-center transition-colors border border-slate-200 cursor-pointer shadow-sm"
                     aria-label="Next testimonial"
                   >
                     <ChevronRight className="w-4 h-4" />
@@ -228,125 +315,53 @@ export default function TestimonialsSection({ testimonials: propTestimonials }) 
                 </div>
               </div>
             </div>
-
-            {/* RIGHT COLUMN: Vertical Cards Carousel */}
-            <div className="lg:col-span-6 xl:col-span-6 flex items-center gap-4 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 justify-start lg:justify-end">
-              {enhancedList.map((item, idx) => {
-                const isActive = idx === activeIndex;
-
-                return (
-                  <div
-                    key={`${item.client}-${idx}`}
-                    onClick={() => setActiveIndex(idx)}
-                    className={`shrink-0 rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300 select-none flex flex-col justify-between ${
-                      isActive
-                        ? 'w-[185px] sm:w-[215px] h-[300px] sm:h-[350px] border-2 border-[var(--accent-orange)] shadow-[0_20px_40px_-10px_rgba(217,101,59,0.35)] scale-100 z-20 ring-1 ring-[var(--accent-orange)]/50'
-                        : 'w-[130px] sm:w-[155px] h-[260px] sm:h-[300px] border border-slate-800/80 opacity-70 hover:opacity-95 hover:scale-[1.02] z-10'
-                    } bg-gradient-to-b ${item.theme.cardBg}`}
-                  >
-                    {/* Background Pattern Grid */}
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
-
-                    {/* If genuine photo exists, render it. Otherwise render authentic company/initial badge */}
-                    {item.hasRealPhoto ? (
-                      <>
-                        <img
-                          src={item.image}
-                          alt={item.client}
-                          className="absolute inset-0 w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a121e] via-[#0a121e]/40 to-black/30" />
-                      </>
-                    ) : (
-                      <div className="relative z-10 p-4 pt-14 flex flex-col items-center justify-center flex-1 text-center">
-                        {/* Authentic Company Logo or Stylized Monogram Avatar */}
-                        {item.companyLogo ? (
-                          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-white/95 p-2.5 shadow-lg border border-slate-700 flex items-center justify-center mb-3 transition-transform">
-                            <img
-                              src={item.companyLogo}
-                              alt={item.company}
-                              className="max-h-full max-w-full object-contain"
-                            />
-                          </div>
-                        ) : (
-                          <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr ${item.theme.badgeBg} text-white font-black text-xl sm:text-2xl flex items-center justify-center shadow-lg border border-white/20 mb-3 tracking-wider`}>
-                            {item.initials}
-                          </div>
-                        )}
-
-                        <div className="inline-flex items-center gap-1 text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-widest bg-black/40 px-2.5 py-1 rounded-full border border-slate-800">
-                          <Building2 className="w-3 h-3 text-[var(--accent-orange)]" />
-                          <span className="truncate max-w-[100px]">{item.company}</span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Top Tag Pill in theme styling */}
-                    <div className="absolute top-3.5 left-3.5 z-20">
-                      <span className="text-[10px] sm:text-[11px] font-bold px-2.5 py-0.5 rounded-full backdrop-blur-md bg-black/75 border border-[var(--accent-orange)]/60 text-[var(--accent-orange-bright)] tracking-wider uppercase shadow-sm flex items-center gap-1">
-                        <UserCheck className="w-3 h-3 inline" />
-                        {item.tag}
-                      </span>
-                    </div>
-
-                    {/* Bottom Author Name Overlay */}
-                    <div className="relative z-20 p-3.5 bg-gradient-to-t from-[#060b13] via-[#0a121e]/95 to-transparent text-left border-t border-slate-800/40">
-                      <div className="font-black text-white text-xs uppercase tracking-wide truncate">
-                        {item.client}
-                      </div>
-                      <div className="text-[10px] sm:text-[11px] font-medium text-slate-300 truncate mt-0.5">
-                        {item.company}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
+      </div>
 
-        {/* Reputed clients */}
-        <div data-section="home.clients">
+      {/* Reputed clients - Full screen width marquee */}
+      <div data-section="home.clients" className="w-full mt-4">
+        <div className="container-page">
           <div className="section-header">
             <span className="eyebrow eyebrow-teal">{cl.eyebrow}</span>
             <h2 className="section-title">
               {cl.title} <span className="text-orange">{cl.titleAccent}</span>
             </h2>
           </div>
+        </div>
 
-          <div className="marquee-wrapper relative overflow-hidden py-4 w-full">
-            {/* Edge gradient fades for seamless overlay blending */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10 pointer-events-none" />
+        <div className="marquee-wrapper relative overflow-hidden py-4 w-full">
+          {/* Edge gradient fades for seamless overlay blending across the full viewport */}
+          <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-36 md:w-48 bg-gradient-to-r from-[var(--bg-secondary)] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-36 md:w-48 bg-gradient-to-l from-[var(--bg-secondary)] to-transparent z-10 pointer-events-none" />
 
-            <div className="marquee-track flex gap-6 animate-marquee hover:[animation-play-state:paused] cursor-pointer">
-              {/* Set 1 */}
-              {clientLogos.map((client) => (
-                <div key={`set1-${client.name}`} className="client-chip w-64 sm:w-72 h-28 sm:h-32 px-6 py-4 shrink-0 flex items-center justify-center">
-                  <img
-                    src={client.image.src}
-                    alt={client.imageAlt || `${client.name} logo`}
-                    width={client.image.width}
-                    height={client.image.height}
-                    loading="lazy"
-                    className="max-h-20 sm:max-h-24 w-auto max-w-[85%] object-contain"
-                  />
-                </div>
-              ))}
-              {/* Set 2 */}
-              {clientLogos.map((client) => (
-                <div key={`set2-${client.name}`} className="client-chip w-64 sm:w-72 h-28 sm:h-32 px-6 py-4 shrink-0 flex items-center justify-center">
-                  <img
-                    src={client.image.src}
-                    alt={client.imageAlt || `${client.name} logo`}
-                    width={client.image.width}
-                    height={client.image.height}
-                    loading="lazy"
-                    className="max-h-20 sm:max-h-24 w-auto max-w-[85%] object-contain"
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="marquee-track flex gap-6 animate-marquee hover:[animation-play-state:paused] cursor-pointer">
+            {/* Set 1 */}
+            {clientLogos.map((client) => (
+              <div key={`set1-${client.name}`} className="client-chip w-64 sm:w-72 h-28 sm:h-32 px-6 py-4 shrink-0 flex items-center justify-center">
+                <img
+                  src={client.image.src}
+                  alt={client.imageAlt || `${client.name} logo`}
+                  width={client.image.width}
+                  height={client.image.height}
+                  loading="lazy"
+                  className="max-h-20 sm:max-h-24 w-auto max-w-[85%] object-contain"
+                />
+              </div>
+            ))}
+            {/* Set 2 */}
+            {clientLogos.map((client) => (
+              <div key={`set2-${client.name}`} className="client-chip w-64 sm:w-72 h-28 sm:h-32 px-6 py-4 shrink-0 flex items-center justify-center">
+                <img
+                  src={client.image.src}
+                  alt={client.imageAlt || `${client.name} logo`}
+                  width={client.image.width}
+                  height={client.image.height}
+                  loading="lazy"
+                  className="max-h-20 sm:max-h-24 w-auto max-w-[85%] object-contain"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
