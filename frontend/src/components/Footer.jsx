@@ -20,18 +20,16 @@ export default function Footer() {
           {/* Col 1: Brand & Overview (5 cols on desktop) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 overflow-hidden bg-white p-1 shadow-sm">
-                <img
-                  src={siteMeta.logo.src}
-                  alt={c.logoAlt}
-                  width={siteMeta.logo.width}
-                  height={siteMeta.logo.height}
-                  loading="lazy"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="font-display text-2xl tracking-wide text-white leading-none">
-                {c.wordmarkPrimary} <span className="text-[var(--accent-orange-bright)]">{c.wordmarkAccent}</span>
+              <div className="leading-none">
+                <div className="font-display text-2xl tracking-tight font-black text-white flex items-center">
+                  <span>{c.wordmarkPrimary}</span>
+                  <span className="text-[var(--accent-orange-bright)] ml-1.5">{c.wordmarkAccent}</span>
+                </div>
+                <div className="flex items-center justify-between gap-1.5 text-[8.5px] sm:text-[9.5px] font-bold tracking-[0.14em] uppercase text-white/70 mt-1.5">
+                  <span className="h-[1.5px] w-3.5 bg-gradient-to-r from-transparent to-[#f2782b] rounded-full shrink-0"></span>
+                  <span className="whitespace-nowrap">{c.wordmarkSub}</span>
+                  <span className="h-[1.5px] w-3.5 bg-gradient-to-l from-transparent to-[#f2782b] rounded-full shrink-0"></span>
+                </div>
               </div>
             </div>
 

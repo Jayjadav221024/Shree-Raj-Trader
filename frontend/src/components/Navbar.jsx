@@ -62,12 +62,14 @@ export default function Navbar({ onOpenRfq }) {
                   className="flex items-center gap-3 group shrink-0 logo-3d-container py-1 whitespace-nowrap"
                 >
                   <div className="leading-none logo-text-3d">
-                    <div className="font-display text-xl sm:text-2xl tracking-wide font-extrabold group-hover:scale-[1.02] transition-transform">
-                      <span className="logo-gradient-text">{c.wordmarkPrimary}</span>{' '}
-                      <span className="logo-gradient-accent">{c.wordmarkAccent}</span>
+                    <div className="font-display text-2xl tracking-tight font-black group-hover:scale-[1.02] transition-transform flex items-center">
+                      <span className="logo-gradient-text">{c.wordmarkPrimary}</span>
+                      <span className="logo-gradient-accent ml-1.5">{c.wordmarkAccent}</span>
                     </div>
-                    <div className="text-[10px] font-bold tracking-[0.16em] uppercase logo-sub-gradient mt-1">
-                      {c.wordmarkSub}
+                    <div className="flex items-center justify-between gap-1.5 text-[8.5px] sm:text-[9.5px] font-bold tracking-[0.14em] uppercase mt-1">
+                      <span className="h-[1.5px] w-3.5 bg-gradient-to-r from-transparent to-[#f2782b] rounded-full shrink-0"></span>
+                      <span className="logo-sub-gradient whitespace-nowrap">{c.wordmarkSub}</span>
+                      <span className="h-[1.5px] w-3.5 bg-gradient-to-l from-transparent to-[#f2782b] rounded-full shrink-0"></span>
                     </div>
                   </div>
                 </a>

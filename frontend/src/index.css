@@ -994,10 +994,11 @@ select.form-control option {
 .logo-gradient-text {
   background: linear-gradient(
     135deg,
-    var(--text-main) 0%,
-    var(--accent-cyan) 35%,
-    var(--accent-orange) 70%,
-    var(--text-main) 100%
+    #2c2c2c 0%,
+    #4a4a4a 30%,
+    #1e1e1e 60%,
+    #3f3f3f 85%,
+    #2c2c2c 100%
   );
   background-size: 250% auto;
   -webkit-background-clip: text;
@@ -1010,10 +1011,10 @@ select.form-control option {
 .logo-gradient-accent {
   background: linear-gradient(
     135deg,
-    #d9653b 0%,
-    #ff7849 35%,
-    #ea580c 65%,
-    #d9653b 100%
+    #ea580c 0%,
+    #f2782b 35%,
+    #fb923c 65%,
+    #ea580c 100%
   );
   background-size: 220% auto;
   -webkit-background-clip: text;
@@ -1026,9 +1027,9 @@ select.form-control option {
 .logo-sub-gradient {
   background: linear-gradient(
     90deg,
-    var(--text-faint) 0%,
-    var(--accent-cyan) 50%,
-    var(--text-faint) 100%
+    #374151 0%,
+    #6b7280 50%,
+    #374151 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;

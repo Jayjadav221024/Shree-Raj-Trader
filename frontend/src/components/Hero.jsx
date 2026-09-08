@@ -43,12 +43,14 @@ export default function Hero({ onOpenRfq }) {
             {/* Brand Text Logo in Hero - displayed on sm and up since mobile header shows it, or nicely scaled */}
             <div className="hidden sm:inline-block logo-3d-container">
               <div className="leading-none logo-text-3d">
-                <div className="font-display text-2xl sm:text-3xl tracking-wide font-extrabold">
-                  <span className="logo-gradient-text">{cNav.wordmarkPrimary}</span>{' '}
-                  <span className="logo-gradient-accent">{cNav.wordmarkAccent}</span>
+                <div className="font-display text-2xl sm:text-3xl tracking-tight font-black flex items-center">
+                  <span className="logo-gradient-text">{cNav.wordmarkPrimary}</span>
+                  <span className="logo-gradient-accent ml-2">{cNav.wordmarkAccent}</span>
                 </div>
-                <div className="text-xs sm:text-sm font-bold tracking-[0.16em] uppercase logo-sub-gradient mt-1.5">
-                  {cNav.wordmarkSub}
+                <div className="flex items-center justify-between gap-2 text-[10.5px] sm:text-xs font-bold tracking-[0.14em] uppercase mt-1.5">
+                  <span className="h-[2px] w-4 sm:w-6 bg-gradient-to-r from-transparent to-[#f2782b] rounded-full shrink-0"></span>
+                  <span className="logo-sub-gradient whitespace-nowrap">{cNav.wordmarkSub}</span>
+                  <span className="h-[2px] w-4 sm:w-6 bg-gradient-to-l from-transparent to-[#f2782b] rounded-full shrink-0"></span>
                 </div>
               </div>
             </div>

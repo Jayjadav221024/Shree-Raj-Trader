@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 110" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800;900&amp;display=swap');
+      .brand-shree {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 900;
+        font-size: 78px;
+        fill: #3e3e3e;
+        letter-spacing: -0.02em;
+      }
+      .brand-raj {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 900;
+        font-size: 78px;
+        fill: #f2782b;
+        letter-spacing: -0.02em;
+      }
+      .brand-sub {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 800;
+        font-size: 15.5px;
+        fill: #4e4e4e;
+        letter-spacing: 0.18em;
+      }
+    </style>
+    <linearGradient id="lineLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f2782b" stop-opacity="0" />
+      <stop offset="100%" stop-color="#f2782b" stop-opacity="1" />
+    </linearGradient>
+    <linearGradient id="lineRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f2782b" stop-opacity="1" />
+      <stop offset="100%" stop-color="#f2782b" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Wordmark -->
+  <text x="0" y="66" class="brand-shree">SHREE</text>
+  <text x="318" y="66" class="brand-raj">RAJ</text>
+
+  <!-- Subtitle with side lines -->
+  <line x1="5" y1="96" x2="60" y2="96" stroke="url(#lineLeft)" stroke-width="2.5" stroke-linecap="round" />
+  <text x="73" y="101" class="brand-sub">TRANSPOWER GROUP OF COMPANIES</text>
+  <line x1="435" y1="96" x2="490" y2="96" stroke="url(#lineRight)" stroke-width="2.5" stroke-linecap="round" />
+</svg>

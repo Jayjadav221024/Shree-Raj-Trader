@@ -109,9 +109,9 @@ export const copy = {
   // GLOBAL — shown on every page
   // ---------------------------------------------------------------------------
   'global.navbar': {
-    wordmarkPrimary: 'SHREE RAJ',
-    wordmarkAccent: 'TRADERS',
-    wordmarkSub: 'Siemens · CGL · Hindustan',
+    wordmarkPrimary: 'SHREE',
+    wordmarkAccent: 'RAJ',
+    wordmarkSub: 'TRANSPOWER GROUP OF COMPANIES',
     navHome: 'Home',
     navAbout: 'About Us',
     navGallery: 'Gallery',
@@ -130,9 +130,10 @@ export const copy = {
   },
 
   'global.footer': {
-    wordmarkPrimary: 'SHREE RAJ',
-    wordmarkAccent: 'TRADERS',
-    logoAlt: 'Shree Raj Traders',
+    wordmarkPrimary: 'SHREE',
+    wordmarkAccent: 'RAJ',
+    wordmarkSub: 'TRANSPOWER GROUP OF COMPANIES',
+    logoAlt: 'Shree Raj - Transpower Group of Companies',
     blurb:
       'Authorized Channel Partner for Siemens, CGL, HEM, and Rotomotive. Delivering genuine electro-mechanical switchgears, industrial motors, gearboxes, and FRP composite solutions for over six decades.',
     badges: [
