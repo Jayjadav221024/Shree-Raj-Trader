@@ -169,7 +169,7 @@ export default function BlogPage({ blogs: propBlogs }) {
 
           {/* Topic Category Chips & Result Count */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[var(--border-color)]">
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+            <div className="flex flex-wrap items-center gap-2 py-1">
               {TOPIC_CATEGORIES.map((topic) => (
                 <button
                   key={topic}

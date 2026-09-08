@@ -165,7 +165,7 @@ export default function OurTeamPage() {
       {/* Team Directory with Filters */}
       <section className="section">
         <div className="container-page">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 sm:gap-6 mb-8">
             <div>
               <span className="eyebrow eyebrow-teal">Team Directory</span>
               <h2 className="section-title">
@@ -173,13 +173,13 @@ export default function OurTeamPage() {
               </h2>
             </div>
 
-            {/* Department Filter Tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+            {/* Department Filter Tabs - Single Line */}
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 max-w-full shrink-0">
               {DEPARTMENTS.map((dept) => (
                 <button
                   key={dept}
                   onClick={() => setActiveDept(dept)}
-                  className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-200 cursor-pointer ${
                     activeDept === dept
                       ? 'bg-[var(--accent-orange)] text-white shadow-[var(--shadow-glow)]'
                       : 'bg-white border border-[var(--border-color)] text-[var(--text-muted)] hover:border-[var(--accent-orange)] hover:text-[var(--accent-orange)]'
@@ -208,14 +208,12 @@ export default function OurTeamPage() {
                       loading="lazy"
                       className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-2.5 left-2.5">
-                      <span className="badge-tag bg-white/90 backdrop-blur-xs text-[10px] font-semibold text-[var(--accent-cyan)] shadow-xs">
-                        {dept}
-                      </span>
-                    </div>
                   </div>
                   <div className="p-4 flex-1 flex flex-col justify-between">
                     <div>
+                      <span className="inline-block px-2 py-0.5 mb-2 rounded-md bg-[var(--accent-cyan-tint)] text-[var(--accent-cyan)] text-[10px] font-bold tracking-wide uppercase border border-[rgba(20,96,122,0.15)] line-clamp-1 max-w-full">
+                        {dept}
+                      </span>
                       <div className="font-display text-base sm:text-lg font-bold text-[var(--text-main)] leading-snug">
                         {member.name}
                       </div>

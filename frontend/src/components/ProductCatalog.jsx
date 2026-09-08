@@ -296,7 +296,7 @@ export default function ProductCatalog({ onSelectProductForRfq, categories: prop
             {/* Brand Filter Chips & Results Count */}
             {availableBrands.length > 2 && (
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-[var(--border-color)]">
-                <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
+                <div className="flex flex-wrap items-center gap-2 py-1">
                   <span className="text-xs font-semibold text-[var(--text-muted)] shrink-0 mr-1">Brand:</span>
                   {availableBrands.map((brand) => (
                     <button
